@@ -1,0 +1,50 @@
+/* RPI Shuttle Track - Jan 28 09 Original Design; Designed by Brian R Zaik (www.brzaik.com)  Copyright 2009 */
+
+body { background: /*#fff7f7 */ url(../images/pagebg_blue.gif) repeat; font-family:"Lucida Grande", Arial, sans-serif; font-size:small; line-height:1.75em; margin:0; padding:0; }
+#page { background:url(../images/barsbg_ph.jpg) top center repeat-x; margin:0; padding:55px 15px 25px 15px; }
+/* Everything below this comment is IE hacks (http://friendlybit.com/files/minwidth_for_IE/) */
+* html .minwidth, * html .container { height:1px; }
+* html .container { margin-left: -1000px; position:relative; }
+* html .minwidth { border-left: 1000px solid #fff; }
+
+div.minwidth { margin-left:auto; margin-right:auto; width:1000px; }
+div.container { padding:0; }
+
+/* GENERAL STYLES */
+h1, h2, h3, h4, h5, h6, h7, p { font-weight:normal;line-height:normal;margin:0px; padding:0; }
+a { color:#006699; font-weight:bold; text-decoration:none; }
+a:hover { color:#333333; text-decoration:underline; }
+p { line-height:1.5em; margin:0px 0px 18px 0px; }
+p.nopad { margin:0; padding:0px; }
+h1 {  color:#993333; font-size:250%;  margin:0px 0px 26px 0px;  padding:0px 0px 0px 0px; }
+h2 { font-size:1em;  margin:0px;  padding:0px; }
+div.topcontrols h2 { font-size:1em;  margin:0px;  padding:0px; }
+h3 {  color:#666666; font-size:130%; font-weight:bold; margin:0px 0px 12px 0px;  padding:0px 0px 0px 0px; }
+span.sub_h3 { color:#666666; font-size:0.9em; margin-left:6px; }
+span.sub_h3 a { color:#666666; font-weight:bold; text-decoration:none; }
+span.sub_h3 a:hover { text-decoration:underline; }
+h4 {  color:#993333; font-family:Arial, sans-serif; font-size:1.1em; margin:0px 0px 12px 0px;  padding:0px 0px 0px 0px; }
+h4 a { font-weight:bold; }
+span.sub_h4 { color:#3399cc; font-size:1.1em; font-weight:bold; margin-left:6px; }
+span.sub_h4 a { color:#3399cc; text-decoration:none; }
+span.sub_h4 a:hover { text-decoration:underline; }
+h5 {  color:#993333; font-family:Arial, sans-serif; font-size:110%; font-weight:bold; margin:0px 0px 8px 0px; padding:0px; }
+h7 {  color:#336699; font-family:Arial, sans-serif; font-size:0.95em; font-weight:bold; margin:0px 0px 12px 0px; padding:0; }
+br {  height:1px; line-height:normal; margin:0; padding:0; }
+/* breadcrumb styles */
+.breadcrumbs { font-family:Arial, sans-serif; font-size:90%; }
+.breadcrumbs a { font-weight:bold; }
+.proj { padding:15px 0px 30px 60px; }
+
+/* TOPBAR MENU */
+#topbar a { font-family:Arial, sans-serif !important; color:#FFF; font-weight:bold; text-decoration:none; }
+
+#mapblock { text-align:center;border-top:solid 1px #FFF;padding:0px 0px 20px 0px;background:#222222; }
+#map_header { font-size:0.9em; color:#666; letter-spacing:0.1em; margin:6px 0px; padding:0; min-height: 16px;}
+#status { color:#999; letter-spacing:0.05em; }
+
+/* Footer */
+#footer { border-top:solid 1px #666; padding-left:50px;clear:both;color:#999; font-size:0.8em; background:url(../images/footer_left.png) top left no-repeat;height:62px; }
+#footer span { padding-top:15px; padding-right:50px;text-align:center;display:block; height:62px;background:url(../images/footer_right.png) top right no-repeat; }
+#footer a { color:#99ccff; }
+#footer-shadow { clear:both;height:62px;background:url(../images/footer_shadow.png) top center no-repeat; }

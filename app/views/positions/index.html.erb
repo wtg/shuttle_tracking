@@ -1,0 +1,34 @@
+<h1>Listing positions</h1>
+
+<table>
+  <tr>
+    <th>Shuttle</th>
+    <th>Latitude</th>
+    <th>Longitude</th>
+    <th>Heading</th>
+    <th>Speed</th>
+    <th>Timestamp</th>
+    <th>Lock</th>
+    <th>Status</th>
+  </tr>
+
+<% @positions.each do |position| %>
+  <tr>
+    <td><%=h position.shuttle_id %></td>
+    <td><%=h position.latitude %></td>
+    <td><%=h position.longitude %></td>
+    <td><%=h position.heading %></td>
+    <td><%=h position.speed %></td>
+    <td><%=h position.timestamp %></td>
+    <td><%=h position.lock %></td>
+    <td><%=h position.status_id %></td>
+    <td><%= link_to 'Show', position %></td>
+    <td><%= link_to 'Edit', edit_position_path(position) %></td>
+    <td><%= link_to 'Destroy', position, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New position', new_position_path %>

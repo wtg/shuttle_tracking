@@ -1,0 +1,4 @@
+<%= @routes.to_xml(
+                       :only => [:name, :description, :id, :start_time, :end_time],
+                       :methods => [:kml_url]
+                       ) %>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document>
+  <name>RPI Shuttle Positions</name>
+<% @positions.each do |p| %>
+  <Placemark id="shuttle_<%= p.shuttle.id %>">
+    <name><%= p.shuttle.name %></name>
+    <description><![CDATA[ Speed: <%= p.speed %> mph Heading: <%= p.heading %>&deg;]]></description>
+    <Point>
+      <altitudeMode>clampToGround</altitudeMode>
+      <coordinates><%= p.longitude %>,<%= p.latitude %>,0</coordinates>
+    </Point>
+    <Style>
+      <IconStyle>
+        <Icon>
+          <href><%= url_for :controller => :icons, :action => :rotate, :id=> p.heading, :format => :png, :only_path => false %></href>
+          <refreshMode>onChange</refreshMode>
+        </Icon>
+      </IconStyle>
+    </Style>
+  </Placemark>
+<% end %>
+</Document>
+</kml>

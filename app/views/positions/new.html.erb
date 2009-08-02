@@ -1,0 +1,43 @@
+<h1>New position</h1>
+
+<% form_for(@position) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :shuttle_id %><br />
+    <%= f.text_field :shuttle_id %>
+  </p>
+  <p>
+    <%= f.label :latitude %><br />
+    <%= f.text_field :latitude %>
+  </p>
+  <p>
+    <%= f.label :longitude %><br />
+    <%= f.text_field :longitude %>
+  </p>
+  <p>
+    <%= f.label :heading %><br />
+    <%= f.text_field :heading %>
+  </p>
+  <p>
+    <%= f.label :speed %><br />
+    <%= f.text_field :speed %>
+  </p>
+  <p>
+    <%= f.label :timestamp %><br />
+    <%= f.datetime_select :timestamp %>
+  </p>
+  <p>
+    <%= f.label :lock %><br />
+    <%= f.text_field :lock %>
+  </p>
+  <p>
+    <%= f.label :status_id %><br />
+    <%= f.text_field :status_id %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', positions_path %>

@@ -1,0 +1,4 @@
+<%= "#{params[:callback]}(" if params[:callback] %><%= @routes.to_json(
+                       :only => [:name, :description, :id, :start_time, :end_time],
+                       :methods => [:kml_url]
+                       ) %><%= ")" if params[:callback] %>

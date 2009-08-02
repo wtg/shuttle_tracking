@@ -1,0 +1,26 @@
+<h1>Listing shuttles</h1>
+
+<table>
+  <tr>
+    <th>Ip</th>
+    <th>Name</th>
+    <th>Active</th>
+    <th>Enabled</th>
+  </tr>
+
+<% @shuttles.each do |shuttle| %>
+  <tr>
+    <td><%=h shuttle.ip %></td>
+    <td><%=h shuttle.name %></td>
+    <td><%=h shuttle.active %></td>
+    <td><%=h shuttle.enabled %></td>
+    <td><%= link_to 'Show', shuttle %></td>
+    <td><%= link_to 'Edit', edit_shuttle_path(shuttle) %></td>
+    <td><%= link_to 'Destroy', shuttle, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New shuttle', new_shuttle_path %>

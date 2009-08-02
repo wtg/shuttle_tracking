@@ -1,0 +1,7 @@
+<%= "#{params[:callback]}(" if params[:callback]%><%= @positions.to_json(
+                       :except => [:updated_at, :id, :created_at, :status_id],
+                        :methods => [:icon_width, :icon_height],
+                       :include => {:status => {:only => [:message]},
+                                    :shuttle => {:only => [:name, :active, :id]}
+                                   }
+                       ) %><%= ")" if params[:callback] %>

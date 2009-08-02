@@ -1,0 +1,30 @@
+<p>
+  <b>Name:</b>
+  <%=h @stop.name %>
+</p>
+
+<p>
+  <b>Location:</b>
+  <%=h @stop.latitude %>, <%=h @stop.longitude %>
+</p>
+
+<p>
+  <b>Routes:</b><br>
+  <% @stop.routes.each do |r| %>
+    <%= link_to r.name, r %><br>
+  <% end %>
+</p>
+
+<p>
+  <b>Enabled:</b>
+  <%=h @stop.enabled %>
+</p>
+
+<p>
+  <b>Phoentic:</b>
+  '<%=h @stop.phoentic %>'
+</p>
+
+
+<%= link_to 'Edit', edit_stop_path(@stop) %> |
+<%= link_to 'Back', stops_path %>

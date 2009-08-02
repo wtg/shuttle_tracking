@@ -1,0 +1,28 @@
+<p>
+  <b>Name:</b>
+  <%=h @route.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @route.description %>
+</p>
+
+<p>
+  <b>Start time:</b>
+  <%=h @route.start_time %>
+</p>
+
+<p>
+  <b>End time:</b>
+  <%=h @route.end_time %>
+</p>
+
+<p>
+  <b>Enabled:</b>
+  <%=h @route.enabled %>
+</p>
+<p><%= link_to "Download KML", @route.kml.url unless @route.kml_file_name.nil? %>
+</p>
+<%= link_to 'Edit', edit_route_path(@route) %> |
+<%= link_to 'Back', routes_path %>

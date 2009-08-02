@@ -1,0 +1,7 @@
+<%= @positions.to_xml(
+                      :except => [:updated_at, :id, :created_at, :status_id],
+                      :methods => [:icon_width, :icon_height],
+                      :include => {:status => {:only => [:message]},
+                                   :shuttle => {:only => [:name, :active]}
+                                  }
+                      ) %>

@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  ip: MyString
+  name: MyString
+  active: false
+  enabled: false
+
+two:
+  ip: MyString
+  name: MyString
+  active: false
+  enabled: false

@@ -1,0 +1,12 @@
+<h1>Editing route</h1>
+
+<% form_for(@route) do |f| %>
+  <%= f.error_messages %>
+  <%= render :partial => f %>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @route %> |
+<%= link_to 'Back', routes_path %>

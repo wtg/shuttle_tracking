@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  latitude: 9.99
+  longitude: 9.99
+  route_id: 1
+  enabled: false
+  phoentic: MyString
+
+two:
+  name: MyString
+  latitude: 9.99
+  longitude: 9.99
+  route_id: 1
+  enabled: false
+  phoentic: MyString

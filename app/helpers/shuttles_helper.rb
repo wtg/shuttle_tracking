@@ -1,0 +1,2 @@
+module ShuttlesHelper
+end

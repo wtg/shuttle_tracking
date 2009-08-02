@@ -1,0 +1,43 @@
+<p>
+  <b>Shuttle:</b>
+  <%=h @position.shuttle_id %>
+</p>
+
+<p>
+  <b>Latitude:</b>
+  <%=h @position.latitude %>
+</p>
+
+<p>
+  <b>Longitude:</b>
+  <%=h @position.longitude %>
+</p>
+
+<p>
+  <b>Heading:</b>
+  <%=h @position.heading %>
+</p>
+
+<p>
+  <b>Speed:</b>
+  <%=h @position.speed %>
+</p>
+
+<p>
+  <b>Timestamp:</b>
+  <%=h @position.timestamp %>
+</p>
+
+<p>
+  <b>Lock:</b>
+  <%=h @position.lock %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%=h @position.status_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_position_path(@position) %> |
+<%= link_to 'Back', positions_path %>

@@ -1,0 +1,4 @@
+<%= "#{params[:callback]}(" if params[:callback] %><%= @stops.to_json(
+                       :except => [:updated_at, :id, :created_at, :route_id, :enabled],
+                       :include => {:routes => {:only => [:name, :start_time, :end_time, :id]}}
+                       ) %><%= ")" if params[:callback] %>

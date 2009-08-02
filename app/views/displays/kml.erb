@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Folder>
+    <name>RPI Shuttle Tracking</name>
+    <description>http://shuttles.rpi.edu</description>
+    <!-- Constantly updating shuttle information -->
+    <NetworkLink>
+      <name>RPI Shuttles</name>
+      <description>Updating every 15 seconds</description>
+      <refreshVisibility>0</refreshVisibility>
+      <Link>
+        <href><%= url_for :controller => :positions, :action => :current, :format => :kml, :only_path => false %></href>
+        <refreshMode>onInterval</refreshMode>
+        <refreshInterval>15</refreshInterval>
+      </Link>
+    </NetworkLink>
+    
+    <!-- Static route information-->
+    <% @routes.each do |r| %>
+    <NetworkLink id="route_<%= r.id %>">
+      <name><%= r.name %></name>
+      <description><![CDATA[ <%= r.description %> ]]></description>
+      <refreshVisibility>0</refreshVisibility>
+      <Link>
+        <href><%= r.kml_url %></href>
+      </Link>
+    </NetworkLink>
+    <% end %>
+  </Folder>
+</kml>

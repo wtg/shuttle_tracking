@@ -1,0 +1,23 @@
+<p>
+  <b>Ip:</b>
+  <%=h @shuttle.ip %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%=h @shuttle.name %>
+</p>
+
+<p>
+  <b>Active:</b>
+  <%=h @shuttle.active %>
+</p>
+
+<p>
+  <b>Enabled:</b>
+  <%=h @shuttle.enabled %>
+</p>
+
+
+<%= link_to 'Edit', edit_shuttle_path(@shuttle) %> |
+<%= link_to 'Back', shuttles_path %>

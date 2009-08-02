@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>Track Shuttles Live at Rensselaer Polytechnic Institute</title>
+  <%= stylesheet_link_tag 'new' %>
+  <%= stylesheet_link_tag 'http://studentsenate.rpi.edu/stylesheets/topbar.css' %>
+  <%= javascript_include_tag 'prototype', 'application', :cache => true %>
+  <script type="text/javascript" src="http://www.google.com/jsapi?key=<%= GMAPKEY %>"></script>
+  <script type="text/javascript">
+    google.load("maps", "2.x");
+    google.setOnLoadCallback(initialize);
+    var STATUS_URL = "<%= formatted_current_positions_path(:format=>'js') %>";
+    var STOPS_URL = "<%= formatted_stops_path(:format=>'js') %>";
+    var ROUTES_URL = "<%= formatted_routes_path(:format=>'js') %>";
+    var STOP_ICON_URL = "<%= image_path 'blue_pin.png' %>";
+    var STOP_SHADOW_ICON_URL = "<%= image_path 'blue_pin_shadow.png' %>";
+    var ICON_BASE_URL = "<%= url_for :controller => :icons, :action => :rotate %>";
+  </script>
+</head>
+<body onunload="GUnload()">
+<%= render :partial => 'toplinks' %>
+<% if flash[:notice] %><p style="color: green"><%= flash[:notice] %></p><% end %>
+<%= yield %>
+</body>
+</html>

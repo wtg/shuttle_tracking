@@ -1,0 +1,6 @@
+<% @shuttles.each do |s| %>
+<% p = s.current_position %>
+<% if !p.nil? %>
+<%= s.current_position.latitude %>
+<% end %>
+<% end %>

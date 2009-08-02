@@ -1,0 +1,12 @@
+<h1>Editing stop</h1>
+
+<% form_for(@stop) do |f| %>
+  <%= f.error_messages %>
+  <%= render :partial=>"form", :locals=>{:f=>f} %>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @stop %> |
+<%= link_to 'Back', stops_path %>
