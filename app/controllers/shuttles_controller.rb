@@ -1,4 +1,6 @@
 class ShuttlesController < ApplicationController
+  before_filter :login
+
   # GET /shuttles
   # GET /shuttles.xml
   def index
@@ -82,6 +84,5 @@ class ShuttlesController < ApplicationController
       format.xml  { head :ok }
     end
   end
-  
   
 end

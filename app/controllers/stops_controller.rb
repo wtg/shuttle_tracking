@@ -1,4 +1,6 @@
 class StopsController < ApplicationController
+  before_filter :login, :except => [:index]
+
   # GET /stops
   # GET /stops.xml
   def index

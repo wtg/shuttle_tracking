@@ -17,8 +17,12 @@
         </div>
       </td>
       <td class="login">
-  <p><a href="/login">Log in</a></p>
-</td>
+      <% if logged_in? %>
+        <p> <%= link_to "Logout (#{session[:cas_user]})", 'logout' %> </p>
+      <% else %>
+        <p><%= link_to 'Login', :controller=>"shuttles" %></p>
+      <% end %>
+      </td>
     </tr>
   </table>
 </div>

@@ -1,4 +1,6 @@
 class PositionsController < ApplicationController
+  before_filter :login, :except => [:current]
+
   # GET /positions
   # GET /positions.xml
   def index
