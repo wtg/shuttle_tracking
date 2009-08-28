@@ -9,6 +9,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :shuttles
 
+  map.connect '', :controller => 'displays'
   map.connect 'shuttle_tracking.kml', :controller => 'displays', :action => 'kml'
 
   map.connect 'logout', :controller => 'application', :action => 'logout'
