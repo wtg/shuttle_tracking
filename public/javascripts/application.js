@@ -46,7 +46,8 @@ function refresh_time(){
 
 function update(){
   var active_opt = $$('input:checked[type="radio"][name="active_opt"]').pluck('value');
-  var url = STATUS_URL + "?active=" + active_opt;
+  var url = STATUS_URL + "?active=" + active_opt + "&rand=" + Math.random()*1000;
+  //alert(url);
   new Ajax.Request(url, {
     method:'get',
     onSuccess: function(transport){

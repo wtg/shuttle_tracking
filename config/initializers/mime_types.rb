@@ -7,5 +7,5 @@
 Mime::Type.register "image/jpeg", :jpg
 Mime::Type.register "image/png", :png
 Mime::Type.register "image/gif", :gif
-#Mime::Type.register "application/vnd.google-earth.kml+xml", :kml 
-Mime::Type.register "text/plain", :kml
+Mime::Type.register "application/vnd.google-earth.kml+xml", :kml 
+#Mime::Type.register "text/plain", :kml
