@@ -17,4 +17,9 @@ class DisplaysController < ApplicationController
       format.kml { render :layout => false }
     end
   end
+
+  def locations
+    @shuttles = Shuttle.find(:all, :conditions => {:enabled => true})    
+  end
+
 end
