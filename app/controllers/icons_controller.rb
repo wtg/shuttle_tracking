@@ -13,6 +13,9 @@ class IconsController < ApplicationController
     #it performs very well
      
     icon = Magick::ImageList.new(RAILS_ROOT+'/public/images/white_shuttle_icon.png')
+    if(degrees.to_f > 180)
+      icon.flop!
+    end
     icon.rotate!(degrees.to_f)
     icon.fuzz = 20000
     clear_icon = icon.transparent('white')
