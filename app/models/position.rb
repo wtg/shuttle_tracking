@@ -26,6 +26,9 @@ class Position < ActiveRecord::Base
       json = ActiveSupport::JSON.decode(data)
     }
     addresses = {}
+    if(json["Placemark"].nil?)
+      return nil
+    end
     json["Placemark"].each do |a|
        addresses[a["AddressDetails"]["Accuracy"]] = a["address"]
     end
