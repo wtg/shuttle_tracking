@@ -13,6 +13,9 @@ class DisplaysController < ApplicationController
       r.kml_url = ABS_PATH + r.kml.url unless r.kml_file_name.nil?
     end
     
+    #Generate stop information
+    @stops = Stop.find(:all, :group => :id, :joins => :routes, :conditions => {:enabled => true, 'routes.enabled' => true})
+    
     respond_to do |format|
       format.kml { render :layout => false }
     end
