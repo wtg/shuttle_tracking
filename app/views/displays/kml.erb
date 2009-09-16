@@ -19,7 +19,7 @@
     <% @routes.each do |r| %>
     <NetworkLink id="route_<%= r.id %>">
       <name><%= r.name %></name>
-      <description><![CDATA[ <%= r.description %> ]]></description>
+      <description><![CDATA[ <%=h r.description %> ]]></description>
       <refreshVisibility>0</refreshVisibility>
       <Link>
         <href><%= r.kml_url %></href>
