@@ -14,6 +14,7 @@ class StopsController < ApplicationController
       format.html # index.html.erb
       format.xml
       format.js
+      format.kml
     end
   end
 

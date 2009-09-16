@@ -5,16 +5,12 @@ class RoutesController < ApplicationController
   # GET /routes.xml
   def index
     @routes = Route.find(:all, :conditions => {:enabled => true})
-    
-    #Generate URL's
-    @routes.each do |r|
-      r.kml_url = ABS_PATH + r.kml.url unless r.kml_file_name.nil?
-    end
 
     respond_to do |format|
       format.html # index.html.erb
       format.xml
       format.js
+      format.kml
     end
   end
 

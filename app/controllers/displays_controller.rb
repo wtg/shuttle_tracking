@@ -8,11 +8,6 @@ class DisplaysController < ApplicationController
     #Generate route information
     @routes = Route.find(:all, :conditions => {:enabled => true})
     
-    #Generate route URL's
-    @routes.each do |r|
-      r.kml_url = ABS_PATH + r.kml.url unless r.kml_file_name.nil?
-    end
-    
     #Generate stop information
     @stops = Stop.find(:all, :group => :id, :joins => :routes, :conditions => {:enabled => true, 'routes.enabled' => true})
     

@@ -10,5 +10,11 @@ class Route < ActiveRecord::Base
   default_scope select_without_file_columns_for(:kml)
 
   #Stores an absolute url to the kml file sometimes
-  attr_accessor :kml_url
+  def kml_url
+    if self.kml_file_name.nil?
+      return ""
+    else
+      return ABS_PATH + self.kml.url unless self.kml_file_name.nil?
+    end
+  end
 end
