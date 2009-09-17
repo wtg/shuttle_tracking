@@ -88,6 +88,9 @@ class PositionsController < ApplicationController
   # GET /positions/current
   # GET /positions/current.xml
   def current
+   #Cache for a second or two, incase someone is refresh happy
+   expires_in 2.seconds, :public => true
+
     case params[:active]
       when "Online" then
         shuttles = Shuttle.find(:all, :conditions => {:enabled => true, :active => true})
