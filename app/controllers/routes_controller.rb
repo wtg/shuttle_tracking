@@ -1,5 +1,5 @@
 class RoutesController < ApplicationController
-  before_filter :login, :except => [:index]  
+  before_filter :login, :except => [:index, :kmls]  
 
   # GET /routes
   # GET /routes.xml
