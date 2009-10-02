@@ -1,0 +1,17 @@
+<%= xml = ::Builder::XmlMarkup.new(:indent => 2) 
+  xml.instruct!
+  xml.shuttles{
+    @shuttles.each do |s|
+      if !s.current_position.nil?
+        xml.shuttle{
+          xml.name s.name
+          xml.updated_at s.updated_at
+          xml.heading s.current_position.heading
+          xml.latitude s.current_position.latitude
+          xml.longitude s.current_position.longitude
+          xml.location{ xml.cdata! s.current_position.locate }
+        }
+      end
+    end
+  }
+%>

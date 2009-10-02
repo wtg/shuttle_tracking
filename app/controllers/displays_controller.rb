@@ -17,7 +17,22 @@ class DisplaysController < ApplicationController
   end
 
   def locations
-    @shuttles = Shuttle.find(:all, :conditions => {:enabled => true})    
+    case params[:active]
+      when "Online" then
+        @shuttles = Shuttle.find(:all, :conditions => {:enabled => true, :active => true})
+      when "Offline" then
+       @shuttles = Shuttle.find(:all, :conditions => {:enabled => true, :active => false})
+      when "All" then
+        @shuttles = Shuttle.find(:all, :conditions => {:enabled => true})
+      else
+        @shuttles = Shuttle.find(:all, :conditions => {:enabled => true})
+    end
+    
+    respond_to do |format|
+      format.xml
+      format.html
+    end
+
   end
 
 end
