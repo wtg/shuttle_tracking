@@ -2,7 +2,7 @@
 
 <% form_for(@stop) do |f| %>
   <%= f.error_messages %>
-  <%= render :partial=>"form", :locals=>{:f=>f} %>
+  <%= render :partial=>"form", :locals=>{:f=>f,:stop=>@stop} %>
   <p>
     <%= f.submit 'Create' %>
   </p>
