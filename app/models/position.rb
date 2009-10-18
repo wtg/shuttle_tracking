@@ -19,7 +19,7 @@ class Position < ActiveRecord::Base
 
   def locate
     require 'open-uri'
-    url = "http://maps.google.com/maps/geo?q=#{self.latitude},#{self.longitude}&output=json&oe=utf8"
+    url = "http://maps.google.com/maps/geo?q=#{self.latitude},#{self.longitude}&output=json&oe=utf8&key=" + GMAPKEY
     json = ""
     open(url) {|f|
       data = f.read
@@ -30,10 +30,14 @@ class Position < ActiveRecord::Base
       return nil
     end
     json["Placemark"].each do |a|
-       addresses[a["AddressDetails"]["Accuracy"]] = a["address"]
+       if (a["address"] != 'Rensselaer Polytechnic Institute, Troy, NY 12180, USA')
+         addresses[a["AddressDetails"]["Accuracy"]] = a["address"]
+       else
+         addresses[6] = a["address"] #Numbers below 4 seemed reserved for city/state/country
+       end
     end
     ranked_addresses = addresses.sort
-    best = ranked_addresses.last.last.to_s
+    best = ranked_addresses.last.last.to_s #first last = best address, second last = address portion of array [accuracy][address]
 
     #Clean up the locations to remove assumed things (like Troy, the US, etc)
     #If there is something like NY 12180, remove the zip code
