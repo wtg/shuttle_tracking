@@ -4,14 +4,14 @@ var map;
 // Call this function when the page has been loaded
 function initialize() {
   map = new google.maps.Map2(document.getElementById("map_canvas"));
-  map.setCenter(new google.maps.LatLng(42.73075, -73.67652), 16);
+  map.setCenter(new google.maps.LatLng(CENTER_LAT, CENTER_LONG), 16);
   map.setUIToDefault();
   map.setMapType(G_HYBRID_MAP);
   load_routes();
   load_stops();
   update();
+  recenter();
   new PeriodicalExecuter(update, 10);
-
 }
 
 function manual_update(){
@@ -205,4 +205,16 @@ function load_routes(){
 
 function set_status(message){
   $('status').update(message);
+}
+
+function recenter(){
+  if(navigator.geolocation){
+    navigator.geolocation.getCurrentPosition(function(position) {  
+      cur_lat = position.coords.latitude;
+      cur_long = position.coords.longitude;
+      if((Math.abs(cur_lat - CENTER_LAT) < 0.05) && (Math.abs(cur_long - CENTER_LONG) < 0.05)){
+        map.setCenter(new google.maps.LatLng(cur_lat, cur_long), 16);
+      }
+    }); 
+  }
 }
