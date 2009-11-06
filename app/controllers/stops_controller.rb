@@ -1,15 +1,19 @@
 class StopsController < ApplicationController
   before_filter :login, :except => [:index]
 
+  cache_sweeper :stop_sweeper
+
   # GET /stops
   # GET /stops.xml
   def index
     if(params[:route_id])
       @stops = Stop.find(:all, :group => :id, :joins => :routes, :conditions => {'stops.enabled' => true, 'routes.enabled' => true, 'routes.id' => params[:route_id]})
     else
-      @stops = Stop.find(:all, :group => :id, :joins => :routes, :conditions => {:enabled => true, 'routes.enabled' => true})
+      #If the request is NOT for a js file or the cache does NOT exist, get all the stops
+      if !request.format.js? || !fragment_exist?(:action => :index, :action_suffix => 'js')
+        @stops = Stop.find(:all, :group => :id, :joins => :routes, :conditions => {:enabled => true, 'routes.enabled' => true})
+      end
     end
-    
     respond_to do |format|
       format.html # index.html.erb
       format.xml

@@ -1,4 +1,15 @@
-<%= "#{params[:callback]}(" if params[:callback] %><%= @stops.to_json(
-                       :except => [:updated_at, :id, :created_at, :route_id, :enabled],
-                       :include => {:routes => {:only => [:name, :start_time, :end_time, :id]}}
-                       ) %><%= ")" if params[:callback] %>
+<%= "#{params[:callback]}(" if params[:callback] -%>
+<%- if !params[:route_id].blank? -%>
+<%= @stops.to_json(
+                  :except => [:updated_at, :id, :created_at, :route_id, :enabled],
+                  :include => {:routes => {:only => [:name, :start_time, :end_time, :id]}}
+                  ) -%>
+ <%- else -%>
+  <%- cache(:action => :index, :action_suffix => 'js') do -%>
+<%= @stops.to_json(
+                   :except => [:updated_at, :id, :created_at, :route_id, :enabled],
+                   :include => {:routes => {:only => [:name, :start_time, :end_time, :id]}}
+                   ) -%>
+  <%- end -%>
+<%- end -%>
+<%= ")" if params[:callback] -%>
