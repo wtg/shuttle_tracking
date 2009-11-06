@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090723170755) do
+ActiveRecord::Schema.define(:version => 20091106035559) do
 
   create_table "positions", :force => true do |t|
     t.integer  "shuttle_id"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(:version => 20090723170755) do
   end
 
   add_index "positions", ["shuttle_id", "timestamp"], :name => "shuttle_timestamp", :unique => true
+  add_index "positions", ["updated_at"], :name => "updated_at"
 
   create_table "routes", :force => true do |t|
     t.string   "name"
