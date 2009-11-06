@@ -1,5 +1,7 @@
 class DisplaysController < ApplicationController
 
+  caches_page :index
+
   def index
     render :layout => 'full_map'
   end
@@ -21,7 +23,7 @@ class DisplaysController < ApplicationController
       when "Online" then
         @shuttles = Shuttle.find(:all, :conditions => {:enabled => true, :active => true})
       when "Offline" then
-       @shuttles = Shuttle.find(:all, :conditions => {:enabled => true, :active => false})
+        @shuttles = Shuttle.find(:all, :conditions => {:enabled => true, :active => false})
       when "All" then
         @shuttles = Shuttle.find(:all, :conditions => {:enabled => true})
       else
