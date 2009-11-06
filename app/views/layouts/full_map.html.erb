@@ -11,9 +11,9 @@
   <script type="text/javascript">
     google.load("maps", "2.x");
     google.setOnLoadCallback(initialize);
-    var STATUS_URL = "<%= formatted_current_positions_path(:format=>'js') %>";
-    var STOPS_URL = "<%= formatted_stops_path(:format=>'js') %>";
-    var ROUTES_URL = "<%= formatted_routes_path(:format=>'js') %>";
+    var STATUS_URL = "<%= current_positions_path(:format=>'js') %>";
+    var STOPS_URL = "<%= stops_path(:format=>'js') %>";
+    var ROUTES_URL = "<%= routes_path(:format=>'js') %>";
     var STOP_ICON_URL = "<%= image_path 'blue_pin.png' %>";
     var STOP_SHADOW_ICON_URL = "<%= image_path 'blue_pin_shadow.png' %>";
     var ICON_BASE_URL = "<%= url_for :controller => :icons, :action => :rotate %>";
