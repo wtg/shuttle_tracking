@@ -18,7 +18,7 @@
       </td>
       <td class="login">
       <% if logged_in? %>
-        <p> <%= link_to "Logout (#{session[:cas_user]})", 'logout' %> </p>
+        <p> <%= link_to "Logout (#{session[:cas_user]})", :controller => 'application', :action => 'logout' %> </p>
       <% else %>
         <p><%= link_to 'Login', :controller=>"shuttles" %></p>
       <% end %>
