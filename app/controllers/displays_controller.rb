@@ -1,7 +1,5 @@
 class DisplaysController < ApplicationController
 
-  caches_page :index
-
   def index
     render :layout => 'full_map'
   end
