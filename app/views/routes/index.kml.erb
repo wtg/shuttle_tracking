@@ -9,7 +9,7 @@
       <description><![CDATA[ <%=h r.description %> ]]></description>
       <refreshVisibility>0</refreshVisibility>
       <Link>
-        <href><%= r.kml_url %></href>
+        <href><%= route_url(r,:format=>'kml') %></href>
       </Link>
     </NetworkLink>
     <% end %>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.2">
+  <Document>
+    <name>RPI Shuttle Route</name>
+    <Style id = "<%= @route.name.parameterize %>">
+      <LineStyle>
+        <color><%= @route.color %></color>
+        <width><%= @route.width %></width>
+      </LineStyle>
+    </Style>
+    <Placemark>
+      <name><%= @route.name %> Route</name>
+      <styleUrl>#<%= @route.name.parameterize %></styleUrl>
+      <LineString>
+        <altitudeMode>relative</altitudeMode>
+        <coordinates>
+        <%= @route.coords %>
+        </coordinates>
+      </LineString>
+    </Placemark>
+  </Document>
+</kml>

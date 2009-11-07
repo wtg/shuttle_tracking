@@ -1,10 +1,12 @@
 class RoutesController < ApplicationController
-  before_filter :login, :except => [:index, :kmls]  
+  before_filter :login, :except => [:index, :show]  
 
   # GET /routes
   # GET /routes.xml
   def index
     @routes = Route.find(:all, :conditions => {:enabled => true})
+    
+    @routes.collect {|r| r.kml_url = route_url(r, :format => 'kml')}
 
     respond_to do |format|
       format.html # index.html.erb
@@ -18,10 +20,12 @@ class RoutesController < ApplicationController
   # GET /routes/1.xml
   def show
     @route = Route.find(params[:id])
+    @route.kml_url = route_url(@route, :format => 'kml')
 
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @route }
+      format.kml
     end
   end
 
@@ -86,6 +90,4 @@ class RoutesController < ApplicationController
       format.xml  { head :ok }
     end
   end
-  
-  downloads_files_for :route, :kml
 end

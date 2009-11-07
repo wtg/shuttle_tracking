@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091107002440) do
+ActiveRecord::Schema.define(:version => 20091107194458) do
 
   create_table "positions", :force => true do |t|
     t.integer  "shuttle_id"
@@ -31,16 +31,14 @@ ActiveRecord::Schema.define(:version => 20091107002440) do
   create_table "routes", :force => true do |t|
     t.string   "name"
     t.text     "description"
-    t.time     "start_time",       :default => '2000-01-01 00:00:00'
-    t.time     "end_time",         :default => '2000-01-01 00:00:00'
+    t.time     "start_time",  :default => '2000-01-01 00:00:00'
+    t.time     "end_time",    :default => '2000-01-01 00:00:00'
     t.boolean  "enabled"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "kml_file_name"
-    t.string   "kml_content_type"
-    t.integer  "kml_file_size"
-    t.datetime "kml_updated_at"
-    t.binary   "kml_file"
+    t.string   "color"
+    t.integer  "width",       :default => 4
+    t.text     "coords"
   end
 
   create_table "routes_stops", :id => false, :force => true do |t|

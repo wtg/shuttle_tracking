@@ -22,7 +22,7 @@
   <b>Enabled:</b>
   <%=h @route.enabled %>
 </p>
-<p><%= link_to "Download KML", @route.kml.url unless @route.kml_file_name.nil? %>
+<p><%= link_to "Download KML", route_path(@route, :format=>'kml') unless @route.coords.blank? %>
 </p>
 <%= link_to 'Edit', edit_route_path(@route) %> |
 <%= link_to 'Back', routes_path %>
