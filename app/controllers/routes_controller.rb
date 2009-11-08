@@ -1,6 +1,8 @@
 class RoutesController < ApplicationController
   before_filter :login, :except => [:index, :show]  
 
+  cache_sweeper :route_sweeper
+
   # GET /routes
   # GET /routes.xml
   def index
@@ -19,8 +21,10 @@ class RoutesController < ApplicationController
   # GET /routes/1
   # GET /routes/1.xml
   def show
-    @route = Route.find(params[:id])
-    @route.kml_url = route_url(@route, :format => 'kml')
+    if !request.format.kml? || !fragment_exist?(:action => :show, :id => params[:id], :action_suffix => 'kml')
+      @route = Route.find(params[:id])
+      @route.kml_url = route_url(@route, :format => 'kml')
+    end
 
     respond_to do |format|
       format.html # show.html.erb
