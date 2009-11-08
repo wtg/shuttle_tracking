@@ -6,10 +6,10 @@ class RoutesController < ApplicationController
   # GET /routes
   # GET /routes.xml
   def index
-    @routes = Route.find(:all, :conditions => {:enabled => true})
-    
-    @routes.collect {|r| r.kml_url = route_url(r, :format => 'kml')}
-
+    if !request.format.js? || !fragment_exist?(:action => :index, :action_suffix => 'js')
+      @routes = Route.find(:all, :conditions => {:enabled => true})    
+      @routes.collect {|r| r.kml_url = route_url(r, :format => 'kml')}
+    end
     respond_to do |format|
       format.html # index.html.erb
       format.xml

@@ -1,4 +1,4 @@
-<%= "#{params[:callback]}(" if params[:callback] %><%= @routes.to_json(
+<%= "#{params[:callback]}(" if params[:callback] %><% cache(:action => :index, :action_suffix => 'js') do %><%= @routes.to_json(
                        :only => [:name, :description, :id, :start_time, :end_time],
                        :methods => [:kml_url]
-                       ) %><%= ")" if params[:callback] %>
+                       ) %><% end %><%= ")" if params[:callback] %>

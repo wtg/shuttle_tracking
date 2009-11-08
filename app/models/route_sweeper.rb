@@ -17,5 +17,7 @@ class RouteSweeper < ActionController::Caching::Sweeper
   def expire_cache_for(record)
     logger.info("Expiring js route #{record.id} cache...")
     expire_fragment(:controller => 'routes', :action => 'show', :id=>record.id, :action_suffix => 'kml')
+    logger.info("Expiring index js route cache...")
+    expire_fragment(:controller => 'routes', :action => 'index', :action_suffix => 'js')
   end
 end
