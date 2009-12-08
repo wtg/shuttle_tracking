@@ -33,7 +33,7 @@
       <% @stops.each do |s| %>
       <% routes = s.routes.collect{|r| h r.name} %>
       <Placemark id="stop_<%= s.id %>">
-        <name><%= s.name %></name>
+        <name><![CDATA[ <%= s.name %> ]]></name>
         <description><![CDATA[ Routes served: <%= routes.join(', ')%> ]]></description>
         <Point>
           <altitudeMode>clampToGround</altitudeMode>
