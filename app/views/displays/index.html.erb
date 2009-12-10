@@ -20,7 +20,9 @@
         <tr>
           <td width="62"><%= image_tag 'graystuff_right.png' %></td>
           <td style="padding-right:25px; background:#8a8a8a url(<%= image_path 'graystuff_bgright.png' %>) top right no-repeat;">
-            <h2 style="color:#333;font-size:0.8em;"><a style="font-size:1.2em;" href="shuttle_tracking.kml">Download KML File</a> (Google Earth / Maps Mobile)</h2>
+            <h2 style="color:#333;font-size:0.8em;">
+              <%= link_to 'Download KML File', { :action => 'kml' }, :style => "font-size:1.2em;"  %> (Google Earth / Maps Mobile)
+            </h2>
           </td>
         </tr>
       </table>
