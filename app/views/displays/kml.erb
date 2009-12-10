@@ -22,7 +22,7 @@
       <description><![CDATA[ <%=h r.description %> ]]></description>
       <refreshVisibility>0</refreshVisibility>
       <Link>
-        <href><%= r.kml_url %></href>
+        <href><%= url_for :controller => :routes, :action => :show, :id => r.id, :format => :kml, :only_path => false %></href>
       </Link>
     </NetworkLink>
     <% end %>
