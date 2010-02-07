@@ -5,6 +5,7 @@
     <th>Name</th>
     <th>Latitude</th>
     <th>Longitude</th>
+    <th>Route(s)</th>
     <th>Enabled</th>
     <th>Phoentic</th>
   </tr>
@@ -14,6 +15,7 @@
     <td><%=h stop.name %></td>
     <td><%=h stop.latitude %></td>
     <td><%=h stop.longitude %></td>
+    <td><% stop.routes.each do |r| %><%= link_to r.name, r %><BR><% end %></td>
     <td><%=h stop.enabled %></td>
     <td><%=h stop.phoentic %></td>
     <td><%= link_to 'Show', stop %></td>
