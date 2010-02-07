@@ -11,7 +11,11 @@ class StopsController < ApplicationController
     else
       #If the request is NOT for a js file or the cache does NOT exist, get all the stops
       if !request.format.js? || !fragment_exist?(:action => :index, :action_suffix => 'js')
-        @stops = Stop.find(:all, :group => :id, :joins => :routes, :conditions => {:enabled => true, 'routes.enabled' => true})
+        if request.format.html?
+	 @stops = Stop.find(:all)
+	else
+	 @stops = Stop.find(:all, :group => :id, :joins => :routes, :conditions => {:enabled => true, 'routes.enabled' => true})
+	end
       end
     end
     respond_to do |format|
