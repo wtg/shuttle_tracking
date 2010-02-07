@@ -128,14 +128,17 @@ function generateShuttleHTML(position){
 }
 
 function generateStopHTML(stop){
-  var output = new Array();
-  output.push(stop.name);
+  var output = stop.name+"<br>Route";
+  var rts = new Array();
   stop.routes.each(function(route){
-    output.push("<br>Route: ");
-    output.push(route.name);
+    rts.push(route.name);
   });
-
-  return output.join('');
+  if(rts.length>1){
+   output=output.concat("s");
+  }
+  output=output.concat(": ");
+  output=output.concat(rts.join(", "));
+  return output;
 }
 
 function remove(expired){
