@@ -14,3 +14,13 @@ Specific a Google Maps API Key appropriate for you domain, and set the location 
 should center to by default.
 3. Run rake db:migrate to setup the database
 4. Enjoy the ability to track shuttles!
+
+
+Archiving
+---------
+
+Archiving can reduce the size of your daily database, moving positions less likely to be
+queried into the archive_positions table.  To archive, run `rake shuttles:archive`.
+By default this will archive any positions with a created_at time older than yesterday.
+To override this default behavior, pass in a time variable containing you're best formed
+date like `rake shuttles:archive time='2009-09-02'`.

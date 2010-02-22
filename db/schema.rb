@@ -9,7 +9,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091107194458) do
+ActiveRecord::Schema.define(:version => 20100222151330) do
+
+  create_table "archive_positions", :force => true do |t|
+    t.integer  "shuttle_id"
+    t.decimal  "latitude",   :precision => 15, :scale => 10
+    t.decimal  "longitude",  :precision => 15, :scale => 10
+    t.integer  "heading"
+    t.integer  "speed"
+    t.datetime "timestamp"
+    t.integer  "lock"
+    t.integer  "status_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "positions", :force => true do |t|
     t.integer  "shuttle_id"
