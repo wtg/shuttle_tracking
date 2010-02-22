@@ -4,7 +4,7 @@ class ShuttlesController < ApplicationController
   # GET /shuttles
   # GET /shuttles.xml
   def index
-    @shuttles = Shuttle.find(:all, :order=>:name)
+    @shuttles = Shuttle.find(:all, :order=>:ip)
 
     respond_to do |format|
       format.html # index.html.erb
