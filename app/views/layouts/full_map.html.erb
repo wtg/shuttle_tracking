@@ -25,5 +25,6 @@
 <%= render :partial => 'toplinks' %>
 <% if flash[:notice] %><p style="color: green"><%= flash[:notice] %></p><% end %>
 <%= yield %>
+<%= render :partial => 'layouts/footer' %>
 </body>
 </html>
