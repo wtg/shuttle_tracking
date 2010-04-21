@@ -253,6 +253,6 @@ Date.prototype.setISO8601 = function (string) {
     //}
 
     //offset -= date.getTimezoneOffset();
-    //time = (Number(date) + (offset * 60 * 1000));
+    time = (Number(date) + (offset * 60 * 1000));
     this.setTime(Number(time));
 }
