@@ -18,11 +18,10 @@ function manual_update(){
   update();
 }
 
-function refresh_time(){
-  var now=new Date();
-  var hour=now.getHours();
-  var min=now.getMinutes();
-  var sec=now.getSeconds();
+function format_time(date){
+  var hour=date.getHours();
+  var min=date.getMinutes();
+  var sec=date.getSeconds();
   var add="";
 
   if (min<=9) { min="0"+min; }
@@ -30,9 +29,8 @@ function refresh_time(){
   if (hour>12) { hour=hour-12; add="PM"; }
   else { hour=hour; add="AM"; }
   if (hour==12) { add="AM"; }
-  
+
   var output = new Array();
-  output.push("Last Updated: <b>");
   output.push(hour);
   output.push(":");
   output.push(min);
@@ -40,8 +38,13 @@ function refresh_time(){
   output.push(sec);
   output.push(" ");
   output.push(add);
-  output.push("</b>");
-  set_status(output.join(''));
+
+  return (output.join(''));
+}
+
+function refresh_time(){
+  var now=new Date();
+  set_status("Last Updated: <b>" + format_time(now)+"</b>");
 }
 
 function update(){
@@ -118,7 +121,13 @@ function generateShuttleHTML(position){
   output.push(position.speed);
   output.push("mph Heading: ");
   output.push(position.heading);
-  output.push("&deg;");
+  output.push("&deg; ");
+  if(position.timestamp != undefined){
+    var date = new Date();
+    date.setISO8601(position.timestamp);
+    output.push("<br>Last Updated: ");
+    output.push(format_time(date));
+  }
   if((position.status != undefined) && (position.status.message.length > 0)){
     output.push("<br>Status: ");
     output.push(position.status.message);
@@ -220,4 +229,30 @@ function recenter(){
       }
     }); 
   }
+}
+
+
+Date.prototype.setISO8601 = function (string) {
+    var regexp = "([0-9]{4})(-([0-9]{2})(-([0-9]{2})" +
+        "(T([0-9]{2}):([0-9]{2})(:([0-9]{2})(\.([0-9]+))?)?" +
+        "(Z|(([-+])([0-9]{2}):([0-9]{2})))?)?)?)?";
+    var d = string.match(new RegExp(regexp));
+
+    var offset = 0;
+    var date = new Date(d[1], 0, 1);
+
+    if (d[3]) { date.setMonth(d[3] - 1); }
+    if (d[5]) { date.setDate(d[5]); }
+    if (d[7]) { date.setHours(d[7]); }
+    if (d[8]) { date.setMinutes(d[8]); }
+    if (d[10]) { date.setSeconds(d[10]); }
+    if (d[12]) { date.setMilliseconds(Number("0." + d[12]) * 1000); }
+    if (d[14]) {
+        offset = (Number(d[16]) * 60) + Number(d[17]);
+        offset *= ((d[15] == '-') ? 1 : -1);
+    }
+
+    offset -= date.getTimezoneOffset();
+    time = (Number(date) + (offset * 60 * 1000));
+    this.setTime(Number(time));
 }
