@@ -247,12 +247,12 @@ Date.prototype.setISO8601 = function (string) {
     if (d[8]) { date.setMinutes(d[8]); }
     if (d[10]) { date.setSeconds(d[10]); }
     if (d[12]) { date.setMilliseconds(Number("0." + d[12]) * 1000); }
-    if (d[14]) {
-        offset = (Number(d[16]) * 60) + Number(d[17]);
-        offset *= ((d[15] == '-') ? 1 : -1);
-    }
+    //if (d[14]) {
+    //    offset = (Number(d[16]) * 60) + Number(d[17]);
+    //    offset *= ((d[15] == '-') ? 1 : -1);
+    //}
 
-    offset -= date.getTimezoneOffset();
-    time = (Number(date) + (offset * 60 * 1000));
+    //offset -= date.getTimezoneOffset();
+    //time = (Number(date) + (offset * 60 * 1000));
     this.setTime(Number(time));
 }
