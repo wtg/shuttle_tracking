@@ -44,7 +44,6 @@ br {  height:1px; line-height:normal; margin:0; padding:0; }
 #status { color:#999; letter-spacing:0.05em; }
 
 /* Footer */
-#footer { border-top:solid 1px #666; padding-left:50px;clear:both;color:#999; font-size:0.8em; background:url(../images/footer_left.png) top left no-repeat;height:62px; }
-#footer span { padding-top:15px; padding-right:50px;text-align:center;display:block; height:62px;background:url(../images/footer_right.png) top right no-repeat; }
+#footer { background-color:#4F504F; border-top:1px solid #666666; clear:both; color:#999999; display:block; font-size:0.8em; padding:7px 0; text-align:center;
+border-radius: 0px 0px 10px 10px; -moz-border-radius-bottomleft:10px; -moz-border-radius-bottomright:10px; -webkit-border-bottom-right-radius: 10px; -webkit-border-bottom-left-radius: 10px;}
 #footer a { color:#99ccff; }
-#footer-shadow { clear:both;height:62px;background:url(../images/footer_shadow.png) top center no-repeat; }
