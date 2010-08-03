@@ -1,13 +1,13 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  identifier: MyString
-  name: MyString
+bus_one:
+  identifier: 1
+  name: Bus 1
   active: false
-  enabled: false
+  enabled: true
 
-two:
-  identifier: MyString
-  name: MyString
+bus_two:
+  identifier: 2
+  name: Bus 2
   active: false
   enabled: false
