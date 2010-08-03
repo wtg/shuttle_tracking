@@ -1,0 +1,29 @@
+<h1>Listing vehicles</h1>
+
+<table>
+  <tr>
+    <th>Identifier</th>
+    <th>Name</th>
+    <th>Active</th>
+    <th>Enabled</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @vehicles.each do |vehicle| %>
+  <tr>
+    <td><%= vehicle.identifier %></td>
+    <td><%= vehicle.name %></td>
+    <td><%= vehicle.active %></td>
+    <td><%= vehicle.enabled %></td>
+    <td><%= link_to 'Show', vehicle %></td>
+    <td><%= link_to 'Edit', edit_vehicle_path(vehicle) %></td>
+    <td><%= link_to 'Destroy', vehicle, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Vehicle', new_vehicle_path %>

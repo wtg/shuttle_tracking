@@ -10,6 +10,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
+ActiveRecord::Schema.define(:version => 20100803195615) do
+
+  create_table "vehicles", :force => true do |t|
+    t.string   "identifier"
+    t.string   "name"
+    t.boolean  "active"
+    t.boolean  "enabled"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
