@@ -46,4 +46,7 @@ Tracking::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+  
+  # Use minified javascript in production
+  config.action_view.javascript_expansions[:defaults] = ['jquery-1.4.2.min', 'jquery-ujs/src/rails']
 end
