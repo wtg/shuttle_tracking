@@ -18,7 +18,7 @@ class VehiclesControllerTest < ActionController::TestCase
 
   test "should create vehicle" do
     assert_difference('Vehicle.count') do
-      post :create, :vehicle => @vehicle.attributes
+      post :create, :vehicle => @vehicle.attributes.merge({"identifier" => ""})
     end
 
     assert_redirected_to vehicle_path(assigns(:vehicle))
