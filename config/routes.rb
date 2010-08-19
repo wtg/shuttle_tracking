@@ -17,9 +17,7 @@ Tracking::Application.routes.draw do
   
   match 'logout' => 'user_sessions#destroy', :as => :logout
   
-  # You can have the root of your site routed with "root"
-  # just remember to delete public/index.html.
-  # root :to => "welcome#index"
+  root :to => "displays#index"
 
   # See how all your routes lay out with "rake routes"
 

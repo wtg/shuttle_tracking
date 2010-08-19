@@ -1,1 +1,6 @@
 Rails-3 branch of the vehicle tracking system
+
+ToDo: 
+Verify correct AR syntax in displays#locations and stops#index
+Get the Google Map working
+Clean up view appearances and style
