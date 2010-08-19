@@ -1,0 +1,42 @@
+<div id="page">
+  <div class="topcontrols">
+    <div style="float:left;width:400px;">
+      <table width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+          <td style="padding-left:25px; color:#333; background:#8a8a8a url(<%= image_path 'graystuff_bgleft.png' %>) top left no-repeat;">
+            <h2>
+              <b>Show:</b>&nbsp;&nbsp;
+              <%= radio_button_tag "active_opt", "Online", true, :onclick => 'manual_update();' %> Online
+              <%= radio_button_tag "active_opt", "Offline", false, :onclick => 'manual_update();' %> Offline&nbsp;&nbsp;&nbsp;
+              <%= radio_button_tag "active_opt", "All", false, :onclick => 'manual_update();' %> All
+            </h2>
+          </td>
+          <td width="62"><%= image_tag 'graystuff_left.png' %></td>
+        </tr>
+      </table>
+    </div>
+    <div style="text-align:right; float:right;width:400px;">
+      <table width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="62"><%= image_tag 'graystuff_right.png' %></td>
+          <td style="padding-right:25px; background:#8a8a8a url(<%= image_path 'graystuff_bgright.png' %>) top right no-repeat;">
+            <h2 style="color:#333;font-size:0.8em;">
+              <%= link_to 'Download KML File', { :action => 'kml' }, :style => "font-size:1.2em;"  %> (Google Earth / Maps Mobile)
+            </h2>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div style="clear:both;"></div>
+  <div id="mapblock">
+    <div id="map_header">
+      <span id="status">Loading...</span>
+      <span id="loading_icon" style="display: none;"><%= image_tag '4-1.gif' %></span>
+    </div>
+    <div id="map_canvas" style="margin:0 auto; border:solid 1px #ccc; height: 700px; width: 97%;">&nbsp;</div>
+  </div>
+  <div id="footer">
+    <span>Produced and Updated by the <a href="http://webtech.union.rpi.edu/">Web Technologies Group</a> from 2006 to 2010.</span>
+  </div>
+</div>
