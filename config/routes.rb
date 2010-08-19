@@ -2,20 +2,32 @@ Tracking::Application.routes.draw do
   resources :users
   
 	resources :user_sessions  
-	
-  resources :stops, :collection => {:current => :get}
 
   resources :statuses
 
   resources :routes
-
-  resources :positions, :collection => {:current => :get}
-
+  
   resources :vehicles
+  
+  resources :positions do
+  	collection do
+  		get :current
+  	end
+  end
+  
+  resources :stops do
+  	collection do
+  		get :current
+  	end
+  end
   
   match 'login' => 'user_sessions#new', :as => :login
   
   match 'logout' => 'user_sessions#destroy', :as => :logout
+  
+  match '/displays/locations', :to => 'displays#locations'
+  
+  match '/icons/rotate', :to => 'icons#rotate'
   
   match '/displays/kml', :to => 'displays#kml'
   
