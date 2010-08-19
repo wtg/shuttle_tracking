@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100819030858) do
+ActiveRecord::Schema.define(:version => 20100819054610) do
 
   create_table "positions", :force => true do |t|
     t.integer  "shuttle_id"
@@ -63,6 +63,21 @@ ActiveRecord::Schema.define(:version => 20100819030858) do
     t.decimal  "longitude",  :precision => 15, :scale => 10
     t.boolean  "enabled"
     t.string   "phonetic"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_sessions", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "username"
+    t.string   "email"
+    t.string   "crypted_password"
+    t.string   "password_salt"
+    t.string   "persistence_token"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

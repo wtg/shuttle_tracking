@@ -1,0 +1,33 @@
+<% form_for @user do |form| %>  
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being created:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+	<li>  
+		<%= form.label :username, "Username" %>  
+		<%= form.text_field :username %>  
+	</li>  
+	<li>  
+		<%= form.label :email, "Email" %>  
+		<%= form.text_field :email %>  
+	</li>  
+	<li>  
+		<%= form.label :password, "Password" %>  
+		<%= form.password_field :password %>  
+	</li>  
+	<li>  
+		<%= form.label :password_confirmation, "Password confirmation" %>  
+		<%= form.password_field :password_confirmation %>  
+	</li>  
+	<li>  
+		<%= form.submit "Submit" %>  
+	</li>  
+<% end %>  

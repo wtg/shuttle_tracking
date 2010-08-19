@@ -1,0 +1,28 @@
+<div class="cell_full">
+	<div class="cell_full-top"><div class="cell_full-top-padding"><h1><small><%= link_to "Home", :controller => "vehicles" %> > </small>Login</h1></div></div>
+	<div class="cell-padding cell-padding_full">
+		<div class="indent-1">
+			<%= form_for(@user_session, :html => { :class => 'cmxform'}) do |f| %>
+			  <% if @user_session.errors.any? %>
+			    <div id="error_explanation">
+			      <h2><%= pluralize(@user_session.errors.count, "error") %> prohibited this session from being created:</h2>
+			
+			      <ul>
+			      <% @user_session.errors.full_messages.each do |msg| %>
+			        <li><%= msg %></li>
+			      <% end %>
+			      </ul>
+			    </div>
+			  <% end %>
+			
+				<fieldset>
+					<ol>
+						<li><%= f.label :username %><br /><%= f.text_field :username %></li>
+						<li><%= f.label :password %><br /><%= f.password_field :password %></li>
+					</ol>
+				</fieldset>
+			  <p class="submitbutton"><%= f.submit "Login" %></p>
+			<% end %>
+		</div>
+	</div>
+</div>
