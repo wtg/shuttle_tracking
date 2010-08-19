@@ -1,4 +1,33 @@
 class PositionsController < ApplicationController
+
+  # GET /positions/current
+  # GET /positions/current.xml
+  def current
+   #Cache for a second or two, incase someone is refresh happy
+   expires_in 2.seconds, :public => true
+
+    case params[:active]
+      when "Online" then
+        shuttles = Shuttle.where({:enabled => true, :active => true})
+      when "Offline" then
+        shuttles = Shuttle.where({:enabled => true, :active => false})
+      when "All" then
+        shuttles = Shuttle.where({:enabled => true})
+      else
+        shuttles = Shuttle.where({:enabled => true})
+    end
+    
+    @positions = shuttles.collect{|s| s.current_position}
+    @positions.each {|p| p.build_icon unless p.nil? }
+    @positions.compact!
+    respond_to do |format|
+      format.html # current.html.erb
+      format.xml # current.xml.erb
+      format.js # current.js.erb
+      format.kml #current.kml.erb
+    end
+  end
+  
   # GET /positions
   # GET /positions.xml
   def index

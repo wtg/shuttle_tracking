@@ -1,12 +1,26 @@
 class StopsController < ApplicationController
+	cache_sweeper :stop_sweeper
+	
   # GET /stops
   # GET /stops.xml
   def index
-    @stops = Stop.all
-
+    if(params[:route_id])
+      @stops = Stop.all(:joins => :routes).group(:id).where({'stops.enabled' => true, 'routes.enabled' => true, 'routes.id' => params[:route_id]})
+    else
+      #If the request is NOT for a js file or the cache does NOT exist, get all the stops
+      if !request.format.js? || !fragment_exist?(:action => :index, :action_suffix => 'js')
+        if request.format.html?
+	 @stops = Stop.all
+	else
+	 @stops = Stop.all(:joins => :routes).group(:id).where({:enabled => true, 'routes.enabled' => true})
+	end
+      end
+    end
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @stops }
+      format.xml
+      format.js
+      format.kml
     end
   end
 

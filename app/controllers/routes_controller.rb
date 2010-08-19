@@ -1,23 +1,33 @@
 class RoutesController < ApplicationController
+	cache_sweeper :route_sweeper
+
   # GET /routes
   # GET /routes.xml
   def index
-    @routes = Route.all
-
+    if !request.format.js? || !fragment_exist?(:action => :index, :action_suffix => 'js')
+      @routes = Route.where({:enabled => true})    
+      @routes.collect {|r| r.kml_url = route_url(r, :format => 'kml')}
+    end
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @routes }
+      format.xml
+      format.js
+      format.kml
     end
   end
 
   # GET /routes/1
   # GET /routes/1.xml
   def show
-    @route = Route.find(params[:id])
+    if !request.format.kml? || !fragment_exist?(:action => :show, :id => params[:id], :action_suffix => 'kml')
+      @route = Route.find(params[:id])
+      @route.kml_url = route_url(@route, :format => 'kml')
+    end
 
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @route }
+      format.kml
     end
   end
 
