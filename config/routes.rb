@@ -3,13 +3,13 @@ Tracking::Application.routes.draw do
   
 	resources :user_sessions  
 	
-  resources :stops
+  resources :stops, :collection => {:current => :get}
 
   resources :statuses
 
   resources :routes
 
-  resources :positions
+  resources :positions, :collection => {:current => :get}
 
   resources :vehicles
   
@@ -17,6 +17,10 @@ Tracking::Application.routes.draw do
   
   match 'logout' => 'user_sessions#destroy', :as => :logout
   
+  match '/displays/kml', :to => 'displays#kml'
+  
+  match 'shuttle_tracking.kml', :to => 'displays#kml'
+
   root :to => "displays#index"
 
   # See how all your routes lay out with "rake routes"

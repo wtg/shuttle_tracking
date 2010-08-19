@@ -3,9 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-  <title>Track Shuttles Live at Rensselaer Polytechnic Institute</title>
+  <title>Track Vehicles Live</title>
   <%= stylesheet_link_tag 'new' %>
-  <%= stylesheet_link_tag 'http://studentsenate.rpi.edu/stylesheets/topbar.css' %>
   <%= javascript_include_tag 'prototype', 'application', :cache => false %>
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
   <script type="text/javascript" src="http://www.google.com/jsapi?key=<%= GMAPKEY %>"></script>
@@ -23,7 +22,6 @@
   </script>
 </head>
 <body onunload="GUnload()">
-<%= render :partial => 'toplinks' %>
 <% if flash[:notice] %><p style="color: green"><%= flash[:notice] %></p><% end %>
 <%= yield %>
 </body>
