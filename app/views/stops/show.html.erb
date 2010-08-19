@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @stop.name %>
+</p>
+
+<p>
+  <b>Latitude:</b>
+  <%= @stop.latitude %>
+</p>
+
+<p>
+  <b>Longitude:</b>
+  <%= @stop.longitude %>
+</p>
+
+<p>
+  <b>Enabled:</b>
+  <%= @stop.enabled %>
+</p>
+
+<p>
+  <b>Phonetic:</b>
+  <%= @stop.phonetic %>
+</p>
+
+<%= link_to 'Edit', edit_stop_path(@stop) %> |
+<%= link_to 'Back', stops_path %>

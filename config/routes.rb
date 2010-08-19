@@ -1,4 +1,12 @@
 Tracking::Application.routes.draw do
+  resources :stops
+
+  resources :statuses
+
+  resources :routes
+
+  resources :positions
+
   resources :vehicles
 
   # The priority is based upon order of creation:

@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @route.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @route.description %>
+</p>
+
+<p>
+  <b>Start Time:</b>
+  <%= @route.start_time %>
+</p>
+
+<p>
+  <b>End Time:</b>
+  <%= @route.end_time %>
+</p>
+
+<p>
+  <b>Enabled:</b>
+  <%= @route.enabled %>
+</p>
+
+<p>
+  <b>Color:</b>
+  <%= @route.color %>
+</p>
+
+<p>
+  <b>Width:</b>
+  <%= @route.width %>
+</p>
+
+<p>
+  <b>Coords:</b>
+  <%= @route.coords %>
+</p>
+
+
+<%= link_to 'Edit', edit_route_path(@route) %> |
+<%= link_to 'Back', routes_path %>

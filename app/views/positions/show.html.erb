@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Latitude:</b>
+  <%= @position.latitude %>
+</p>
+
+<p>
+  <b>Longitude:</b>
+  <%= @position.longitude %>
+</p>
+
+<p>
+  <b>Heading:</b>
+  <%= @position.heading %>
+</p>
+
+<p>
+  <b>Speed:</b>
+  <%= @position.speed %>
+</p>
+
+
+<%= link_to 'Edit', edit_position_path(@position) %> |
+<%= link_to 'Back', positions_path %>

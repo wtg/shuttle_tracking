@@ -1,0 +1,31 @@
+<h1>Listing stops</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Latitude</th>
+    <th>Longitude</th> 
+    <th>Enabled</th>
+    <th>Phonetic</th>           
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @stops.each do |stop| %>
+  <tr>
+    <td><%= stop.name %></td>
+    <td><%= stop.latitude %></td>
+    <td><%= stop.longitude %></td>    
+    <td><%= stop.enabled %></td>
+    <td><%= stop.phonetic %></td>      
+    <td><%= link_to 'Show', stop %></td>
+    <td><%= link_to 'Edit', edit_stop_path(stop) %></td>
+    <td><%= link_to 'Destroy', stop, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Stop', new_stop_path %>

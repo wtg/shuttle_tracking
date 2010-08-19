@@ -1,0 +1,49 @@
+<%= form_for(@route) do |f| %>
+  <% if @route.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@route.errors.count, "error") %> prohibited this route from being saved:</h2>
+
+      <ul>
+      <% @route.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :start_time %><br />
+    <%= f.text_field :start_time %>
+  </div>
+  <div class="field">
+    <%= f.label :end_time %><br />
+    <%= f.text_field :end_time %>
+  </div>
+  <div class="field">
+    <%= f.label :enabled %><br />
+    <%= f.check_box :enabled %>
+  </div>
+  <div class="field">
+    <%= f.label :color %><br />
+    <%= f.text_field :color %>
+  </div>
+  <div class="field">
+    <%= f.label :width %><br />
+    <%= f.text_field :width %>
+  </div>
+  <div class="field">
+    <%= f.label :coords %><br />
+    <%= f.text_field :coords %>
+  </div>        
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
