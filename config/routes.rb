@@ -1,7 +1,9 @@
 Tracking::Application.routes.draw do
+  resources :updates
+
   resources :users
   
-	resources :user_sessions  
+  resources :user_sessions  
 
   resources :statuses
 
@@ -10,15 +12,15 @@ Tracking::Application.routes.draw do
   resources :vehicles
   
   resources :positions do
-  	collection do
-  		get :current
-  	end
+    collection do
+      get :current
+    end
   end
   
   resources :stops do
-  	collection do
-  		get :current
-  	end
+    collection do
+      get :current
+    end
   end
   
   match 'login' => 'user_sessions#new', :as => :login

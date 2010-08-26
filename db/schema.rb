@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100819054610) do
+ActiveRecord::Schema.define(:version => 20100826141326) do
 
   create_table "routes", :force => true do |t|
     t.string   "name"
@@ -46,6 +46,19 @@ ActiveRecord::Schema.define(:version => 20100819054610) do
     t.decimal  "longitude",  :precision => 15, :scale => 10
     t.boolean  "enabled"
     t.string   "phonetic"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "updates", :force => true do |t|
+    t.integer  "vehicle_id"
+    t.decimal  "latitude"
+    t.decimal  "longitude"
+    t.integer  "heading"
+    t.integer  "speed"
+    t.datetime "timestamp"
+    t.integer  "lock"
+    t.integer  "status_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
