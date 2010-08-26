@@ -15,8 +15,8 @@ ActiveRecord::Schema.define(:version => 20100819054610) do
   create_table "routes", :force => true do |t|
     t.string   "name"
     t.text     "description"
-    t.time     "start_time",  :default => '2000-01-01 00:00:00'
-    t.time     "end_time",    :default => '2000-01-01 00:00:00'
+    t.time     "start_time"
+    t.time     "end_time"
     t.boolean  "enabled"
     t.datetime "created_at"
     t.datetime "updated_at"
