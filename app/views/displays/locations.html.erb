@@ -1,8 +1,8 @@
 <% @vehicles.each do |s| %>
   <b><%= s.name %></b> --
   <% if !s.current_position.nil? %>
-    <%= s.current_position.compass_rose %> near 
-    <%= s.current_position.locate %>
+    <%#= s.current_position.compass_rose %> near 
+    <%#= s.current_position.locate %>
   <% else %>
     No Data
   <% end %>
