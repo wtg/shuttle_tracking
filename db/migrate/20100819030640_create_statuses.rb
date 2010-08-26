@@ -5,7 +5,8 @@ class CreateStatuses < ActiveRecord::Migration
 	    t.timestamps
 	    t.integer  :code
 	    t.boolean  :public
-  	end
+    end
+  add_index :statuses, :code, :unique => true
   end
 
   def self.down

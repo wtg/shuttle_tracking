@@ -12,23 +12,6 @@
 
 ActiveRecord::Schema.define(:version => 20100819054610) do
 
-  create_table "positions", :force => true do |t|
-    t.integer  "shuttle_id"
-    t.decimal  "latitude",   :precision => 15, :scale => 10
-    t.decimal  "longitude",  :precision => 15, :scale => 10
-    t.integer  "heading"
-    t.integer  "speed"
-    t.datetime "timestamp"
-    t.integer  "lock"
-    t.integer  "status_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "positions", ["shuttle_id", "timestamp"], :name => "shuttle_timestamp", :unique => true
-  add_index "positions", ["shuttle_id"], :name => "shuttle_id"
-  add_index "positions", ["updated_at"], :name => "updated_at"
-
   create_table "routes", :force => true do |t|
     t.string   "name"
     t.text     "description"
