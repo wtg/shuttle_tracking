@@ -1,8 +1,6 @@
 class IconsController < ApplicationController
   require 'RMagick'
-  
-  caches_page   :rotate
-  
+    
   # GET /icons/rotate/1.format
   def rotate
     degrees = 0

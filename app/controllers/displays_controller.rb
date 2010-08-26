@@ -1,7 +1,5 @@
 class DisplaysController < ApplicationController
 
-  caches_page :index, :if => Proc.new { |c| !c.current_user }
-
   def index
     render :layout => 'full_map'
   end

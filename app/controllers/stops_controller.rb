@@ -1,5 +1,4 @@
 class StopsController < ApplicationController
-	cache_sweeper :stop_sweeper
 	
   # GET /stops
   # GET /stops.xml

@@ -1,5 +1,4 @@
 class RoutesController < ApplicationController
-	cache_sweeper :route_sweeper
 
   # GET /routes
   # GET /routes.xml
