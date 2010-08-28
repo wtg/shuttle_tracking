@@ -40,8 +40,8 @@ ActiveRecord::Schema.define(:version => 20100826141326) do
 
   create_table "stops", :force => true do |t|
     t.string   "name"
-    t.decimal  "latitude",   :precision => 15, :scale => 10
-    t.decimal  "longitude",  :precision => 15, :scale => 10
+    t.decimal  "latitude",   :precision => 15, :scale => 10, :default => 0.0
+    t.decimal  "longitude",  :precision => 15, :scale => 10, :default => 0.0
     t.boolean  "enabled",                                    :default => true
     t.string   "phonetic"
     t.datetime "created_at"

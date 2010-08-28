@@ -1,8 +1,12 @@
 require 'test_helper'
 
 class StatusTest < ActiveSupport::TestCase
-  # Replace this with your real tests.
-  test "the truth" do
-    assert true
+  # Quick and dirty validation test.
+  test "validations" do
+    s = Status.new(:code => statuses(:one).code)
+    assert s.invalid?
+    s.code = "Foo"
+    assert s.valid?
+    assert s.save
   end
 end

@@ -2,8 +2,8 @@ class CreateStops < ActiveRecord::Migration
   def self.up
     create_table :stops do |t|
 	    t.string   :name
-	    t.decimal  :latitude,   :precision => 15, :scale => 10
-	    t.decimal  :longitude,  :precision => 15, :scale => 10
+	    t.decimal  :latitude,   :precision => 15, :scale => 10, :default => 0
+	    t.decimal  :longitude,  :precision => 15, :scale => 10, :default => 0
 	    t.boolean  :enabled, :default => true
 	    t.string   :phonetic
 	    t.timestamps

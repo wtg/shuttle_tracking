@@ -1,10 +1,11 @@
 class Vehicle < ActiveRecord::Base
 
   # Relations
-  has_many :updates  
+  has_many :updates, :dependent => :destroy
 
-  # Every vehicle that has an identifier must have a unique one.
-  validates :identifier, :uniqueness => true, :allow_nil => true, :allow_blank => true
+  # Validations
+  validates :name, :presence => true
+  validates :identifier, :uniqueness => true, :allow_nil => true
   
   #ToDo: Add current_position replacement here.
     
