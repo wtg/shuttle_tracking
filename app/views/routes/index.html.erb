@@ -1,37 +1,42 @@
-<h1>Listing routes</h1>
-
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Start Time</th>
-    <th>End Time</th>  
-    <th>Enabled</th>
-    <th>Color</th>
-    <th>Width</th>
-    <th>Coords</th>        
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @routes.each do |route| %>
-  <tr>
-    <td><%= route.name %></td>
-    <td><%= route.description %></td>
-    <td><%= route.start_time %></td>
-    <td><%= route.end_time %></td>  
-    <td><%= route.enabled %></td>
-    <td><%= route.color %></td>
-    <td><%= route.width %></td>
-    <td><%= route.coords %></td>        
-    <td><%= link_to 'Show', route %></td>
-    <td><%= link_to 'Edit', edit_route_path(route) %></td>
-    <td><%= link_to 'Destroy', route, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
-
+<% content_for :title, "Routes" %>
+<div class="main-title">All Routes</div>
+<div class="hr_dl flush"><%= image_tag("bl.png", :alt => "") %></div>
 <br />
-
-<%= link_to 'New Route', new_route_path %>
+<div class="mc-indent">
+  <h2 id="routes">Routes <%= link_to 'Add', new_route_path, :class => "link-button" %></h2>
+  <div>
+    <table cellpadding="0" cellspacing="0" width="100%" class="elements">
+     <thead>
+      <tr class="cat_title">
+        <th style="text-align:right;">Name</th>
+        <th>Status</th>
+        <th style="text-align:left;">Description</th>
+        <th>Start Time</th>
+        <th>End Time</th>
+        <th>Color</th>
+        <th>Width</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+     <% @routes.each do |route| %>
+       <tr class="<%= cycle('odd', 'even') %>">
+         <td><%= link_to route.name, route %></td>
+         <td><%= route.enabled? ? "Enabled" : "Disabled" %></td>
+         <td><p><%=raw route.description %></p></td>
+         <td><%= route.start_time %></td>
+         <td><%= route.end_time %></td>
+         <td><%= route.color %></td>
+         <td><%= route.width %></td>
+         <td>
+           <span>
+             <%= link_to 'Edit', edit_route_path(route), :class => 'edit-link' %>&nbsp;
+             <%= link_to 'Remove', route, :confirm => 'Are you sure?', :method => :delete, :class => 'cancel-link' %>
+           </span>
+         </td>
+       </tr>
+     <% end %>
+    </tbody>
+   </table>
+  </div>
+</div>

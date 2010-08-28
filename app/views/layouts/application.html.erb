@@ -1,20 +1,69 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Tracking</title>
-  <%= stylesheet_link_tag :all %>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
+  <title><%= yield(:title) || controller.controller_name.titleize %> - Vehicle Tracking</title>
+  <%= yield(:meta_tags) %>
+  <%= stylesheet_link_tag 'general' %>
   <%= javascript_include_tag :defaults %>
+  <%= javascript_include_tag "http://maps.google.com/maps/api/js?sensor=false" %>
   <%= csrf_meta_tag %>
+  <% if content_for?(:js_ready) %>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        <%= yield(:js_ready) %>
+      });
+    </script>
+  <% end %>
+  <% if content_for?(:js) %>
+    <script type="text/javascript">
+      <%= yield(:js) %>
+    </script>
+  <% end %>
 </head>
 <body>
-	<div id="user_nav">  
-		<% if current_user %>
-			<p><%= link_to "Logout", logout_path %></p>
-		<% else %>
-			<p><%= link_to "Register", new_user_path %>|<%= link_to "Login", login_path %></p>
-		<% end %>
-	</div>  
-<%= yield %>
-
+  <% cache('header') do %>
+    <%= render :partial => 'layouts/header' %>
+  <% end %>
+  <% if flash.any? %>
+    <div id="flash_block" class="<%= flash.keys.join(' ') %>">
+      <div id="flash_block-padding">
+        <% flash.each_pair do |key, value|%>
+          <p><%= value %></p>
+        <% end %>
+      </div>
+    </div>
+    <% content_for :js_ready do%>
+        setTimeout(function(){
+          $("#flash_block").fadeOut("slow", function () {
+            $("#flash_block").remove();
+          });
+        }, 7000);
+    <% end %>
+  <% end %>
+  <div id="wrap">
+    <div id="header">
+      <div id="topbar">
+        <div id="topbar-padding">
+          <div id="topbar-left">
+            <!-- search here -->
+          </div>
+          <div id="topbar-right">
+            <h1>
+              <!-- login here -->
+            </h1>
+          </div>
+          <div style="clear:both;"></div>
+        </div>
+      </div>
+    </div>
+    
+    <div id="wrap-padding">
+      <%= yield %>
+    </div>
+  </div>
+  <% cache('footer') do %>
+    <%= render :partial => 'layouts/footer' %>
+  <% end %>
 </body>
 </html>

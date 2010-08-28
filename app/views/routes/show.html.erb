@@ -1,10 +1,8 @@
-<p id="notice"><%= notice %></p>
+<% content_for :title, @route.name %>
 
-<p>
-  <b>Name:</b>
+<div class="main-title">
   <%= @route.name %>
-</p>
-
+  <div>
 <p>
   <b>Description:</b>
   <%= @route.description %>
@@ -39,7 +37,8 @@
   <b>Coords:</b>
   <%= @route.coords %>
 </p>
-
+</div>
+</div>
 
 <%= link_to 'Edit', edit_route_path(@route) %> |
 <%= link_to 'Back', routes_path %>
