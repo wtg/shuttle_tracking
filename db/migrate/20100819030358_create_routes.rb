@@ -5,7 +5,7 @@ class CreateRoutes < ActiveRecord::Migration
 	    t.text     :description
 	    t.time     :start_time
 	    t.time     :end_time
-	    t.boolean  :enabled
+	    t.boolean  :enabled, :default => true
 	    t.timestamps
 	    t.string   :color
 	    t.integer  :width,	:default => 4

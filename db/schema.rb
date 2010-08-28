@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(:version => 20100826141326) do
     t.text     "description"
     t.time     "start_time"
     t.time     "end_time"
-    t.boolean  "enabled"
+    t.boolean  "enabled",     :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "color"
@@ -35,16 +35,14 @@ ActiveRecord::Schema.define(:version => 20100826141326) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "code"
-    t.boolean  "public"
+    t.boolean  "public",     :default => true
   end
-
-  add_index "statuses", ["code"], :name => "index_statuses_on_code", :unique => true
 
   create_table "stops", :force => true do |t|
     t.string   "name"
     t.decimal  "latitude",   :precision => 15, :scale => 10
     t.decimal  "longitude",  :precision => 15, :scale => 10
-    t.boolean  "enabled"
+    t.boolean  "enabled",                                    :default => true
     t.string   "phonetic"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -81,8 +79,8 @@ ActiveRecord::Schema.define(:version => 20100826141326) do
   create_table "vehicles", :force => true do |t|
     t.string   "identifier"
     t.string   "name"
-    t.boolean  "active"
-    t.boolean  "enabled"
+    t.boolean  "active",     :default => false
+    t.boolean  "enabled",    :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
   end

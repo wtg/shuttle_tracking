@@ -4,7 +4,7 @@ class CreateStops < ActiveRecord::Migration
 	    t.string   :name
 	    t.decimal  :latitude,   :precision => 15, :scale => 10
 	    t.decimal  :longitude,  :precision => 15, :scale => 10
-	    t.boolean  :enabled
+	    t.boolean  :enabled, :default => true
 	    t.string   :phonetic
 	    t.timestamps
   	end

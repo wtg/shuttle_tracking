@@ -4,9 +4,8 @@ class CreateStatuses < ActiveRecord::Migration
 	    t.text     :message
 	    t.timestamps
 	    t.integer  :code
-	    t.boolean  :public
+	    t.boolean  :public, :default => true
     end
-  add_index :statuses, :code, :unique => true
   end
 
   def self.down

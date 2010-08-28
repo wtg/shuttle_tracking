@@ -3,8 +3,8 @@ class CreateVehicles < ActiveRecord::Migration
     create_table :vehicles do |t|
       t.string :identifier
       t.string :name
-      t.boolean :active
-      t.boolean :enabled
+      t.boolean :active, :default => false
+      t.boolean :enabled, :default => true
 
       t.timestamps
     end
