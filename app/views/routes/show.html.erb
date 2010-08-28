@@ -1,7 +1,26 @@
+<% content_for :js_ready do %>
+    var point = {latitude: <%= MAP_CENTER[:lat] %>, longitude: <%= MAP_CENTER[:long] %>};
+    var map = setup_map(point, 1);
+    var polyline = new google.maps.Polyline();
+    var map_bounds = new google.maps.LatLngBounds();
+    
+    polyline.setMap(map);
+    
+    var coords = <%=raw @route.coords.to_json() %>;
+    
+    $.each(coords, function(index, coord){
+      coord = coord.coord;
+      position = add_point_to_polyline(coord, polyline);
+      map_bounds.extend(position);
+    });
+    map.fitBounds(map_bounds);
+<% end %>
+
 <% content_for :title, @route.name %>
 
 <div class="main-title">
   <%= @route.name %>
+  <%= map_canvas({:style => " height: 500px;"})%>
   <div>
 <p>
   <b>Description:</b>
@@ -33,10 +52,6 @@
   <%= @route.width %>
 </p>
 
-<p>
-  <b>Coords:</b>
-  <%= @route.coords %>
-</p>
 </div>
 </div>
 

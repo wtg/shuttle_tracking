@@ -1,0 +1,5 @@
+<%= form.fields_for :coords do |coord| %>
+  <%= coord.hidden_field :latitude %>
+  <%= coord.hidden_field :longitude %>
+  <%= coord.hidden_field :position, :class=>"coord_position_data" %>
+<% end %>

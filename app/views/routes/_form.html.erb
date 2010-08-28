@@ -1,3 +1,124 @@
+<% content_for :js_ready do %>
+    var point = {latitude: <%= MAP_CENTER[:lat] %>, longitude: <%= MAP_CENTER[:long] %>};
+    map = setup_map(point, 2);
+    polyline = new google.maps.Polyline();
+    
+    polyline.setMap(map);
+    
+    var coords = <%=raw @route.coords.to_json() %>;
+    
+    $.each(coords, function(index, coord){
+      coord = coord.coord;
+      add_point_to_polyobject(coord, polyline);
+      add_edit_marker_to_map(coord, index);
+    });
+    
+    //Click to create a new marker.
+    google.maps.event.addListener(map, 'click', function(event){
+      var next_pos = next_position();
+      var index = next_index();
+      var coord = {
+        latitude: event.latLng.lat(),
+        longitude: event.latLng.lng(),
+        position: next_position
+      };
+      add_coord_to_form('route', coord, index, '#coord_data');
+      add_point_to_polyobject(coord, polyline);
+      add_edit_marker_to_map(coord, index);
+    });
+<% end %>
+<% content_for :js do %>
+  var map; //The map!
+  var polyline; //The line
+  var marker_data = new Array();
+    
+  // Update the polyline with a new position
+  // from a marker.
+  function update_line(marker, latLng){
+    var index = marker_data[marker.get('data_id')].polyline_id;
+    polyline.getPath().setAt(index, latLng);
+  }
+  
+  // Add a draggable marker to the map 
+  // update a point on a polyline.
+  function add_edit_marker_to_map(coord, index){
+    var marker = add_point_to_map(coord, map, {draggable: true});
+    marker.set('data_id', next_index());
+    
+    var data = {
+      html_id: index, 
+      polyline_id: polyline.getPath().length-1,
+      active: true,
+      marker: marker
+    };
+    marker_data.push(data);
+    
+    //Drag to move a marker.
+    google.maps.event.addListener(marker, "drag", function(event){
+      update_coord_fields('route', this, event.latLng);
+      update_line(this, event.latLng);
+    });
+        
+    //Right click to delete a marker.
+    google.maps.event.addListener(marker, "rightclick", function(event){
+      //Remove it from the line and map.
+      delete_from_map(this);
+      
+      //For every active point past the one being deleted
+      //decrease its polyline data by one.
+      var i = 0;
+      var max = marker_data.length;
+      for(i = this.get('data_id'); i < max; i++){
+        if(marker_data[i].active){
+          $('#route_coords_attributes_' + i + '_position').val(i);
+          marker_data[i].polyline_id--;
+        }
+      }
+      //Remove the position html
+      //and replace it with destroy code.
+      remove_position_html(this);
+    });
+    return marker;
+  }
+  
+  // Figure out the position for a new marker.
+  function next_position(){
+    return $('.coord_position_data').length + 1;
+  }
+  
+  // Figure out the index for a new marker.
+  function next_index(){
+    return marker_data.length;
+  }
+  
+  // Remove the position input field
+  // and replace it with one that will
+  // trigger a destroy call.
+  function remove_position_html(marker){
+    var index = marker_data[marker.get('data_id')].html_id;
+    
+    var destroy_elem = $('<input>').attr({
+      id: 'route_coords_attributes_' + index + '__destroy',
+      name: 'route[coords_attributes][' + index + '][_destroy]',
+      value: true,
+      type: 'hidden',
+      class: 'coord_destroy'
+    });
+    $('#route_coords_attributes_' + index + '_position').replaceWith(destroy_elem);
+  }
+  
+  // Delete the marker from the map
+  // and remove the point from the polyline.
+  function delete_from_map(marker){
+    var index = marker_data[marker.get('data_id')].polyline_id;
+    console.log("Deleteing line: " + index);
+    polyline.getPath().removeAt(index);
+    
+    marker.setMap(null);
+    
+    marker_data[marker.get('data_id')].active = false;
+  }
+<% end %>
 <%= form_for(@route, :html => { :class => 'cmxform'}) do |f| %>
   <% if @route.errors.any? %>
     <div id="error_explanation">
@@ -12,6 +133,7 @@
   <% end %>
   <fieldset>
     <ol>
+      <li><%= map_canvas({:style => "height: 300px;"}) %></li>
       <li><%= f.label :name %><%= f.text_field :name %></li>
       <li><%= f.label :description %><%= f.text_area :description %>
       <li><%= f.label :start_time %><%= f.text_field :start_time, :type => 'time' %></li>
@@ -19,9 +141,11 @@
       <li><%= f.label :enabled %><%= f.check_box :enabled %></li>
       <li><%= f.label :color %><%= f.text_field :color %></li>
       <li><%= f.label :width %><%= f.text_field :width %></li>
-      <li><%= f.label :coords %><%= f.text_field :coords %></li>
     </ol>
   </fieldset>
+  <div id="coord_data">
+    <%= render :partial => 'coords/form', :locals => {:form => f} %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
