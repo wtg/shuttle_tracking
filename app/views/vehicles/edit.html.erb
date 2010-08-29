@@ -1,4 +1,5 @@
-<h1>Editing vehicle</h1>
+<% content_for :title, "Editing #{@vehicle.name}" %>
+<div class="main-title">Editing <%= @vehicle.name %></div>
 
 <%= render 'form' %>
 

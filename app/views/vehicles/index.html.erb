@@ -1,29 +1,36 @@
-<h1>Listing vehicles</h1>
-
-<table>
-  <tr>
-    <th>Identifier</th>
-    <th>Name</th>
-    <th>Active</th>
-    <th>Enabled</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @vehicles.each do |vehicle| %>
-  <tr>
-    <td><%= vehicle.identifier %></td>
-    <td><%= vehicle.name %></td>
-    <td><%= vehicle.active %></td>
-    <td><%= vehicle.enabled %></td>
-    <td><%= link_to 'Show', vehicle %></td>
-    <td><%= link_to 'Edit', edit_vehicle_path(vehicle) %></td>
-    <td><%= link_to 'Destroy', vehicle, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
-
+<% content_for :title, "Vehicles" %>
+<div class="main-title">All Vehicles</div>
+<div class="hr_dl flush"><%= image_tag("bl.png", :alt => "") %></div>
 <br />
-
-<%= link_to 'New Vehicle', new_vehicle_path %>
+<div class="mc-indent">
+  <h2 id="vehicles">Vehicles <%= link_to 'Add', new_vehicle_path, :class => "link-button" %></h2>
+  <div>
+    <table cellpadding="0" cellspacing="0" width="100%" class="elements">
+     <thead>
+      <tr class="cat_title">
+        <th style="text-align:right;">Name</th>
+        <th>Identifier</th>
+        <th>Status</th>
+        <th>Activity</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+     <% @vehicles.each do |vehicle| %>
+       <tr class="<%= cycle('odd', 'even') %>">
+         <td style="text-align:right;"><%= link_to vehicle.name, vehicle %></td>
+         <td><%= vehicle.identifier %></td>
+         <td><%= vehicle.enabled? ? "Enabled" : "Disabled" %></td>
+         <td><%= vehicle.active? ? "Online" : "Offline" %></td>
+         <td>
+           <span>
+             <%= link_to 'Edit', edit_vehicle_path(vehicle), :class => 'edit-link' %>&nbsp;
+             <%= link_to 'Remove', vehicle, :confirm => 'Are you sure?', :method => :delete, :class => 'cancel-link' %>
+           </span>
+         </td>
+       </tr>
+     <% end %>
+    </tbody>
+   </table>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-<%= form_for(@vehicle) do |f| %>
+<%= form_for(@vehicle, :html => { :class => 'cmxform'}) do |f| %>
   <% if @vehicle.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@vehicle.errors.count, "error") %> prohibited this vehicle from being saved:</h2>
@@ -10,23 +10,13 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :identifier %><br />
-    <%= f.text_field :identifier %>
-  </div>
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :active %><br />
-    <%= f.check_box :active %>
-  </div>
-  <div class="field">
-    <%= f.label :enabled %><br />
-    <%= f.check_box :enabled %>
-  </div>
+  <fieldset>
+    <ol>
+      <li><%= f.label :name %><%= f.text_field :name %></li>
+      <li><%= f.label :identifier %><%= f.text_field :identifier %></li>
+      <li><%= f.label :enabled %><%= f.check_box :enabled %></li>
+    </ol>
+  </fieldset>
   <div class="actions">
     <%= f.submit %>
   </div>
