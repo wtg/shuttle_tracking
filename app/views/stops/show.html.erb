@@ -1,29 +1,27 @@
-<p id="notice"><%= notice %></p>
+<% content_for :js_ready do %>
+  var stop = <%=raw @stop.to_json() %>;
+  stop = stop.stop;  
+  var map = setup_map(stop, 17);
+  add_point_to_map(stop, map);
+<% end %>
 
-<p>
-  <b>Name:</b>
-  <%= @stop.name %>
-</p>
+<% content_for :title, @stop.name %>
 
-<p>
-  <b>Latitude:</b>
-  <%= @stop.latitude %>
-</p>
-
-<p>
-  <b>Longitude:</b>
-  <%= @stop.longitude %>
-</p>
-
-<p>
-  <b>Enabled:</b>
-  <%= @stop.enabled %>
-</p>
-
-<p>
-  <b>Phonetic:</b>
-  <%= @stop.phonetic %>
-</p>
-
-<%= link_to 'Edit', edit_stop_path(@stop) %> |
-<%= link_to 'Back', stops_path %>
+<div class="main-title">
+	<%= @stop.name %>
+</div>
+<%= map_canvas({:style => "height: 500px;"})%>
+<div>
+  <p>
+    <b>Status:</b>
+    <%= @stop.enabled? ? "Enabled" : "Disabled" %>
+  </p>
+  <% if !@stop.phonetic.blank? %>
+    <p>
+      <b>Phonetic:</b>
+      <%= @stop.phonetic %>
+    </p>
+  <% end %>
+  <%= link_to 'Edit', edit_stop_path(@stop) %> |
+  <%= link_to 'Back', stops_path %>
+</div>

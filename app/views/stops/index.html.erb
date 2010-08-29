@@ -1,31 +1,36 @@
-<h1>Listing stops</h1>
-
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Latitude</th>
-    <th>Longitude</th> 
-    <th>Enabled</th>
-    <th>Phonetic</th>           
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @stops.each do |stop| %>
-  <tr>
-    <td><%= stop.name %></td>
-    <td><%= stop.latitude %></td>
-    <td><%= stop.longitude %></td>    
-    <td><%= stop.enabled %></td>
-    <td><%= stop.phonetic %></td>      
-    <td><%= link_to 'Show', stop %></td>
-    <td><%= link_to 'Edit', edit_stop_path(stop) %></td>
-    <td><%= link_to 'Destroy', stop, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
-
+<% content_for :title, "Stops" %>
+<div class="main-title">All Stops</div>
+<div class="hr_dl flush"><%= image_tag("bl.png", :alt => "") %></div>
 <br />
-
-<%= link_to 'New Stop', new_stop_path %>
+<div class="mc-indent">
+  <h2 id="stops">Stops <%= link_to 'Add', new_stop_path, :class => "link-button" %></h2>
+  <div>
+    <table cellpadding="0" cellspacing="0" width="100%" class="elements">
+     <thead>
+      <tr class="cat_title">
+        <th style="text-align:right;">Name</th>
+        <th>Status</th>
+        <th>Phonetic</th>
+        <th>Routes</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+     <% @stops.each do |stop| %>
+       <tr class="<%= cycle('odd', 'even') %>">
+         <td style="text-align:right;"><%= link_to stop.name, stop %></td>
+         <td><%= stop.enabled? ? "Enabled" : "Disabled" %></td>
+         <td><%= stop.phonetic %></td>
+         <td><%=raw stop.routes.collect{ |r| link_to r.name, r }.join(", ") %></td>
+         <td>
+           <span>
+             <%= link_to 'Edit', edit_stop_path(stop), :class => 'edit-link' %>&nbsp;
+             <%= link_to 'Remove', stop, :confirm => 'Are you sure?', :method => :delete, :class => 'cancel-link' %>
+           </span>
+         </td>
+       </tr>
+     <% end %>
+    </tbody>
+   </table>
+  </div>
+</div>

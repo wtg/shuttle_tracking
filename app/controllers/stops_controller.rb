@@ -3,18 +3,7 @@ class StopsController < ApplicationController
   # GET /stops
   # GET /stops.xml
   def index
-    if(params[:route_id])
-      @stops = Stop.all(:joins => :routes).group(:id).where({'stops.enabled' => true, 'routes.enabled' => true, 'routes.id' => params[:route_id]})
-    else
-      #If the request is NOT for a js file or the cache does NOT exist, get all the stops
-      if !request.format.js? || !fragment_exist?(:action => :index, :action_suffix => 'js')
-        if request.format.html?
-	 @stops = Stop.all
-	else
-	 @stops = Stop.all(:joins => :routes).group(:id).where({:enabled => true, 'routes.enabled' => true})
-	end
-      end
-    end
+    @stops = Stop.all
     respond_to do |format|
       format.html # index.html.erb
       format.xml
@@ -37,7 +26,7 @@ class StopsController < ApplicationController
   # GET /stops/new
   # GET /stops/new.xml
   def new
-    @stop = Stop.new
+    @stop = Stop.new({:latitude => MAP_CENTER[:lat], :longitude => MAP_CENTER[:long]})
 
     respond_to do |format|
       format.html # new.html.erb

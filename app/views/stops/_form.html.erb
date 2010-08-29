@@ -1,4 +1,24 @@
-<%= form_for(@stop) do |f| %>
+<% content_for :js_ready do %>
+    var stop = <%=raw @stop.to_json() %>;
+    stop = stop.stop;
+    var map = setup_map(stop, 16);
+    
+    var marker = add_point_to_map(stop, map, {draggable: true});
+        
+    google.maps.event.addListener(marker, "drag", function(){
+      update_fields(marker.getPosition());
+    });
+    google.maps.event.addListener(marker, "dragend", function(){
+      map.setCenter(marker.getPosition());
+    });
+<% end %>
+<% content_for :js do %>
+  function update_fields(latlng){
+    $('#stop_latitude').val(latlng.lat());
+    $('#stop_longitude').val(latlng.lng());
+  }
+<% end %>
+<%= form_for(@stop, :html => { :class => 'cmxform'}) do |f| %>
   <% if @stop.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@stop.errors.count, "error") %> prohibited this stop from being saved:</h2>
@@ -10,28 +30,17 @@
       </ul>
     </div>
   <% end %>
-  
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :latitude %><br />
-    <%= f.text_field :latitude %>
-  </div>
-  <div class="field">
-    <%= f.label :longitude %><br />
-    <%= f.text_field :longitude %>
-  </div>
-  <div class="field">
-    <%= f.label :enabled %><br />
-    <%= f.check_box :enabled %>
-  </div>
-  <div class="field">
-    <%= f.label :phonetic %><br />
-    <%= f.check_box :phonetic %>
-  </div>
-    
+  <fieldset>
+    <ol>
+      <li><%= map_canvas({:style => "height: 300px;"}) %></li>
+      <li><%= f.label :name %><%= f.text_field :name %></li>
+      <li><%= f.label :enabled %><%= f.check_box :enabled %></li>
+      <li><%= f.label :phonetic %><%= f.text_field :phonetic %></li>
+      <li><%= f.label :routes %><%= f.collection_select :route_ids, Route.all, :id, :name, {:include_blank => true}, {:multiple => true} %> 
+      <li><%= f.label :latitude %> <%= f.text_field :latitude %></li>
+      <li><%= f.label :longitude %> <%= f.text_field :longitude %></li>
+    </ol>
+  </fieldset>
   <div class="actions">
     <%= f.submit %>
   </div>

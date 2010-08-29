@@ -1,4 +1,5 @@
-<h1>Editing stop</h1>
+<% content_for :title, "Editing #{@stop.name}" %>
+<div class="main-title">Editing <%= @stop.name %></div>
 
 <%= render 'form' %>
 
