@@ -5,4 +5,3 @@ tmp/**/*
 public/.htaccess
 tmp/restart.txt
 config/database.yml
-Gemfile.lock
