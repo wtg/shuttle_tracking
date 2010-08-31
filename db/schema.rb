@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100828203726) do
+ActiveRecord::Schema.define(:version => 20100831195654) do
 
   create_table "coords", :force => true do |t|
     t.decimal  "latitude",   :precision => 15, :scale => 10, :default => 0.0
@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(:version => 20100828203726) do
     t.integer  "speed"
     t.datetime "timestamp"
     t.integer  "lock"
-    t.integer  "status_id"
+    t.integer  "status_code"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,6 +1,4 @@
 Tracking::Application.routes.draw do
-  resources :updates
-
   resources :users
   
   resources :user_sessions  
@@ -9,31 +7,27 @@ Tracking::Application.routes.draw do
 
   resources :routes
   
-  resources :vehicles
-  
-  resources :positions do
-    collection do
-      get :current
-    end
+  resources :vehicles do
+    resources :updates, :except => [:show]
   end
-  
+    
   resources :stops do
-    collection do
-      get :current
-    end
+    #collection do
+    #  get :current
+    #end
   end
   
   match 'login' => 'user_sessions#new', :as => :login
   
   match 'logout' => 'user_sessions#destroy', :as => :logout
   
-  match '/displays/locations', :to => 'displays#locations'
+  #match '/displays/locations', :to => 'displays#locations'
   
-  match '/icons/rotate', :to => 'icons#rotate'
+  #match '/icons/rotate', :to => 'icons#rotate'
   
-  match '/displays/kml', :to => 'displays#kml'
+  #match '/displays/kml', :to => 'displays#kml'
   
-  match 'shuttle_tracking.kml', :to => 'displays#kml'
+  #match 'shuttle_tracking.kml', :to => 'displays#kml'
 
   root :to => "displays#index"
 

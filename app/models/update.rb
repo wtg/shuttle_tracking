@@ -2,7 +2,7 @@ class Update < ActiveRecord::Base
 
   # Relations
   belongs_to :vehicle
-  belongs_to :status
+  belongs_to :status, :foreign_key => :status_code, :primary_key => :code
   
   # Validations 
   validates :longitude, :numericality => true, :inclusion => { :in => -180..180 }, :allow_nil => true    
@@ -10,4 +10,8 @@ class Update < ActiveRecord::Base
   validates :heading, :numericality => true, :inclusion => { :in => 0...360}, :allow_nil => true
   validates :speed, :numericality => {:greater_than_or_equal_to => 0}, :allow_nil => true
   validates :vehicle, :presence => true, :associated => true
+
+  # Scope
+  # Default order by the timestamp
+  default_scope order('timestamp DESC')
 end

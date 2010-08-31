@@ -1,4 +1,10 @@
 class UpdatesController < ApplicationController
+  before_filter :get_vehicle
+
+  def get_vehicle
+    @vehicle = Vehicle.find(params[:vehicle_id])
+  end
+
   # GET /updates
   # GET /updates.xml
   def index
@@ -10,21 +16,10 @@ class UpdatesController < ApplicationController
     end
   end
 
-  # GET /updates/1
-  # GET /updates/1.xml
-  def show
-    @update = Update.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @update }
-    end
-  end
-
   # GET /updates/new
   # GET /updates/new.xml
   def new
-    @update = Update.new
+    @update = Update.new({:vehicle => @vechicle})
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,10 +36,11 @@ class UpdatesController < ApplicationController
   # POST /updates.xml
   def create
     @update = Update.new(params[:update])
+    @update.vehicle = @vehicle
 
     respond_to do |format|
       if @update.save
-        format.html { redirect_to(@update, :notice => 'Update was successfully created.') }
+        format.html { redirect_to(vehicle_updates_url, :notice => 'Update was successfully created.') }
         format.xml  { render :xml => @update, :status => :created, :location => @update }
       else
         format.html { render :action => "new" }
@@ -60,7 +56,7 @@ class UpdatesController < ApplicationController
 
     respond_to do |format|
       if @update.update_attributes(params[:update])
-        format.html { redirect_to(@update, :notice => 'Update was successfully updated.') }
+        format.html { redirect_to(vehicle_updates_url, :notice => 'Update was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -76,7 +72,7 @@ class UpdatesController < ApplicationController
     @update.destroy
 
     respond_to do |format|
-      format.html { redirect_to(updates_url) }
+      format.html { redirect_to(vehicle_updates_url) }
       format.xml  { head :ok }
     end
   end

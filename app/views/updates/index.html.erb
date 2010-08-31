@@ -1,37 +1,45 @@
-<h1>Listing updates</h1>
-
-<table>
-  <tr>
-    <th>Vehicle</th>
-    <th>Latitude</th>
-    <th>Longitude</th>
-    <th>Heading</th>
-    <th>Speed</th>
-    <th>Timestamp</th>
-    <th>Lock</th>
-    <th>Status</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @updates.each do |update| %>
-  <tr>
-    <td><%= update.vehicle %></td>
-    <td><%= update.latitude %></td>
-    <td><%= update.longitude %></td>
-    <td><%= update.heading %></td>
-    <td><%= update.speed %></td>
-    <td><%= update.timestamp %></td>
-    <td><%= update.lock %></td>
-    <td><%= update.status %></td>
-    <td><%= link_to 'Show', update %></td>
-    <td><%= link_to 'Edit', edit_update_path(update) %></td>
-    <td><%= link_to 'Destroy', update, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
-
+<% content_for :title, "Updates" %>
+<div class="main-title"><%= @vehicle.name %> Updates</div>
+<div class="hr_dl flush"><%= image_tag("bl.png", :alt => "") %></div>
 <br />
+<div class="mc-indent">
+  <h2 id="updates">Updates <%= link_to 'Add', new_vehicle_update_path, :class => "link-button" %></h2>
+  <div>
+    <table cellpadding="0" cellspacing="0" width="100%" class="elements">
+     <thead>
+      <tr class="cat_title">
+        <th>ID</th>
+        <th>Latitude</th>
+        <th>Longitude</th>
+        <th>Heading</th>
+        <th>Speed</th>
+        <th>Timestamp</th>
+        <th>Lock</th>
+        <th>Status</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+     <% @updates.each do |update| %>
+       <tr class="<%= cycle('odd', 'even') %>">
+         <td><%= update.id %></td>
+         <td><%= update.latitude %></td>
+         <td><%= update.longitude %></td>
+         <td><%= update.heading %></td>
+         <td><%= update.speed %></td>
+         <td><%= update.timestamp %></td>
+         <td><%= update.lock %></td>
+         <td><%= update.status.nil? ? update.status_code : update.status.message %></td>
+         <td>
+           <span>
+             <%= link_to 'Edit', edit_vehicle_update_path(@vehicle, update), :class => 'edit-link' %>&nbsp;
+             <%= link_to 'Remove', [@vehicle, update], :confirm => 'Are you sure?', :method => :delete, :class => 'cancel-link' %>
+           </span>
+         </td>
+       </tr>
+     <% end %>
+    </tbody>
+   </table>
+  </div>
+</div>
 
-<%= link_to 'New Update', new_update_path %>
