@@ -4,5 +4,5 @@ class Status < ActiveRecord::Base
   has_many :updates
   
   # Validations
-  validates_uniqueness_of :code
+  validates :code, :uniqueness => true
 end

@@ -6,7 +6,7 @@ class Route < ActiveRecord::Base
   
   # Validations
   validates :name, :presence => true
-  validates_numericality_of :width, :greater_than_or_equal_to => 0
+  validates :width, :numericality => { :greater_than_or_equal_to => 0 }
 
   accepts_nested_attributes_for :coords, :allow_destroy => true
 end

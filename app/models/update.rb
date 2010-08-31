@@ -5,14 +5,9 @@ class Update < ActiveRecord::Base
   belongs_to :status
   
   # Validations 
-  validates :longitude,
-    :numericality => true,
-    :inclusion => { :in => -180..180 },
-    :allow_nil => true    
-  validates :latitude,
-    :numericality => true,
-    :inclusion => { :in => -90..90},
-    :allow_nil => true # or longitude for that matter
-  validates_presence_of :vehicle # Every update must have a vehicle...
-  validates_associated :vehicle # ... and that vehicle must exist
+  validates :longitude, :numericality => true, :inclusion => { :in => -180..180 }, :allow_nil => true    
+  validates :latitude, :numericality => true, :inclusion => { :in => -90..90}, :allow_nil => true
+  validates :heading, :numericality => true, :inclusion => { :in => 0...360}, :allow_nil => true
+  validates :speed, :numericality => {:greater_than_or_equal_to => 0}, :allow_nil => true
+  validates :vehicle, :presence => true, :associated => true
 end
