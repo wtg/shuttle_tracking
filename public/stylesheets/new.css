@@ -1,7 +1,7 @@
 /* RPI Shuttle Track - Jan 28 09 Original Design; Designed by Brian R Zaik (www.brzaik.com)  Copyright 2009 */
 
-body { background: /*#fff7f7 */ url(../images/pagebg_blue.gif) repeat; font-family:"Lucida Grande", Arial, sans-serif; font-size:small; line-height:1.75em; margin:0; padding:0; }
-#page { background:url(../images/barsbg_ph.jpg) top center repeat-x; margin:0; padding:55px 15px 25px 15px; }
+body { background: /*#fff7f7 */ url(../images/full_map/pagebg_blue.gif) repeat; font-family:"Lucida Grande", Arial, sans-serif; font-size:small; line-height:1.75em; margin:0; padding:0; }
+#page { background:url(../images/full_map/barsbg_ph.jpg) top center repeat-x; margin:0; padding:55px 15px 25px 15px; }
 /* Everything below this comment is IE hacks (http://friendlybit.com/files/minwidth_for_IE/) */
 * html .minwidth, * html .container { height:1px; }
 * html .container { margin-left: -1000px; position:relative; }
