@@ -1,27 +1,34 @@
-<h1>Listing statuses</h1>
-
-<table>
-  <tr>
-    <th>Message</th>
-    <th>Code</th>
-    <th>Public</th>  
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @statuses.each do |status| %>
-  <tr>
-    <td><%= status.message %></td>
-    <td><%= status.code %></td>
-    <td><%= status.public %></td>  
-    <td><%= link_to 'Show', status %></td>
-    <td><%= link_to 'Edit', edit_status_path(status) %></td>
-    <td><%= link_to 'Destroy', status, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
-
+<% content_for :title, "Statuses" %>
+<div class="main-title">All Statuses</div>
+<div class="hr_dl flush"><%= image_tag("bl.png", :alt => "") %></div>
 <br />
-
-<%= link_to 'New Status', new_status_path %>
+<div class="mc-indent">
+  <h2 id="statuses">Statuses <%= link_to 'Add', new_status_path, :class => "link-button" %></h2>
+  <div>
+    <table cellpadding="0" cellspacing="0" width="100%" class="elements">
+     <thead>
+      <tr class="cat_title">
+        <th style="text-align:right;">Code</th>
+        <th>Visibility</th>
+        <th>Mesage</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+     <% @statuses.each do |status| %>
+       <tr class="<%= cycle('odd', 'even') %>">
+         <td style="text-align:right;"><%= status.code %></td>
+         <td><%= status.public? ? "Public" : "Private" %></td>
+         <td><%= status.message %></td>
+         <td>
+           <span>
+             <%= link_to 'Edit', edit_status_path(status), :class => 'edit-link' %>&nbsp;
+             <%= link_to 'Remove', status, :confirm => 'Are you sure?', :method => :delete, :class => 'cancel-link' %>
+           </span>
+         </td>
+       </tr>
+     <% end %>
+    </tbody>
+   </table>
+  </div>
+</div>

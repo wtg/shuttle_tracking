@@ -3,7 +3,7 @@ Tracking::Application.routes.draw do
   
   resources :user_sessions  
 
-  resources :statuses
+  resources :statuses, :except => [:show]
 
   resources :routes
   

@@ -1,4 +1,4 @@
-<%= form_for(@status) do |f| %>
+<%= form_for(@status, :html => { :class => 'cmxform'}) do |f| %>
   <% if @status.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@status.errors.count, "error") %> prohibited this status from being saved:</h2>
@@ -10,20 +10,13 @@
       </ul>
     </div>
   <% end %>
-  
-  <div class="field">
-    <%= f.label :message %><br />
-    <%= f.text_field :message %>
-  </div>
-  <div class="field">
-    <%= f.label :code %><br />
-    <%= f.text_field :code %>
-  </div>
-  <div class="field">
-    <%= f.label :public %><br />
-    <%= f.check_box :public %>
-  </div>
-  
+  <fieldset>
+    <ol>
+      <li><%= f.label :code, "Status Code" %><%= f.text_field :code %></li>
+      <li><%= f.label :public %><%= f.check_box :public %></li>
+      <li><%= f.label :message, "Display Message" %><%= f.text_field :message %></li>
+    </ol>
+  </fieldset>
   <div class="actions">
     <%= f.submit %>
   </div>

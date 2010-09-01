@@ -1,6 +1,6 @@
-<h1>Editing status</h1>
+<% content_for :title, "Editing Status #{@status.code}" %>
+<div class="main-title">Editing Status <%= @status.code %></div>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @status %> |
 <%= link_to 'Back', statuses_path %>
