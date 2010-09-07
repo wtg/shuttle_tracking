@@ -24,7 +24,7 @@
          <td><%= vehicle.enabled? ? "Enabled" : "Disabled" %></td>
          <td style="text-align: left;">
            <%= vehicle.active? ? image_tag('car.png') : image_tag('stop.png') %>
-           Last update: <%= ChronicDuration.output(vehicle.offline_for, :format => :short) || "Unknown" %>
+           Last update: <%= vehicle.offline_for.finite? ? ChronicDuration.output(vehicle.offline_for.to_i, :format => :short) : "Never" %>
          </td>
          <td><%= link_to "Updates", vehicle_updates_url(vehicle) %></td>
          <td>

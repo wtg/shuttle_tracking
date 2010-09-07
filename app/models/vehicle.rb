@@ -15,12 +15,12 @@ class Vehicle < ActiveRecord::Base
   end
 
   # Compute how long it has been since the vehicle last moved.
-  # Returns number of seconds.
+  # Returns number of seconds or Infinity
   def offline_for
     if updates.latest_position.first.nil?
-      0
+      1/0.0 #Aka Infinity
     else
-    (Time.now - updates.latest_position.first.timestamp).to_i
+    (Time.now - updates.latest_position.first.timestamp)
     end
   end
     
