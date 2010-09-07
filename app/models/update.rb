@@ -19,4 +19,7 @@ class Update < ActiveRecord::Base
   # You probably want to chain this like:
   # Vehicle.find(1).updates.latest_position
   scope :latest_position, where('latitude IS NOT NULL').where('longitude IS NOT NULL').limit(1)
+
+  scope :latest, limit(1)
+
 end
