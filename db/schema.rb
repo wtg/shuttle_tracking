@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100831195654) do
+ActiveRecord::Schema.define(:version => 20100907193109) do
 
   create_table "coords", :force => true do |t|
     t.decimal  "latitude",   :precision => 15, :scale => 10, :default => 0.0
@@ -87,8 +87,8 @@ ActiveRecord::Schema.define(:version => 20100831195654) do
   create_table "vehicles", :force => true do |t|
     t.string   "identifier"
     t.string   "name"
-    t.boolean  "active",     :default => false
-    t.boolean  "enabled",    :default => true
+    t.boolean  "active_override", :default => false
+    t.boolean  "enabled",         :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
   end

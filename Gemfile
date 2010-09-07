@@ -4,7 +4,12 @@ gem 'rails', '3.0.0'
 
 gem 'sqlite3-ruby', :require => 'sqlite3'
 
+# God monitors the auto-updater script. 
+# You can comment it out if you don't use that.
 gem 'god'
+
+# Used convert seconds into a human duration.
+gem 'chronic_duration'
 
 #gem "mysql", :require => "mysql"
 

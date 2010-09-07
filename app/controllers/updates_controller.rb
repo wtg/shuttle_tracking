@@ -8,7 +8,7 @@ class UpdatesController < ApplicationController
   # GET /updates
   # GET /updates.xml
   def index
-    @updates = Update.all
+    @updates = @vehicle.updates
 
     respond_to do |format|
       format.html # index.html.erb

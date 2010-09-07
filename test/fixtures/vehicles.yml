@@ -3,11 +3,11 @@
 bus_one:
   identifier: 1
   name: Bus 1
-  active: false
+  active_override: false
   enabled: true
 
 bus_two:
   identifier: 2
   name: Bus 2
-  active: false
+  active_override: false
   enabled: false
