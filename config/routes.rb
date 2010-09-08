@@ -8,6 +8,9 @@ Tracking::Application.routes.draw do
   resources :routes
   
   resources :vehicles do
+    collection do
+      get :current
+    end
     resources :updates, :except => [:show]
   end
     

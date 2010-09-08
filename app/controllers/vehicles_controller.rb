@@ -10,6 +10,24 @@ class VehiclesController < ApplicationController
     end
   end
 
+  # GET /vehicles/current.kml
+  # GET /vehicles/current.js
+  def current
+    @vehicles = Vehicle.active
+
+    respond_to do |format|
+      format.js { render :json => @vehicles.to_json(
+        :only => [:id, :name],
+        :include => {
+          :latest_position => {
+            :only => [:latitude, :longitude],
+            :methods => [:public_status_msg]
+          }
+         }
+      ) }
+    end
+  end
+
   # GET /vehicles/1
   # GET /vehicles/1.xml
   def show

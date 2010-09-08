@@ -20,6 +20,14 @@ class Update < ActiveRecord::Base
   # Vehicle.find(1).updates.latest_position
   scope :latest_position, where('latitude IS NOT NULL').where('longitude IS NOT NULL').limit(1)
 
-  scope :latest, limit(1)
+  # If the update has a public status with a message
+  # you can access that here.
+  def public_status_msg
+    if !status.nil? && status.public?
+      status.message
+    else
+      nil
+    end
+  end
 
 end
