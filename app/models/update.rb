@@ -15,10 +15,13 @@ class Update < ActiveRecord::Base
   # Default order by the timestamp
   default_scope order('timestamp DESC')
   
+  # Only return the latest update.
+  scope :latest, limit(1)
+
   # Identify the most recent location. 
   # You probably want to chain this like:
   # Vehicle.find(1).updates.latest_position
-  scope :latest_position, where('latitude IS NOT NULL').where('longitude IS NOT NULL').limit(1)
+  scope :latest_position, where('latitude IS NOT NULL').where('longitude IS NOT NULL').latest
 
   # If the update has a public status with a message
   # you can access that here.
