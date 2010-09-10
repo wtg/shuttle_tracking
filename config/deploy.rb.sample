@@ -34,5 +34,5 @@ desc "Link the production database and config file"
 task :link_production_files do
   run "ln -nfs #{deploy_to}/shared/config/database.yml #{release_path}/config/database.yml"
   run "ln -nfs #{deploy_to}/shared/config/initializers/shuttle_tracking.rb #{release_path}/config/initializers/shuttle_tracking.rb"
-  run "ln -nfs #{deploy_to}/shared/app/views/layouts/_footer.html.erb #{release_path)/app/views/layouts/_footer.html.erb"  
+  run "ln -nfs #{deploy_to}/shared/app/views/layouts/_footer.html.erb #{release_path}/app/views/layouts/_footer.html.erb"  
 end
