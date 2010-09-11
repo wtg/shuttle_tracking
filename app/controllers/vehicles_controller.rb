@@ -20,8 +20,8 @@ class VehiclesController < ApplicationController
         :only => [:id, :name],
         :include => {
           :latest_position => {
-            :only => [:latitude, :longitude],
-            :methods => [:public_status_msg]
+            :only => [:latitude, :longitude, :speed, :heading],
+            :methods => [:public_status_msg, :cardinal_point]
           }
          }
       ) }

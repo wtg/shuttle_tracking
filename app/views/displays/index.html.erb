@@ -44,7 +44,15 @@
     return true;
   }
   function shuttle_description(vehicle){
-    return vehicle.name;
+    var buffer = new Array();
+    buffer.push("<strong>");
+    buffer.push(vehicle.name);
+    buffer.push("</strong><br />Traveling ");
+    buffer.push(vehicle.latest_position.cardinal_point);
+    buffer.push(" at ");
+    buffer.push(vehicle.latest_position.speed);
+    buffer.push("mph.");
+    return buffer.join('');
   }
 <% end %>
 <div id="page">

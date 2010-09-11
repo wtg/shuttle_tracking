@@ -33,4 +33,17 @@ class Update < ActiveRecord::Base
     end
   end
 
+  def cardinal_point
+    case heading
+      when 22.5..67.5 then "North-East"
+      when 67.5..112.5 then "East"
+      when 112.5..157.5 then "South-East"
+      when 157.5..202.5 then "South"
+      when 202.5..247.5 then "South-West"
+      when 247.5..292.5 then "West"
+      when 292.5..337.5 then "North-West"
+      else "North"
+    end
+  end
+
 end
