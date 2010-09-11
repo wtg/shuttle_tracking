@@ -56,36 +56,8 @@
   }
 <% end %>
 <div id="page">
-  <div class="topcontrols">
-    <div style="float:left;width:400px;">
-      <table width="100%" cellpadding="0" cellspacing="0">
-        <tr>
-          <td style="padding-left:25px; color:#333; background:#8a8a8a url(<%= image_path 'full_map/graystuff_bgleft.png' %>) top left no-repeat;">
-            <h2>
-              <b>Show:</b>&nbsp;&nbsp;
-              <%= radio_button_tag "active_opt", "Online", true, :onclick => 'manual_update();' %> Online
-              <%= radio_button_tag "active_opt", "Offline", false, :onclick => 'manual_update();' %> Offline&nbsp;&nbsp;&nbsp;
-              <%= radio_button_tag "active_opt", "All", false, :onclick => 'manual_update();' %> All
-            </h2>
-          </td>
-          <td width="62"><%= image_tag 'full_map/graystuff_left.png' %></td>
-        </tr>
-      </table>
-    </div>
-    <div style="text-align:right; float:right;width:400px;">
-      <table width="100%" cellpadding="0" cellspacing="0">
-        <tr>
-          <td width="62"><%= image_tag 'full_map/graystuff_right.png' %></td>
-          <td style="padding-right:25px; background:#8a8a8a url(<%= image_path 'full_map/graystuff_bgright.png' %>) top right no-repeat;">
-            <h2 style="color:#333;font-size:0.8em;">
-              <%#= link_to 'Download KML File', { :action => 'kml' }, :style => "font-size:1.2em;"  %> (Google Earth / Maps Mobile)
-            </h2>
-          </td>
-        </tr>
-      </table>
-    </div>
+  <div class="topcontrols" style="height: 35px;">
   </div>
-  <div style="clear:both;"></div>
   <div id="mapblock">
     <div id="map_header">
       <span id="status">Loading...</span>
