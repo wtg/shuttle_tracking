@@ -1,3 +1,52 @@
+<% content_for :js_ready do %>
+    var point = {latitude: <%= MAP_CENTER[:lat] %>, longitude: <%= MAP_CENTER[:long] %>};
+    map = setup_map(point, 15);
+    update();
+<% end %>
+<% content_for :js do %>
+  var map; //The map!
+  var shuttles = new Object();
+  var current_data_path = '<%= current_vehicles_path(:format => 'js') %>';
+
+  function update(){
+    $.getJSON(current_data_path, function(data){
+      var now = new Date();
+      // Pass through every update and move / create the appropriate marker
+      $.each(data, function(i, obj){
+        var vehicle = obj.vehicle;
+
+        // Remap some of the attributes so they aren't so deep.
+        vehicle['latitude'] = vehicle.latest_position.latitude;
+        vehicle['longitude'] = vehicle.latest_position.longitude;
+
+        // Figure out what goes in the infobubble
+        vehicle['description'] = shuttle_description(vehicle);
+
+        if(vehicle.id in shuttles){
+          // The shuttle is already on the map, all we have to do is update it.
+          var marker = shuttles[vehicle.id];
+          marker.setPosition(new google.maps.LatLng(vehicle.latitude, vehicle.longitude));
+        } else {
+          // The shuttle is NOT on the map.  Create it and store the marker.
+          var marker = add_point_to_map(vehicle, map);
+        }
+        marker.updated_at = now;
+        shuttles[vehicle.id] = marker;
+      });
+      // Pass through every shuttle and delete it if it was not updated.
+      $.each(shuttles, function(id, marker){
+        if(marker.updated_at < now){
+          marker.setMap(null);
+          delete shuttles[id];
+        }
+      });
+    });
+    return true;
+  }
+  function shuttle_description(vehicle){
+    return vehicle.name;
+  }
+<% end %>
 <div id="page">
   <div class="topcontrols">
     <div style="float:left;width:400px;">
@@ -34,7 +83,7 @@
       <span id="status">Loading...</span>
       <span id="loading_icon" style="display: none;"><%= image_tag 'full_map/4-1.gif' %></span>
     </div>
-    <div id="map_canvas" style="margin:0 auto; border:solid 1px #ccc; height: 700px; width: 97%;">&nbsp;</div>
+    <%= map_canvas({:style => "height: 500px;"}) %>
   </div>
   <div id="footer">
     <span>Produced and Updated by the <a href="http://webtech.union.rpi.edu/">Web Technologies Group</a> from 2006 to 2010.</span>

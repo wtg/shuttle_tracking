@@ -1,28 +1,27 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
   <title>Track Vehicles Live</title>
   <%= stylesheet_link_tag 'new' %>
-  <%= javascript_include_tag 'prototype', 'application', :cache => false %>
-  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-  <script type="text/javascript" src="http://www.google.com/jsapi?key=<%= GMAPKEY %>"></script>
-  <script type="text/javascript">
-    google.load("maps", "2.x");
-    google.setOnLoadCallback(initialize);
-    var STATUS_URL = "<%#= current_positions_path(:format=>'js') %>";
-    var STOPS_URL = "<%= stops_path(:format=>'js') %>";
-    var ROUTES_URL = "<%= routes_path(:format=>'js') %>";
-    var STOP_ICON_URL = "<%= image_path 'blue_pin.png' %>";
-    var STOP_SHADOW_ICON_URL = "<%= image_path 'blue_pin_shadow.png' %>";
-    var ICON_BASE_URL = "<%#= url_for :controller => :icons, :action => :rotate %>";
-    var CENTER_LAT = <%= MAP_CENTER['lat'] %>;
-    var CENTER_LONG = <%= MAP_CENTER['long'] %>;
-  </script>
+  <%= javascript_include_tag :defaults %>
+  <%= javascript_include_tag "http://maps.google.com/maps/api/js?sensor=false" %>
+  <%= csrf_meta_tag %>
+  <% if content_for?(:js_ready) %>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        <%= yield(:js_ready) %>
+      });
+    </script>
+  <% end %>
+  <% if content_for?(:js) %>
+    <script type="text/javascript">
+      <%= yield(:js) %>
+    </script>
+  <% end %>
 </head>
-<body onunload="GUnload()">
-<% if flash[:notice] %><p style="color: green"><%= flash[:notice] %></p><% end %>
-<%= yield %>
+<body>
+  <% if flash[:notice] %><p style="color: green"><%= flash[:notice] %></p><% end %>
+  <%= yield %>
 </body>
 </html>
