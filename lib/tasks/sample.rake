@@ -30,9 +30,9 @@ namespace :sample do
             update = vehicle.updates.new(
               :latitude => $2.to_f,
               :longitude =>$3.to_f,
-              :heading => $4.to_f,
-              :speed => $5.to_f,
-              :lock => $6.to_f,
+              :heading => $4.to_i,
+              :speed => $5.to_i,
+              :lock => $6.to_i,
               :status_code => $7.to_s,
               :timestamp => $8
             )
