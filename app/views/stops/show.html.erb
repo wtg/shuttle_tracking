@@ -15,9 +15,9 @@
     <dt>Next Shuttle Arriving:</dt>
     <dd>5 min.<!-- Aren't I funny.... --></dd>
     <dt>Routes Served:</dt>
-    <% @stop.routes.each do |r| %>
-      <dd><%=link_to r.name, r %></dd>
-    <% end %>
+    <dd>
+      <%=raw @stop.routes.map{ |r| link_to(r.name, r)}.join(", ") %>
+    </dd>
     <dt>Status:</dt>
     <dd><%= @stop.enabled? ? "Enabled" : "Disabled" %></dd>
     <dt>Phonetic:</dt>
