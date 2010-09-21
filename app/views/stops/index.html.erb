@@ -1,5 +1,5 @@
 <% content_for :title, "Stops" %>
-<div class="main-title">All Stops</div>
+<div class="main-title"><%= @all_stops ? "All" : "Active" %> Stops</div>
 <div class="hr_dl flush"><%= image_tag("bl.png", :alt => "") %></div>
 <br />
 <div class="mc-indent">

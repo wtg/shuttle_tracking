@@ -8,4 +8,7 @@ class Stop < ActiveRecord::Base
   validates :longitude, :numericality => true, :inclusion => { :in => -180..180 }
   validates :latitude, :numericality => true, :inclusion => { :in => -90..90}
 
+  scope :enabled, where(:enabled => true)
+  scope :disabled, where(:enabled => false)
+
 end

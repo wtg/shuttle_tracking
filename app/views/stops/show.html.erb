@@ -10,18 +10,21 @@
 <div class="main-title">
 	<%= @stop.name %>
 </div>
-<%= map_canvas({:style => "height: 500px;"})%>
+<div class="data_grid">
+  <dl>
+    <dt>Next Shuttle Arriving:</dt>
+    <dd>5 min.<!-- Aren't I funny.... --></dd>
+    <dt>Routes Served:</dt>
+    <% @stop.routes.each do |r| %>
+      <dd><%=link_to r.name, r %></dd>
+    <% end %>
+    <dt>Status:</dt>
+    <dd><%= @stop.enabled? ? "Enabled" : "Disabled" %></dd>
+    <dt>Phonetic:</dt>
+    <dd><%= @stop.phonetic %></dd>
+</div>
+<%= map_canvas({:style => "height: 300px; width: 49%;"})%>
 <div>
-  <p>
-    <b>Status:</b>
-    <%= @stop.enabled? ? "Enabled" : "Disabled" %>
-  </p>
-  <% if !@stop.phonetic.blank? %>
-    <p>
-      <b>Phonetic:</b>
-      <%= @stop.phonetic %>
-    </p>
-  <% end %>
   <%= link_to 'Edit', edit_stop_path(@stop) %> |
   <%= link_to 'Back', stops_path %>
 </div>

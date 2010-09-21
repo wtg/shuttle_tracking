@@ -3,7 +3,13 @@ class StopsController < ApplicationController
   # GET /stops
   # GET /stops.xml
   def index
-    @stops = Stop.all
+    if !params[:all].nil?
+      @all_stops = true
+      @stops = Stop.all
+    else
+      @all_stops = false
+      @stops = Stop.enabled
+    end
     respond_to do |format|
       format.html # index.html.erb
       format.xml
