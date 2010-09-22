@@ -14,11 +14,7 @@ Tracking::Application.routes.draw do
     resources :updates, :except => [:show]
   end
     
-  resources :stops do
-    #collection do
-    #  get :current
-    #end
-  end
+  resources :stops
   
   match 'login' => 'user_sessions#new', :as => :login
   
