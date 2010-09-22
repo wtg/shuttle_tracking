@@ -25,6 +25,7 @@ class VehiclesController < ApplicationController
           }
          }
       ) }
+      format.kml
     end
   end
 
