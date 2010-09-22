@@ -18,10 +18,10 @@ class StopsController < ApplicationController
     end
   end
 
-  # GET /stops/1
-  # GET /stops/1.xml
+  # GET /stops/union
+  # GET /stops/union.xml
   def show
-    @stop = Stop.find(params[:id])
+    @stop = Stop.where(:short_name => params[:id]).first
 
     respond_to do |format|
       format.html # show.html.erb
@@ -40,9 +40,9 @@ class StopsController < ApplicationController
     end
   end
 
-  # GET /stops/1/edit
+  # GET /stops/union/edit
   def edit
-    @stop = Stop.find(params[:id])
+    @stop = Stop.where(:short_name => params[:id]).first
   end
 
   # POST /stops
@@ -61,10 +61,10 @@ class StopsController < ApplicationController
     end
   end
 
-  # PUT /stops/1
-  # PUT /stops/1.xml
+  # PUT /stops/union
+  # PUT /stops/union.xml
   def update
-    @stop = Stop.find(params[:id])
+    @stop = Stop.where(:short_name => params[:id]).first
 
     respond_to do |format|
       if @stop.update_attributes(params[:stop])
@@ -77,10 +77,10 @@ class StopsController < ApplicationController
     end
   end
 
-  # DELETE /stops/1
-  # DELETE /stops/1.xml
+  # DELETE /stops/union
+  # DELETE /stops/union.xml
   def destroy
-    @stop = Stop.find(params[:id])
+    @stop = Stop.where(:short_name => params[:id]).first
     @stop.destroy
 
     respond_to do |format|

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100907193109) do
+ActiveRecord::Schema.define(:version => 20100922004254) do
 
   create_table "coords", :force => true do |t|
     t.decimal  "latitude",   :precision => 15, :scale => 10, :default => 0.0
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(:version => 20100907193109) do
     t.string   "phonetic"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "short_name"
   end
 
   create_table "updates", :force => true do |t|

@@ -36,6 +36,7 @@
       <li><%= f.label :name %><%= f.text_field :name %></li>
       <li><%= f.label :enabled %><%= f.check_box :enabled %></li>
       <li><%= f.label :phonetic %><%= f.text_field :phonetic %></li>
+      <li><%= f.label :short_name %><%= f.text_field :short_name %></li>
       <li><%= f.label :routes %><%= f.collection_select :route_ids, Route.all, :id, :name, {:include_blank => true}, {:multiple => true} %> 
       <li><%= f.label :latitude %> <%= f.text_field :latitude %></li>
       <li><%= f.label :longitude %> <%= f.text_field :longitude %></li>

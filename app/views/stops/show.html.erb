@@ -22,6 +22,9 @@
     <dd><%= @stop.enabled? ? "Enabled" : "Disabled" %></dd>
     <dt>Phonetic:</dt>
     <dd><%= @stop.phonetic %></dd>
+    <dt>Short Name:</dt>
+    <dd><%= @stop.short_name.upcase %></dd>
+  </dl>
 </div>
 <%= map_canvas({:style => "height: 300px; width: 49%;"})%>
 <div>
