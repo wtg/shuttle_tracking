@@ -20,7 +20,8 @@ Tracking::Application.routes.draw do
   
   match 'logout' => 'user_sessions#destroy', :as => :logout
   
-  #match '/displays/locations', :to => 'displays#locations'
+  match '/displays/static', :to => 'displays#static'
+  match '/displays/netlink', :to => 'displays#netlink'
   
   #match '/icons/rotate', :to => 'icons#rotate'
   

@@ -6,7 +6,7 @@ class RoutesController < ApplicationController
     enabled = params[:enabled]
     enabled ||= true
 
-    @routes = Route.where({:enabled => enabled})
+    @routes = Route.enabled
 
     if request.format.html?
       @routes = Route.all
