@@ -1,4 +1,6 @@
 Tracking::Application.routes.draw do
+  resources :icons
+
   resources :users
   
   resources :user_sessions  

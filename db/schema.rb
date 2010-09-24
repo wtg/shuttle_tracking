@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100922004254) do
+ActiveRecord::Schema.define(:version => 20100924012729) do
 
   create_table "coords", :force => true do |t|
     t.decimal  "latitude",   :precision => 15, :scale => 10, :default => 0.0
@@ -19,6 +19,17 @@ ActiveRecord::Schema.define(:version => 20100922004254) do
     t.integer  "route_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "icons", :force => true do |t|
+    t.string   "name"
+    t.string   "file_name"
+    t.string   "file_type"
+    t.integer  "file_size"
+    t.binary   "file_data",  :limit => 2097152
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "heading",                       :default => 0
   end
 
   create_table "routes", :force => true do |t|
@@ -92,6 +103,7 @@ ActiveRecord::Schema.define(:version => 20100922004254) do
     t.boolean  "enabled",         :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "icon_id"
   end
 
 end

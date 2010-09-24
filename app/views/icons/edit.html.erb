@@ -1,0 +1,7 @@
+<% content_for :title, "Editing #{@icon.name}" %>
+<div class="main-title">Editing <%= @icon.name %></div>
+
+<%= render 'form' %>
+
+<%= link_to 'Show', @icon %> |
+<%= link_to 'Back', icons_path %>
