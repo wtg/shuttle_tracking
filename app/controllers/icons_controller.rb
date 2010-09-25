@@ -76,4 +76,35 @@ class IconsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  # GET /icons/1/rotate/90.png
+  def rotate
+    require 'RMagick'
+    @icon = Icon.find(params[:id])
+    
+    image = Magick::ImageList.new
+    image.from_blob(@icon.file_contents)
+    #Keep the background transparent if we rotate it
+    image.background_color = "none"
+
+    #Rotate the image accordingly
+    image.rotate!(params[:heading].to_i - @icon.heading)
+
+    case request.format
+      when Mime::PNG
+        image.format = "PNG"
+      when Mime::JPG
+        # Since JPGs don't support transparency, we have to do more work here.
+        dest = Magick::Image.new(image.columns, image.rows)
+        image = dest.composite(image, Magick::CenterGravity, Magick::OverCompositeOp)
+        image.format = "JPEG"
+      when Mime::GIF
+        image.format = "GIF"
+      else
+        image.format = "PNG"
+    end
+    
+    send_data image.to_blob, :filename => @icon.file_name, :type => request.format, :disposition => 'inline'    
+  end
+
 end
