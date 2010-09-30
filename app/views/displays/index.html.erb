@@ -65,17 +65,19 @@
     return buffer.join('');
   }
 <% end %>
-<div id="page">
-  <div class="topcontrols" style="height: 35px;">
-  </div>
-  <div id="mapblock">
-    <div id="map_header">
+<div id="shuttle_logo"></div>
+<div id="mapblock">
+  <div id="map_canvas"></div>
+</div>
+<div id="map_header">
       <span id="status">Loading...</span>
       <span id="loading_icon" style="display: none;"><%= image_tag 'full_map/4-1.gif' %></span>
-    </div>
-    <%= map_canvas({:style => "height: 500px;"}) %>
-  </div>
-  <div id="footer">
-    <span>Produced and Updated by the <a href="http://webtech.union.rpi.edu/">Web Technologies Group</a> from 2006 to 2010.</span>
-  </div>
+</div>
+<div id="left"></div>
+<div id="top"></div>
+<div id="right"></div>
+<div id="bottom"></div>
+<div id="byline">
+<div id="b1">Produced and Updated by the <a href="http://webtech.union.rpi.edu/">Web Technologies Group</a> from 2006 to 2010.</div>
+<div id="b1_s">Produced and Updated by the Web Technologies Group from 2006 to 2010.</div>
 </div>
