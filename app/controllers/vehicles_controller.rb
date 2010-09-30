@@ -22,6 +22,9 @@ class VehiclesController < ApplicationController
           :latest_position => {
             :only => [:latitude, :longitude, :speed, :heading],
             :methods => [:public_status_msg, :cardinal_point]
+          },
+          :icon => {
+            :only => [:id]
           }
          }
       ) }

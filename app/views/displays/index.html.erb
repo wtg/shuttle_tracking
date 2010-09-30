@@ -7,6 +7,7 @@
   var map; //The map!
   var shuttles = new Object();
   var current_data_path = '<%= current_vehicles_path(:format => 'js') %>';
+  var base_icon = '<%= rotate_icon_path(:id => ':id', :heading => ':heading', :format => 'png') %>';
 
   function update(){
     $.getJSON(current_data_path, function(data){
@@ -30,6 +31,15 @@
           // The shuttle is NOT on the map.  Create it and store the marker.
           var marker = add_point_to_map(vehicle, map);
         }
+
+        //If the vehicle has been assigned an icon, use it!
+        if('icon' in vehicle){
+          // Build the URL for an icon, replacing :id with the icon ID
+          // and :heading with the vehicle heading
+          var icon_url = base_icon.replace(':id',vehicle.icon.id).replace(':heading',vehicle.latest_position.heading);
+          marker.setIcon(icon_url);
+        }
+
         marker.updated_at = now;
         shuttles[vehicle.id] = marker;
       });

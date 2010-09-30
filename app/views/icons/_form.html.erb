@@ -1,0 +1,23 @@
+<%= form_for(@icon, :html => {:multipart => true, :class => 'cmxform'}) do |f| %>
+  <% if @icon.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@icon.errors.count, "error") %> prohibited this icon from being saved:</h2>
+
+      <ul>
+      <% @icon.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <fieldset>
+    <ol>
+      <li><%= f.label :name %><%= f.text_field :name %></li>
+      <li><%= f.label :heading %><%= f.text_field :heading %></li>
+      <li><%= f.label :file %><%= f.file_field :file %></li>
+    </ol>
+  </fieldset>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

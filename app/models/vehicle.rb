@@ -3,6 +3,7 @@ class Vehicle < ActiveRecord::Base
   # Relations
   has_many :updates, :dependent => :destroy
   has_one :latest_position, :class_name => 'Update'
+  belongs_to :icon
 
   # Validations
   validates :name, :presence => true

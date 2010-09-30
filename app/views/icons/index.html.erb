@@ -1,0 +1,34 @@
+<% content_for :title, "Icons" %>
+<div class="main-title">Icons</div>
+<div class="hr_dl flush"><%= image_tag("bl.png", :alt => "") %></div>
+<br />
+<div class="mc-indent">
+  <h2 id="icons">Icons <%= link_to 'Add', new_icon_path, :class => "link-button" %></h2>
+  <div>
+    <table cellpadding="0" cellspacing="0" width="100%" class="elements">
+     <thead>
+      <tr class="cat_title">
+        <th>Name</th>
+        <th>Heading</th>
+        <th>Image</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+     <% @icons.each do |icon| %>
+       <tr class="<%= cycle('odd', 'even') %>">
+         <td><%= icon.name %></td>
+         <td><%= icon.heading %></td>
+         <td><img src="<%= url_for icon %>" /></td>
+         <td>
+           <span>
+             <%= link_to 'Edit', edit_icon_path(icon), :class => 'edit-link' %>&nbsp;
+             <%= link_to 'Remove', icon, :confirm => 'Are you sure?', :method => :delete, :class => 'cancel-link' %>
+           </span>
+         </td>
+       </tr>
+     <% end %>
+    </tbody>
+   </table>
+  </div>
+</div>

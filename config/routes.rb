@@ -1,4 +1,7 @@
 Tracking::Application.routes.draw do
+  resources :icons
+  match '/icons/:id/rotate/:heading(.:format)', :to => 'icons#rotate', :as => 'rotate_icon'
+
   resources :users
   
   resources :user_sessions  
