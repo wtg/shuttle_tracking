@@ -1,8 +1,8 @@
-module DisplaysHelper
+module HashReduce
 
   # This crazy code is used to reduce a two level hash based on the second level values.
   # Practically, we use this to limit the number of unique custom icons that are displayed
-  # on a static image map.  The hash data-structure is a two level hash (color > heading) 
+  # on a static image map.  The hash data-structure is a two level hash (color > heading)
   # holding an array, that looks like this:
   # - red:
   # -- 90: [bus 1, bus 2]
@@ -11,7 +11,7 @@ module DisplaysHelper
   # -- 10: [bus 5]
   # The idea is to reduce this dataset to max level1-level2 pairs, so from red-90, red-100, blue-10
   # to something like red-95, blue-10 (if max = 2).
-  def double_hash_reduce(hash, max)
+  def self.double_hash_reduce(hash, max)
     while hash.values.collect{|v| v.length}.inject(0){|sum,item| sum + item} > max:
       diff = 1.0/0  # Hold the difference for an in-place identification
       l1 = nil # The first tier value we're going to be reducing in
@@ -38,5 +38,5 @@ module DisplaysHelper
     end
     return hash
   end
-  
+
 end
