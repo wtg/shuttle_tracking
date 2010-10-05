@@ -1,0 +1,44 @@
+<%
+  base = "http://maps.google.com/maps/api/staticmap?"
+  url = Hash.new
+  url['size'] = "600x600"
+  url['sensor'] = false
+
+
+  url.each do |key, value|
+    base += "&" + key + "=" + value.to_s
+  end
+
+  gmax = 5 # Google limits us to 5 custom icons at the moment
+  key_count = [gmax, @icons.keys.length].max # If we have > 5 different icons in use, use that value (idk what google will do)
+  
+  icons = double_hash_reduce(@icons, key_count) # Perform the crazy reduction
+
+  icons.each do |icon, headings|
+    if icon == 0 # For no icon, quickly collect the data without caring about headings
+      base += "&markers="
+      lat_lngs = []
+      headings.each_value do |vehicles|
+        vehicles.each do |vehicle|
+          lat_lngs.push("#{vehicle.latest_position.latitude},#{vehicle.latest_position.longitude}")
+        end
+      end
+      base += lat_lngs.join("|")
+    else # We have to care about the heading....
+      headings.each do |heading, vehicles|
+        lat_lngs = []
+        icon_url = rotate_icon_path(:id => icon, :heading => heading, :format => 'png', :only_path => false)
+        base += "&markers=icon:#{icon_url}|"
+            
+        vehicles.each do |vehicle|
+          lat_lngs.push("#{vehicle.latest_position.latitude},#{vehicle.latest_position.longitude}")
+        end
+        base += lat_lngs.join("|")
+      end
+    end
+  end
+%>
+
+<%= base %>
+<br /> <br />
+<%= image_tag base %>

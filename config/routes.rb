@@ -25,6 +25,7 @@ Tracking::Application.routes.draw do
   
   match '/displays/static', :to => 'displays#static'
   match '/displays/netlink', :to => 'displays#netlink'
+  match '/displays/image', :to => 'displays#image'
   
   #match '/icons/rotate', :to => 'icons#rotate'
   

@@ -26,5 +26,29 @@ class DisplaysController < ApplicationController
       format.kml
     end
   end
+
+  # Generate a static image of the current vehicle positions.
+  # Current a work in progress...
+  def image
+    @vehicles = Vehicle.all
+    
+    @icons = Hash.new
+    @vehicles.each do |v|
+      if !v.latest_position.nil?
+        icon = v.icon_id || 0
+        heading = v.latest_position.heading
+        if @icons.has_key?(icon)
+          if @icons[icon].has_key?(heading)
+            @icons[icon][heading].push(v)
+          else
+            @icons[icon][heading] = [v]
+          end
+        else
+          @icons[icon] = Hash.new
+          @icons[icon][heading] = [v]
+        end
+      end
+    end
+  end
   
 end
