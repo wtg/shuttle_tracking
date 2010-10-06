@@ -17,4 +17,4 @@ gem 'chronic_duration'
 gem 'authlogic', :git => 'git://github.com/odorcicd/authlogic.git', :branch => 'rails3'
 
 #rmagick is used to rotate the shuttle icon
-gem 'rmagick'
+gem 'rmagick', '2.12.2'
