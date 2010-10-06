@@ -16,17 +16,37 @@ class DisplaysController < ApplicationController
     end
   end
 
-  # Generates a network-link based KML file, a snapshot of the 
-  # routes and stops.  The vehicles will be loaded via network link.
+  # Generates a network-link based file, a snapshot of the 
+  # routes and stops.  The vehicles will be loaded another way.
   def netlink
     @stops = Stop.enabled
     @routes = Route.enabled
  
     respond_to do |format|
-      format.kml
+      format.kml # netlink.kml.builder
+      format.js { # Manually build some objects to jsonify
+        data = {:stops => [], :routes => []}
+        @stops.each do |s|
+          data[:stops].push(s.serializable_hash(
+            :only => [:short_name, :name, :latitude, :longitude], 
+            :include => {:routes => 
+              {:only => [:id, :name]}
+            }
+          ))
+        end
+        @routes.each do |r|
+          data[:routes].push(r.serializable_hash(
+            :only => [:id, :name, :color, :width],
+            :include => {:coords =>
+              {:only => [:latitude, :longitude]}
+            }
+          ))
+        end
+        render :json => data
+      }
     end
   end
-
+  
   # Redirect you to a page that shows a static image of the current vehicle positions.
   def image
     require 'hash_reduce' # This does the hard thinking!

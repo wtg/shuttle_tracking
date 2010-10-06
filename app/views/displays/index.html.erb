@@ -2,12 +2,34 @@
     var point = {latitude: <%= MAP_CENTER[:lat] %>, longitude: <%= MAP_CENTER[:long] %>};
     map = setup_map(point, 15);
     update();
+    routes_and_stops();
 <% end %>
 <% content_for :js do %>
   var map; //The map!
   var shuttles = new Object();
   var current_data_path = '<%= current_vehicles_path(:format => 'js') %>';
+  var netlink_data_path = '<%= displays_netlink_path(:format => 'js') %>';
   var base_icon = '<%= rotate_icon_path(:id => ':id', :heading => ':heading', :format => 'png') %>';
+
+  function routes_and_stops(){
+    $.getJSON(netlink_data_path, function(data){
+      $.each(data.stops, function(i, stop){
+        stop['description'] = stop_description(stop); 
+        var stop_marker = add_point_to_map(stop, map);
+      });
+      $.each(data.routes, function(i, route){
+        var polyline = new google.maps.Polyline({
+          strokeColor: route.color,
+          strokeWeight: route.width
+        });
+        $.each(route.coords, function(index, coord){
+          position = add_point_to_polyline(coord, polyline);
+        });
+        polyline.setMap(map);
+      });
+    });
+    return true;
+  }
 
   function update(){
     $.getJSON(current_data_path, function(data){
@@ -64,6 +86,14 @@
     buffer.push("mph.");
     return buffer.join('');
   }
+  function stop_description(stop){
+    var buffer = new Array();
+    buffer.push("<strong>");
+    buffer.push(stop.name);
+    buffer.push("</strong>");
+    return buffer.join('');
+  }
+
 <% end %>
 <div id="shuttle_logo"></div>
 <div id="mapblock">
