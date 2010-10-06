@@ -1,6 +1,22 @@
 <% content_for :js_ready do %>
     var point = {latitude: <%= MAP_CENTER[:lat] %>, longitude: <%= MAP_CENTER[:long] %>};
     map = setup_map(point, 15);
+    $.ajaxSetup({
+      timeout: 5000
+    });
+    $('#status').ajaxError(function(e, xhr, settings, exception){
+      $(this).text("Unable to load data.");
+      $('#loading_icon').hide();
+      $('#error_icon').show();
+    });
+    $('#status').ajaxStart(function(){
+      $(this).text("Loading...");
+      $('#error_icon').hide();
+      $('#loading_icon').show();
+    });
+    $('#status').ajaxSuccess(function(){
+      $('#loading_icon').hide();
+    });
     update();
     routes_and_stops();
 <% end %>
@@ -28,6 +44,7 @@
         polyline.setMap(map);
       });
     });
+    $('#status').text("Static data OK.");
     return true;
   }
 
@@ -72,8 +89,42 @@
           delete shuttles[id];
         }
       });
+      $('#status').text(format_time(now) + " - OK");
     });
     return true;
+  }
+  function format_time(date){
+    var hour=date.getHours();
+    var min=date.getMinutes();
+    var sec=date.getSeconds();
+    var add="";
+
+    if (min<=9) {
+      min="0"+min; 
+    }
+    if (sec<=9) { 
+      sec="0"+sec;
+    }
+    if (hour>12) { 
+      hour=hour-12; 
+      add="PM";
+    } else {
+      hour=hour;
+      add="AM";
+    }
+    if (hour==12) {
+      add="AM";
+    }
+
+    var output = new Array();
+    output.push(hour);
+    output.push(":");
+    output.push(min);
+    output.push(":");
+    output.push(sec);
+    output.push(" ");
+    output.push(add);
+    return (output.join(''));
   }
   function shuttle_description(vehicle){
     var buffer = new Array();
@@ -100,8 +151,9 @@
   <div id="map_canvas"></div>
 </div>
 <div id="map_header">
+      <span id="loading_icon" style="display: none;"><%= image_tag 'full_map/loading.gif' %></span>
+      <span id="error_icon" style="display: none;"><%= image_tag 'full_map/error.png' %></span>
       <span id="status">Loading...</span>
-      <span id="loading_icon" style="display: none;"><%= image_tag 'full_map/4-1.gif' %></span>
 </div>
 <div id="left"></div>
 <div id="top"></div>

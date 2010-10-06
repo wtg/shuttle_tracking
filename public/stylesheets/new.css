@@ -3,6 +3,7 @@
   position:absolute;
   top:3%;
   left:3%;
+  margin-top:2px;
   margin-left:5px;
   text-align:left;
   font-family:sans-serif;
@@ -122,4 +123,3 @@ text-decoration:none;
   margin-right:4px;
   z-index:1;
 }
-
