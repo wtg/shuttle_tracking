@@ -19,7 +19,12 @@ function setup_map(center_point, zoom_level, div){
 // name, description, latitude, and longitude.
 // Optional: options can be used to override
 // and of the properties of the marker.
-function add_point_to_map(point, map, options){
+// return_info (if true) will return an array
+// object containing the marker AND infowindow
+function add_point_to_map(point, map, options, return_info){
+  if (typeof return_info == "undefined") {
+    return_info = false;
+  }
   var infowindow = new google.maps.InfoWindow({
     content: point.description
   });
@@ -38,7 +43,11 @@ function add_point_to_map(point, map, options){
     infowindow.open(map, marker);
   });
   
-  return marker;
+  if(return_info){
+    return [marker, infowindow];
+  } else {
+    return marker;
+  }
 }
 
 // Wraps add_point_to_polyobject
