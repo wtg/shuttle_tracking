@@ -2,7 +2,7 @@
     var point = {latitude: <%= MAP_CENTER[:lat] %>, longitude: <%= MAP_CENTER[:long] %>};
     map = setup_map(point, 15);
     $.ajaxSetup({
-      timeout: 5000
+      timeout: <%= AJAX_TIMEOUT %>
     });
     $('#status').ajaxError(function(e, xhr, settings, exception){
       $(this).text("Unable to load data.");
@@ -17,15 +17,20 @@
     $('#status').ajaxSuccess(function(){
       $('#loading_icon').hide();
     });
-    update();
+    updater = setInterval("update()", <%= UPDATE_INTERVAL %>);
     routes_and_stops();
 <% end %>
 <% content_for :js do %>
   var map; //The map!
   var shuttles = new Object();
+  var updater; // The auto-updater
   var current_data_path = '<%= current_vehicles_path(:format => 'js') %>';
   var netlink_data_path = '<%= displays_netlink_path(:format => 'js') %>';
   var base_icon = '<%= rotate_icon_path(:id => ':id', :heading => ':heading', :format => 'png') %>';
+
+  function stop_updating(){
+    clearInterval(updater);
+  }
 
   function routes_and_stops(){
     $.getJSON(netlink_data_path, function(data){
