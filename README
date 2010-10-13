@@ -1,6 +1,10 @@
-Rails-3 branch of the vehicle tracking system
+The latest version of RPI's shuttle tracking web application.
 
-ToDo: 
-Verify correct AR syntax in displays#locations and stops#index
-Get the Google Map working
-Clean up view appearances and style
+Prerequisites: MySQL, Rails 3, ImageMagick
+Prerequisite Gems: MySQL, god, chronic_duration, RMagick
+Plugins Used: Attachable, AuthLogic
+
+Installation:
+bundle install
+Fill-in database.yml
+rake db:migrate
