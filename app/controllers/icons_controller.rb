@@ -87,8 +87,15 @@ class IconsController < ApplicationController
     #Keep the background transparent if we rotate it
     image.background_color = "none"
 
+    destination = params[:heading].to_i
+    #If we are crossing the 180-line we need to mirror the image first
+    if (((@icon.heading < 180) && (destination > 180)) ||
+       ((@icon.heading > 180) && (0 < destination && destination < 180)))
+      image.flop!
+    end
+
     #Rotate the image accordingly
-    image.rotate!(params[:heading].to_i - @icon.heading)
+    image.rotate!(destination - @icon.heading)
 
     case request.format
       when Mime::PNG
