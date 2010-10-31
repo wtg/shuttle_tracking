@@ -35,7 +35,26 @@
     add_point_to_polyobject(coord, polyline);
     add_edit_marker_to_map(coord, index);
   }
-    
+  
+  function remove_marker(marker){
+    //Remove it from the line and map.
+    delete_from_map(marker);
+  
+    //For every active point past the one being deleted
+    //decrease its polyline data by one.
+    var i = 0;
+    var max = marker_data.length;
+    for(i = marker.get('data_id'); i < max; i++){
+      if(marker_data[i].active){
+        $('#route_coords_attributes_' + i + '_position').val(i);
+        marker_data[i].polyline_id--;
+      }
+    }
+    //Remove the position html
+    //and replace it with destroy code.
+    remove_position_html(marker);
+  }
+
   // Update the polyline with a new position
   // from a marker.
   function update_line(marker, latLng){
@@ -65,22 +84,7 @@
         
     //Right click to delete a marker.
     google.maps.event.addListener(marker, "rightclick", function(event){
-      //Remove it from the line and map.
-      delete_from_map(this);
-      
-      //For every active point past the one being deleted
-      //decrease its polyline data by one.
-      var i = 0;
-      var max = marker_data.length;
-      for(i = this.get('data_id'); i < max; i++){
-        if(marker_data[i].active){
-          $('#route_coords_attributes_' + i + '_position').val(i);
-          marker_data[i].polyline_id--;
-        }
-      }
-      //Remove the position html
-      //and replace it with destroy code.
-      remove_position_html(this);
+      remove_marker(this);
     });
     return marker;
   }
@@ -125,8 +129,7 @@
  
   function import_data(){
     $.each(marker_data, function(index, marker){
-      delete_from_map(marker.marker);
-      remove_position_html(marker.marker);
+      remove_marker(marker.marker);
     });
 
     polyline.setMap();
