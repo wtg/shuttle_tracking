@@ -118,6 +118,33 @@
     
     marker_data[marker.get('data_id')].active = false;
   }
+ 
+  function import_data(){
+    $.each(marker_data, function(index, marker){
+      delete_from_map(marker.marker);
+      remove_position_html(marker.marker);
+    });
+
+    polyline.setMap();
+    polyline = new google.maps.Polyline();
+    polyline.setMap(map);
+
+    var text = $('#import').val();
+    $.each(text.split("\n"), function(i, row){
+      data = row.split(",");
+
+      var next_pos = next_position();
+      var index = next_index();
+      var coord = {
+        latitude: data[1],
+        longitude: data[0],
+        position: next_position
+      };
+      add_coord_to_form('route', coord, index, '#coord_data');
+      add_point_to_polyobject(coord, polyline);
+      add_edit_marker_to_map(coord, index);
+    });
+  }
 <% end %>
 <%= form_for(@route, :html => { :class => 'cmxform'}) do |f| %>
   <% if @route.errors.any? %>
@@ -141,6 +168,8 @@
       <li><%= f.label :enabled %><%= f.check_box :enabled %></li>
       <li><%= f.label :color %><%= f.text_field :color %></li>
       <li><%= f.label :width %><%= f.text_field :width %></li>
+      <br />
+      <li><%= label_tag do %>Import <br /><%= button_to_function "Process", "import_data()"%><% end %><%= text_area_tag 'import', nil, :rows => 10 %></li>
     </ol>
   </fieldset>
   <div id="coord_data">
