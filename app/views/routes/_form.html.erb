@@ -12,6 +12,7 @@
       add_point_to_polyobject(coord, polyline);
       add_edit_marker_to_map(coord, index);
     });
+    rebound_map();
     
     //Click to create a new marker.
     google.maps.event.addListener(map, 'click', function(event){
@@ -23,6 +24,8 @@
   var polyline; //The line
   var marker_data = new Array();
 
+  // Given a latitude and a longitude, add a marker to the map
+  // and the underlying HTML data structure.
   function add_marker(latitude, longitude){
     var next_pos = next_position();
     var index = next_index();
@@ -36,6 +39,8 @@
     add_edit_marker_to_map(coord, index);
   }
   
+  // Given a marker, remove it from the map, line
+  // and mark it for deletion in the database.
   function remove_marker(marker){
     //Remove it from the line and map.
     delete_from_map(marker);
@@ -126,7 +131,8 @@
     
     marker_data[marker.get('data_id')].active = false;
   }
- 
+  
+  // Import data from the import box and replace the existing route with it.
   function import_data(){
     $.each(marker_data, function(index, marker){
       remove_marker(marker.marker);
@@ -141,6 +147,19 @@
       data = row.split(",");
       add_marker(data[1], data[0]);
     });
+   
+    rebound_map();
+  }
+
+  // Zoon and fit the map to the active markers.
+  function rebound_map(){
+    var map_bounds = new google.maps.LatLngBounds();
+    $.each(marker_data, function(i, marker){
+      if(marker.active){
+        map_bounds.extend(marker.marker.getPosition());
+      }
+    });
+    map.fitBounds(map_bounds);
   }
 <% end %>
 <%= form_for(@route, :html => { :class => 'cmxform'}) do |f| %>
