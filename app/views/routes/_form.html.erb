@@ -15,22 +15,26 @@
     
     //Click to create a new marker.
     google.maps.event.addListener(map, 'click', function(event){
-      var next_pos = next_position();
-      var index = next_index();
-      var coord = {
-        latitude: event.latLng.lat(),
-        longitude: event.latLng.lng(),
-        position: next_position
-      };
-      add_coord_to_form('route', coord, index, '#coord_data');
-      add_point_to_polyobject(coord, polyline);
-      add_edit_marker_to_map(coord, index);
+        add_marker(event.latLng.lat(), event.latLng.lng());
     });
 <% end %>
 <% content_for :js do %>
   var map; //The map!
   var polyline; //The line
   var marker_data = new Array();
+
+  function add_marker(latitude, longitude){
+    var next_pos = next_position();
+    var index = next_index();
+    var coord = {
+      latitude: latitude,
+      longitude: longitude,
+      position: next_position
+    };
+    add_coord_to_form('route', coord, index, '#coord_data');
+    add_point_to_polyobject(coord, polyline);
+    add_edit_marker_to_map(coord, index);
+  }
     
   // Update the polyline with a new position
   // from a marker.
@@ -132,17 +136,7 @@
     var text = $('#import').val();
     $.each(text.split("\n"), function(i, row){
       data = row.split(",");
-
-      var next_pos = next_position();
-      var index = next_index();
-      var coord = {
-        latitude: data[1],
-        longitude: data[0],
-        position: next_position
-      };
-      add_coord_to_form('route', coord, index, '#coord_data');
-      add_point_to_polyobject(coord, polyline);
-      add_edit_marker_to_map(coord, index);
+      add_marker(data[1], data[0]);
     });
   }
 <% end %>
