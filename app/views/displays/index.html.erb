@@ -19,6 +19,7 @@
     });
     updater = setInterval("update()", <%= UPDATE_INTERVAL %>);
     routes_and_stops();
+    update(); //Run the first update instead of waiting.
 <% end %>
 <% content_for :js do %>
   var map; //The map!
