@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101008191958) do
+ActiveRecord::Schema.define(:version => 20101105002140) do
 
   create_table "coords", :force => true do |t|
     t.decimal  "latitude",   :precision => 15, :scale => 10, :default => 0.0
@@ -77,11 +77,6 @@ ActiveRecord::Schema.define(:version => 20101008191958) do
     t.datetime "timestamp"
     t.integer  "lock"
     t.integer  "status_code"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "user_sessions", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end

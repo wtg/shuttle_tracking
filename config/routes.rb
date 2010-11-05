@@ -4,8 +4,6 @@ Tracking::Application.routes.draw do
 
   resources :users
   
-  resources :user_sessions  
-
   resources :statuses, :except => [:show]
 
   resources :routes

@@ -12,8 +12,5 @@ gem 'god'
 # Used convert seconds into a human duration.
 gem 'chronic_duration'
 
-#gem "authlogic" this is currently broken in Rails3
-gem 'authlogic', :git => 'git://github.com/odorcicd/authlogic.git', :branch => 'rails3'
-
 #rmagick is used to rotate the shuttle icon
 gem 'rmagick', '2.12.2'

@@ -1,11 +1,3 @@
-GIT
-  remote: git://github.com/odorcicd/authlogic.git
-  revision: a087ad0
-  branch: rails3
-  specs:
-    authlogic (2.1.3)
-      activesupport
-
 GEM
   remote: http://rubygems.org/
   specs:
@@ -81,7 +73,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  authlogic!
   chronic_duration
   god
   mysql
