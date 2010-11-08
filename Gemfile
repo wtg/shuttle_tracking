@@ -9,6 +9,10 @@ gem "mysql", :require => "mysql",  :group => [:production]
 # You can comment it out if you don't use that.
 gem 'god'
 
+# Authentication
+gem 'devise'
+gem 'devise_cas_authenticatable', :git => "git://github.com/bamnet/devise_cas_authenticatable.git"
+
 # Used convert seconds into a human duration.
 gem 'chronic_duration'
 

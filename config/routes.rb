@@ -1,4 +1,6 @@
 Tracking::Application.routes.draw do
+  devise_for :users
+
   resources :icons
   match '/icons/:id/rotate/:heading(.:format)', :to => 'icons#rotate', :as => 'rotate_icon'
 
