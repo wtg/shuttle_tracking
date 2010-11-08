@@ -28,6 +28,6 @@
 </div>
 <%= map_canvas({:style => "height: 300px; width: 49%;"})%>
 <div>
-  <%= link_to 'Edit', edit_stop_path(@stop) %> |
+  <%= link_to 'Edit', edit_stop_path(@stop) if can? :update, @stop %> |
   <%= link_to 'Back', stops_path %>
 </div>

@@ -1,4 +1,6 @@
 class StatusesController < ApplicationController
+  authorize_resource
+
   # GET /statuses
   # GET /statuses.xml
   def index

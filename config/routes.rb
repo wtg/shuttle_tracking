@@ -4,7 +4,8 @@ Tracking::Application.routes.draw do
   resources :icons
   match '/icons/:id/rotate/:heading(.:format)', :to => 'icons#rotate', :as => 'rotate_icon'
 
-  resources :users
+  match '/users/all', :to => 'users#index'
+  resources :users, :except => [:create, :new]
   
   resources :statuses, :except => [:show]
 
@@ -18,19 +19,11 @@ Tracking::Application.routes.draw do
   end
     
   resources :stops
-  
-  match 'login' => 'user_sessions#new', :as => :login
-  
-  match 'logout' => 'user_sessions#destroy', :as => :logout
-  
+    
   match '/displays/static', :to => 'displays#static'
   match '/displays/netlink', :to => 'displays#netlink'
   match '/displays/image', :to => 'displays#image'
-  
-  #match '/icons/rotate', :to => 'icons#rotate'
-  
-  #match '/displays/kml', :to => 'displays#kml'
-  
+    
   #match 'shuttle_tracking.kml', :to => 'displays#kml'
 
   root :to => "displays#index"

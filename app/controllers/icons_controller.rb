@@ -1,4 +1,6 @@
 class IconsController < ApplicationController
+  authorize_resource :except => [:rotate]
+
   # GET /icons
   # GET /icons.xml
   def index

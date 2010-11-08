@@ -13,6 +13,9 @@ gem 'god'
 gem 'devise'
 gem 'devise_cas_authenticatable', :git => "git://github.com/bamnet/devise_cas_authenticatable.git"
 
+# Authorization
+gem 'cancan'
+
 # Used convert seconds into a human duration.
 gem 'chronic_duration'
 

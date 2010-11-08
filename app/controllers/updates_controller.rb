@@ -1,5 +1,6 @@
 class UpdatesController < ApplicationController
   before_filter :get_vehicle
+  authorize_resource
 
   def get_vehicle
     @vehicle = Vehicle.find(params[:vehicle_id])

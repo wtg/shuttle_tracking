@@ -3,7 +3,7 @@
 <div class="hr_dl flush"><%= image_tag("bl.png", :alt => "") %></div>
 <br />
 <div class="mc-indent">
-  <h2 id="icons">Icons <%= link_to 'Add', new_icon_path, :class => "link-button" %></h2>
+  <h2 id="icons">Icons <%= link_to 'Add', new_icon_path, :class => "link-button" if can? :create, Icon%></h2>
   <div>
     <table cellpadding="0" cellspacing="0" width="100%" class="elements">
      <thead>
@@ -22,8 +22,8 @@
          <td><img src="<%= url_for icon %>" /></td>
          <td>
            <span>
-             <%= link_to 'Edit', edit_icon_path(icon), :class => 'edit-link' %>&nbsp;
-             <%= link_to 'Remove', icon, :confirm => 'Are you sure?', :method => :delete, :class => 'cancel-link' %>
+             <%= link_to 'Edit', edit_icon_path(icon), :class => 'edit-link' if can? :edit, @icon %>&nbsp;
+             <%= link_to 'Remove', icon, :confirm => 'Are you sure?', :method => :delete, :class => 'cancel-link' if can? :destroy, @icon %>
            </span>
          </td>
        </tr>

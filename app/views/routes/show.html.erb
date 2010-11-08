@@ -57,5 +57,5 @@
   </p>
 </div>
 
-<%= link_to 'Edit', edit_route_path(@route) %> |
+<%= link_to 'Edit', edit_route_path(@route) if can? :update, @route%> |
 <%= link_to 'Back', routes_path %>

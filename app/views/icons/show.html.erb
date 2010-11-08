@@ -11,5 +11,5 @@
 
 
 
-<%= link_to 'Edit', edit_icon_path(@icon) %> |
+<%= link_to 'Edit', edit_icon_path(@icon) if can? :update, @icon %> |
 <%= link_to 'Back', icons_path %>

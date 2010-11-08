@@ -1,4 +1,5 @@
 class RoutesController < ApplicationController
+  authorize_resource
 
   # GET /routes
   # GET /routes.xml

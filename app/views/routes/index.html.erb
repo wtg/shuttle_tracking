@@ -3,7 +3,7 @@
 <div class="hr_dl flush"><%= image_tag("bl.png", :alt => "") %></div>
 <br />
 <div class="mc-indent">
-  <h2 id="routes">Routes <%= link_to 'Add', new_route_path, :class => "link-button" %></h2>
+  <h2 id="routes">Routes <%= link_to 'Add', new_route_path, :class => "link-button" if can? :create, Route %></h2>
   <div>
     <table cellpadding="0" cellspacing="0" width="100%" class="elements">
      <thead>
@@ -30,8 +30,8 @@
          <td><%= route.width %></td>
          <td>
            <span>
-             <%= link_to 'Edit', edit_route_path(route), :class => 'edit-link' %>&nbsp;
-             <%= link_to 'Remove', route, :confirm => 'Are you sure?', :method => :delete, :class => 'cancel-link' %>
+             <%= link_to 'Edit', edit_route_path(route), :class => 'edit-link' if can? :update, @route %>&nbsp;
+             <%= link_to 'Remove', route, :confirm => 'Are you sure?', :method => :delete, :class => 'cancel-link' if can? :destroy, @route%>
            </span>
          </td>
        </tr>

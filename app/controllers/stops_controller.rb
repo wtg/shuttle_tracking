@@ -1,4 +1,5 @@
 class StopsController < ApplicationController
+  authorize_resource
 	
   # GET /stops
   # GET /stops.xml

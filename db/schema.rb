@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101105172720) do
+ActiveRecord::Schema.define(:version => 20101108204713) do
 
   create_table "coords", :force => true do |t|
     t.decimal  "latitude",   :precision => 15, :scale => 10, :default => 0.0
@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(:version => 20101105172720) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.boolean  "is_admin",           :default => false
   end
 
   create_table "vehicles", :force => true do |t|

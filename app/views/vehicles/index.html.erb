@@ -3,7 +3,7 @@
 <div class="hr_dl flush"><%= image_tag("bl.png", :alt => "") %></div>
 <br />
 <div class="mc-indent">
-  <h2 id="vehicles">Vehicles <%= link_to 'Add', new_vehicle_path, :class => "link-button" %></h2>
+  <h2 id="vehicles">Vehicles <%= link_to 'Add', new_vehicle_path, :class => "link-button" if can? :create, Vehicle %></h2>
   <div>
     <table cellpadding="0" cellspacing="0" width="100%" class="elements">
      <thead>
@@ -29,8 +29,8 @@
          <td><%= link_to "Updates", vehicle_updates_url(vehicle) %></td>
          <td>
            <span>
-             <%= link_to 'Edit', edit_vehicle_path(vehicle), :class => 'edit-link' %>&nbsp;
-             <%= link_to 'Remove', vehicle, :confirm => 'Are you sure?', :method => :delete, :class => 'cancel-link' %>
+             <%= link_to 'Edit', edit_vehicle_path(vehicle), :class => 'edit-link' if can? :update, vehicle %>&nbsp;
+             <%= link_to 'Remove', vehicle, :confirm => 'Are you sure?', :method => :delete, :class => 'cancel-link' if can? :destroy, vehicle%>
            </span>
          </td>
        </tr>

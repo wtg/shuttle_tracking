@@ -1,4 +1,6 @@
 class VehiclesController < ApplicationController
+  authorize_resource :except => [:current]
+
   # GET /vehicles
   # GET /vehicles.xml
   def index
