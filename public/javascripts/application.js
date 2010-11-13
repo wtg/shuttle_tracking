@@ -28,7 +28,7 @@ function format_time(date){
   if (sec<=9) { sec="0"+sec; }
   if (hour>12) { hour=hour-12; add="PM"; }
   else { hour=hour; add="AM"; }
-  if (hour==12) { add="AM"; }
+  if (hour==12) { add="PM"; }
 
   var output = new Array();
   output.push(hour);
