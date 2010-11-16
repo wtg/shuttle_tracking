@@ -157,16 +157,17 @@
 <% end %>
 <div id="shuttle_logo"></div>
 <div id="mapblock">
-  <div id="map_canvas">
-    <div id="nav_container">
-      <%= image_tag 'little_wtg_logo.png' %>
-      <div id="nav">
-        <a id="about_button" href="#">About</a>
-        <a id="faq_button" href="#">FAQ</a>
-        <a href="http://shuttles.rpi.edu/shuttle_tracking.kml">KML</a>
-        <a href="http://webtech.union.rpi.edu/ticket">Contact</a>
-        <a href="http://github.com/wtg/shuttle_tracking">Source</a>
-      </div>
+  <div id="map_canvas"></div>
+  <div id="nav_container">
+    <%= link_to "http://webtech.union.rpi.edu" do %>
+      <%= image_tag 'little_wtg_logo.png', :alt => "Web Tech Group" %>
+    <% end %>
+    <div id="nav">
+      <a id="about_button" href="#">About</a>
+      <a id="faq_button" href="#">FAQ</a>
+      <%= link_to "KML", displays_netlink_path(:format => 'kml') %>
+      <a href="http://webtech.union.rpi.edu/ticket">Contact</a>
+      <a href="http://github.com/wtg/shuttle_tracking">Source</a>
     </div>
   </div>
 </div>
@@ -179,8 +180,16 @@
 <div id="top"></div>
 <div id="right"></div>
 <div id="bottom"></div>
-<div class="hoverdiv" id="about"><p>Shuttle Tracking is designed and maintained by the <a href="http://webtech.union.rpi.edu/">RPI Web Technologies Group</a>.</p><p><a class="close" href="#" id="about_close">Close</a></p></div>
-<div class="hoverdiv" id="faq"><p>Some FAQ Information</p><p><a class="close" href="#" id="faq_close">Close</a></p></div>
+<div class="hoverdiv" id="about">
+  <p>Shuttle Tracking is designed and maintained by the Student Senate <a href="http://webtech.union.rpi.edu/">Web Technologies Group</a>.</p>
+  <p>This service is supported by the <a href="http://www.rpi.edu/dept/parking/">Parking and Transportation Office</a>, the <a href="http://www.rpi.edu/dept/administration/"> Administration Division</a> and <a href="http://dotcio.rpi.edu/setup.do">dotCIO</a>.</p>
+  <p>Much of the code behind Shuttle Tracking comes from <a href="http://projects.brispace.net/category/geo/">Flagship Geo</a>, an open source mapping project sponsored by <a href="http://rcos.cs.rpi.edu/"><abbr title="Rensselaer Center for Open Source Software">RCOS</abbr></a>.</p>
+  <p><a class="close" href="#" id="about_close">Close</a></p>
+</div>
+<div class="hoverdiv" id="faq">
+  <p>Coming soon...</p>
+  <p><a class="close" href="#" id="faq_close">Close</a></p>
+</div>
 <script>
   $("#about_button").click(function () {
       $("#about").toggle();
