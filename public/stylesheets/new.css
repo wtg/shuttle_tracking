@@ -45,6 +45,69 @@ body
   /*background-color:#EDEAE2;*/
   border:1px solid black;
 }
+#nav_container
+{
+  display:block;
+  position:absolute;
+  right:10px;
+  bottom:10px;
+}
+#nav
+{
+  display:block;
+  background-color:black;
+  padding-top:1px;
+  height:90px;
+}
+#nav  a
+{
+  display:block;
+  width:64px;
+  height:15px;
+  background-color:white;
+  text-align:center;
+  font-size:12px;
+  font-family:Arial, Helvetica, sans-serif;
+  line-height:15px;
+  border-style:solid;
+  border-width:1px;
+  border-color:#707070;
+  border-top-color:#D0D0D0;
+  border-left-color:#D0D0D0;
+  margin:1px;
+  margin-top:0px;
+  text-decoration:none;
+  color:black;
+}
+#nav a:visited
+{
+  color:black;
+}
+#nav a:hover
+{
+  border-color:#D0D0D0;
+  border-top-color:#707070;
+  border-left-color:#707070;
+}
+.hoverdiv
+{
+  font-family: arial;
+  display:none;
+  position:absolute;
+  left:50%;
+  width:400px;
+  margin-left:-200px;
+  top:50%;
+  background:white;
+  padding:5px;
+  -moz-box-shadow: 5px 5px 5px #000; /* CSS3 */
+  -webkit-box-shadow: 5px 5px 5px #000; /* CSS3 */
+  box-shadow: 5px 5px 5px #000; /* CSS3 */
+}
+.close
+{
+  float:right;
+}
 #right
 {
   background-image:-moz-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,1));

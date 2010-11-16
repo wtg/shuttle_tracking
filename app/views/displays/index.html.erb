@@ -157,7 +157,18 @@
 <% end %>
 <div id="shuttle_logo"></div>
 <div id="mapblock">
-  <div id="map_canvas"></div>
+  <div id="map_canvas">
+    <div id="nav_container">
+      <%= image_tag 'little_wtg_logo.png' %>
+      <div id="nav">
+        <a id="about_button" href="#">About</a>
+        <a id="faq_button" href="#">FAQ</a>
+        <a href="http://shuttles.rpi.edu/shuttle_tracking.kml">KML</a>
+        <a href="http://webtech.union.rpi.edu/ticket">Contact</a>
+        <a href="http://github.com/wtg/shuttle_tracking">Source</a>
+      </div>
+    </div>
+  </div>
 </div>
 <div id="map_header">
       <span id="loading_icon" style="display: none;"><%= image_tag 'full_map/loading.gif' %></span>
@@ -168,7 +179,25 @@
 <div id="top"></div>
 <div id="right"></div>
 <div id="bottom"></div>
-<div id="byline">
-<div id="b1">Produced and Updated by the <a href="http://webtech.union.rpi.edu/">Web Technologies Group</a> from 2006 to 2010.</div>
-<div id="b1_s">Produced and Updated by the Web Technologies Group from 2006 to 2010.</div>
-</div>
+<div class="hoverdiv" id="about"><p>Shuttle Tracking is designed and maintained by the <a href="http://webtech.union.rpi.edu/">RPI Web Technologies Group</a>.</p><p><a class="close" href="#" id="about_close">Close</a></p></div>
+<div class="hoverdiv" id="faq"><p>Some FAQ Information</p><p><a class="close" href="#" id="faq_close">Close</a></p></div>
+<script>
+  $("#about_button").click(function () {
+      $("#about").toggle();
+      $("#faq").hide();
+      return false;
+    });
+  $("#about_close").click(function () {
+      $("#about").hide();
+      return false;
+    });
+  $("#faq_button").click(function () {
+      $("#faq").toggle();
+      $("#about").hide();
+      return false;
+    });
+  $("#faq_close").click(function () {
+      $("#faq").hide();
+      return false;
+    });
+</script>
