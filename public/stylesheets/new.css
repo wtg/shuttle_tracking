@@ -22,7 +22,7 @@
  }
 body
 {
-  background-url:url(../images/bg_tile.png);
+  background-image:url(../images/bg_tile.png);
   margin:0px;
   padding:0px;
   height:auto;
