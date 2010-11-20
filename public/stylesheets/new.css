@@ -43,7 +43,6 @@ body
   left:30px;
   top:30px;
   bottom:30px;
-  /*background-color:#EDEAE2;*/
   border:1px solid black;
 }
 #nav_container
@@ -52,6 +51,10 @@ body
   position:absolute;
   right:40px;
   bottom:50px;
+}
+#nav_container a img
+{
+  border: none;
 }
 #nav
 {
