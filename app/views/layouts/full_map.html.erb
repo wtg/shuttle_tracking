@@ -15,9 +15,7 @@
       });
     </script>
   <% end %>
-  <link rel="shortcut icon" href="favicon.ico">
-  <% 
-if content_for?(:js) %>
+  <% if content_for?(:js) %>
     <script type="text/javascript">
       <%= yield(:js) %>
     </script>
