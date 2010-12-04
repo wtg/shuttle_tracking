@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101108204713) do
+ActiveRecord::Schema.define(:version => 20101204232129) do
 
   create_table "coords", :force => true do |t|
     t.decimal  "latitude",   :precision => 15, :scale => 10, :default => 0.0
@@ -80,6 +80,8 @@ ActiveRecord::Schema.define(:version => 20101108204713) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "updates", ["vehicle_id", "timestamp"], :name => "index_updates_on_vehicle_id_and_timestamp"
 
   create_table "users", :force => true do |t|
     t.string   "username"
