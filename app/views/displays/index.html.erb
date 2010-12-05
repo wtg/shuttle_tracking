@@ -37,7 +37,7 @@
     $.getJSON(netlink_data_path, function(data){
       $.each(data.stops, function(i, stop){
         stop['description'] = stop_description(stop); 
-        var stop_marker = add_point_to_map(stop, map);
+        var stop_marker = add_point_to_map(stop, map, {icon: '<%= image_path "blue_dot.png" %>'});
       });
       $.each(data.routes, function(i, route){
         var polyline = new google.maps.Polyline({
