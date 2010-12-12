@@ -1,0 +1,13 @@
+embed_assets: on
+
+javascripts:
+  common:
+    - public/javascripts/jquery-1.4.2.js
+    - public/javascripts/jquery-ujs/src/rails.js
+    - public/javascripts/application.js
+
+stylesheets:
+  map:
+    - public/stylesheets/new.css
+  backend:
+    - public/stylesheets/general.css

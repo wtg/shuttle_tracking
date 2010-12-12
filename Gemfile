@@ -21,3 +21,6 @@ gem 'chronic_duration'
 
 #rmagick is used to rotate the shuttle icon
 gem 'rmagick', '2.12.2'
+
+# Compress JS and CSS
+gem 'jammit'
