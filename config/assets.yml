@@ -1,3 +1,7 @@
+# Uncomment the following line to force asset compression in development
+#package_assets: always
+
+# Embed that small background image
 embed_assets: on
 
 javascripts:
@@ -5,6 +9,8 @@ javascripts:
     - public/javascripts/jquery-1.4.2.js
     - public/javascripts/jquery-ujs/src/rails.js
     - public/javascripts/application.js
+  map:
+    - public/javascripts/map.js
 
 stylesheets:
   map:
