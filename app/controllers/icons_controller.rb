@@ -1,5 +1,7 @@
 class IconsController < ApplicationController
   authorize_resource :except => [:rotate]
+  caches_page :rotate
+  cache_sweeper :icon_sweeper
 
   # GET /icons
   # GET /icons.xml
@@ -90,6 +92,11 @@ class IconsController < ApplicationController
     image.background_color = "none"
 
     destination = params[:heading].to_i
+    #Force destination to be between 0 and 360
+    if destination >= 360 || destination < 0
+      redirect_to :heading => (destination % 360), :format => request.format.symbol, :status => :moved_permanently and return
+    end
+
     #If we are crossing the 180-line we need to mirror the image first
     if (((@icon.heading < 180) && (destination > 180)) ||
        ((@icon.heading > 180) && (0 < destination && destination < 180)))
