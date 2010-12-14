@@ -8,6 +8,8 @@
   <%= javascript_include_tag "http://maps.google.com/maps/api/js?sensor=false" %>
   <%= csrf_meta_tag %>
   <%= favicon_link_tag %>
+  <meta name="description" content="Real time vehicle tracking!" />
+  <link rel="image_src" href="<%= image_path("full_map/smalllogo.png") %>" />
   <% if content_for?(:js_ready) %>
     <script type="text/javascript">
       $(document).ready(function() {
