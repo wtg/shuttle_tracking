@@ -13,8 +13,20 @@ class StopsController < ApplicationController
     end
     respond_to do |format|
       format.html # index.html.erb
-      format.xml
-      format.js
+      format.xml { render :xml => @stops.to_xml(
+        :include => { 
+          :routes => {
+            :only => [:name, :id] 
+          } 
+        }
+      ) }
+      format.js { render :json => @stops.to_json(
+        :include => {
+          :routes => {
+            :only => [:name, :id]
+          }
+        }
+      ) }
       format.kml
     end
   end
@@ -26,7 +38,13 @@ class StopsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @stop }
+      format.xml  { render :xml => @stop.to_xml(
+        :include => { 
+          :routes => {
+            :only => [:name, :id] 
+          } 
+        }
+      ) }
       format.kml
     end
   end

@@ -15,7 +15,7 @@ class RoutesController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.xml { render :xml => @routes }
-      format.js
+      format.js { render :json => @routes }
       format.kml
     end
   end
