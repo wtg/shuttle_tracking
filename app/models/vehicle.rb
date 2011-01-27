@@ -19,7 +19,7 @@ class Vehicle < ActiveRecord::Base
   # Is the vehicle is considered active or not?
   # This can be overridden with the active_override flag,
   # but it defaults to detect motion within 3 minutes.
-  def active?(threshold = 180)
+  def active?(threshold = ACTIVE_TIMEOUT)
     active_override? || (offline_for <= threshold)
   end
 
