@@ -113,13 +113,16 @@ function format_time(date){
 }
 function shuttle_description(vehicle){
   var buffer = new Array();
+  var update_timestamp = new Date(vehicle.latest_position.timestamp);
   buffer.push("<strong>");
   buffer.push(vehicle.name);
   buffer.push("</strong><br />Traveling ");
   buffer.push(vehicle.latest_position.cardinal_point);
   buffer.push(" at ");
   buffer.push(vehicle.latest_position.speed);
-  buffer.push("mph.");
+  buffer.push("mph<br /> as of ");
+  buffer.push(format_time(update_timestamp));
+  buffer.push(".");
   return buffer.join('');
 }
 function stop_description(stop){
