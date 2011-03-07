@@ -1,0 +1,33 @@
+<% content_for :title, "Pages" %>
+<div class="main-title">Pages</div>
+<div class="hr_dl flush"><%= image_tag("bl.png", :alt => "") %></div>
+<br />
+<div class="mc-indent">
+  <h2 id="pages">Pages <%= link_to 'Add', new_page_path, :class => "link-button" if can? :add, Page%></h2>
+  <div>
+    <table cellpadding="0" cellspacing="0" width="100%" class="elements">
+     <thead>
+      <tr class="cat_title">
+    <th>Name</th>
+    <th>Permalink</th>
+    <th>Content</th>
+    <th></th>
+  </tr>
+    <tbody>
+     <% @pages.each do |page| %>
+       <tr class="<%= cycle('odd', 'even') %>">
+    <td><%= link_to page.name, page %></td>
+    <td><%= page.permalink %></td>
+    <td><%= page.content %></td>
+         <td>
+           <span>
+             <%= link_to 'Edit', edit_page_path(page), :class => 'edit-link' if can? :update, @page  %>&nbsp;
+             <%= link_to 'Remove', page, :confirm => 'Are you sure?', :method => :delete, :class => 'cancel-link' if can? :destroy, @page %>
+           </span>
+         </td>
+  </tr>
+<% end %>
+    </tbody>
+   </table>
+  </div>
+</div>

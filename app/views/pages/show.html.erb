@@ -1,0 +1,17 @@
+<% content_for :title, @page.name %>
+<div class="main-title"><%= @page.name %></div>
+<div class="data_grid">
+  <dl>
+    <dt>Permalink:</dt>
+    <dd><%= @page.permalink %></dd>
+    <dt>Content:</dt>
+    <dd><%= @page.content %></dd>
+  </dl>
+</div>
+<div><%= @page.content.text%></div>
+<div style="clear:both"></div>
+<div>
+  <%= link_to 'Edit', edit_stop_path(@stop) if can? :update, @stop %> |
+  <%= link_to 'Back', stops_path %>
+</div>
+<div style="clear:both"></div>
