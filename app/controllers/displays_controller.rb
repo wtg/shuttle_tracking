@@ -1,6 +1,7 @@
 class DisplaysController < ApplicationController
 
   def index
+    @pages = Page.all
     render :layout => 'full_map'
   end
 
