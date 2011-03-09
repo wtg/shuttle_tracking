@@ -61,7 +61,7 @@ body
   display:block;
   background-color:black;
   padding-top:1px;
-  height:90px;
+  /*height:90px;*/
 }
 #nav a
 {

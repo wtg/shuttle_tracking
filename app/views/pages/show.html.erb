@@ -6,12 +6,14 @@
     <dd><%= @page.permalink %></dd>
     <dt>Content:</dt>
     <dd><%= @page.content %></dd>
+    <dt>Display on Frontpage?</dt>
+    <dd><%= @page.frontpage? ? "True" : "False" %></dd>
   </dl>
 </div>
-<div><%= @page.content.text%></div>
+<div><%=raw @page.content %></div>
 <div style="clear:both"></div>
 <div>
-  <%= link_to 'Edit', edit_stop_path(@stop) if can? :update, @stop %> |
-  <%= link_to 'Back', stops_path %>
+  <%= link_to 'Edit', edit_page_path(@page) if can? :update, @page %> |
+  <%= link_to 'Back', pages_path %>
 </div>
 <div style="clear:both"></div>
