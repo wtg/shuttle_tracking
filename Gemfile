@@ -24,3 +24,6 @@ gem 'rmagick', '2.12.2'
 
 # Compress JS and CSS
 gem 'jammit'
+
+# Use RedCloth to format text
+gem 'RedCloth'

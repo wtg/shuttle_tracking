@@ -15,8 +15,8 @@ class PagesController < ApplicationController
   def show
     @page = Page.find_by_permalink(params[:id])
 
-    if (request.xhr?)
-       render :text => @page.content
+    if request.xhr? && request.format.html?
+       render :text => RedCloth.new(@page.content).to_html
     else
       respond_to do |format|
         format.html # show.html.erb
