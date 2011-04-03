@@ -7,7 +7,7 @@ class Ability
     if user.is_admin?
       can :manage, :all
     else
-      can :read, [Icon, Route, Stop, Update, Vehicle]
+      can :read, [Icon, Route, Stop, Update, Vehicle, Page]
       # Regular people can't access statuses or users.
     end
   end
