@@ -62,7 +62,6 @@ body
   display:block;
   background-color:black;
   padding-top:1px;
-  /*height:90px;*/
 }
 #nav a
 {
@@ -93,30 +92,6 @@ body
   border-color:#D0D0D0;
   border-top-color:#707070;
   border-left-color:#707070;
-}
-.hoverdiv
-{
-  font-family: arial;
-  display:none;
-  position:absolute;
-  left:50%;
-  width:400px;
-  margin-left:-200px;
-  top:40%;
-  background:white;
-  padding:10px;
-  -moz-box-shadow: 5px 5px 5px #000; /* CSS3 */
-  -webkit-box-shadow: 5px 5px 5px #000; /* CSS3 */
-  box-shadow: 5px 5px 5px #000; /* CSS3 */
-}
-.hoverdiv p
-{
-  margin-top:0px;
-  margin-bottom:10px;
-}
-.close
-{
-  float:right;
 }
 #right
 {
@@ -155,46 +130,37 @@ body
 
 /* the overlayed element */
 .simple_overlay {
+  /* must be initially hidden */
+  display:none;
 
-	/* must be initially hidden */
-	display:none;
+  /* place overlay on top of other elements */
+  z-index:10000;
 
-	/* place overlay on top of other elements */
-	z-index:10000;
+  /* styling */
+  background-color:#FFF;
 
-	/* styling */
-	background-color:#FFF;
-
-	width:400px;
-	min-height:400px;
-	border:1px solid #666;
-	padding: 25px;
+  width:400px;
+  border:1px solid #666;
+  padding: 25px;
 	
-	/* CSS3 styling for latest browsers */
-	-moz-box-shadow:0 0 90px 5px #000;
-	-webkit-box-shadow: 0 0 90px #000;	
+  /* CSS3 styling for latest browsers */
+  -moz-box-shadow:0 0 90px 5px #000;
+  -webkit-box-shadow: 0 0 90px #000;	
 }
 
 /* close button positioned on upper right corner */
 .simple_overlay .close {
-	background-image:url(../images/close.png);
-	position:absolute;
-	right:-15px;
-	top:-15px;
-	cursor:pointer;
-	height:35px;
-	width:35px;
+  background-image:url(../images/close.png);
+  position:absolute;
+  right:-15px;
+  top:-15px;
+  cursor:pointer;
+  height:35px;
+  width:35px;
 }
 
 /* styling for elements inside overlay */
 .contentWrap {
-	font-size:12px;
-	font-family:Arial, Helvetica, sans-serif;
-	color:#000;
-}
-
-.contentWrap h3 {
-	color:#aba;
-	font-size:15px;
-	margin:0 0 -10px 0;
+  font-family:Arial, Helvetica, sans-serif;
+  color:#000;
 }

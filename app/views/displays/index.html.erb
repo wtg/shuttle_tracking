@@ -1,4 +1,13 @@
 <% content_for :js_ready do %>
+    //Setup the overlays
+    $("a[rel]").overlay({
+      top: 150,
+      onBeforeLoad: function() {
+        var wrap = this.getOverlay().find(".contentWrap");
+        wrap.load(this.getTrigger().attr("href"));
+      }
+    });
+    //Map work
     var point = {latitude: <%= MAP_CENTER[:lat] %>, longitude: <%= MAP_CENTER[:long] %>};
     map = setup_map(point, 15);
     $.ajaxSetup({
@@ -26,26 +35,6 @@
   var netlink_data_path = '<%= displays_netlink_path(:format => 'js') %>';
   var base_icon = '<%= rotate_icon_path(:id => ':id', :heading => ':heading', :format => 'png') %>';
   var stop_icon_path = '<%= image_path "blue_dot.png" %>';
-
-  $(function() {
-
-          // if the function argument is given to overlay,
-          // it is assumed to be the onBeforeLoad event listener
-          $("a[rel]").overlay({
-
-                  top: 150,
-
-                  onBeforeLoad: function() {
-
-                          // grab wrapper element inside content
-                          var wrap = this.getOverlay().find(".contentWrap");
-
-                          // load the page specified in the trigger
-                          wrap.load(this.getTrigger().attr("href"));
-                  }
-
-          });
-  });
 <% end %>
 <div id="shuttle_logo"></div>
 <div id="mapblock">
