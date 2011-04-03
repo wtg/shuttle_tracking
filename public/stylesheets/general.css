@@ -240,7 +240,8 @@ table.elements tr:last-child td:last-child { -moz-border-radius-bottomright:10px
   list-style: square;
 }
 
-dl { float: left; width: 49%; margin: 1em 1em 1em 0em; border-bottom: 1px solid #999; }
-dt { clear: left; float: left; width: 50%; margin: 0; padding: 5px 0px;	border-top: 1px solid #999; font-weight: bold; }
-dd { float: left; width: 50%; margin: 0; padding: 5px 0px; border-top: 1px solid #999; }
+.data_grid { float: left; width: 49%; }
+dl { margin: 1em 1em 1em 0em; border-bottom: 1px solid #999; }
+dt { float: left; clear: left; width: 50%; margin: 0; padding: 5px 0px;	border-top: 1px solid #999; font-weight: bold; }
+dd { float: left; width: 50%;  margin: 0; padding: 5px 0px; border-top: 1px solid #999; }
 

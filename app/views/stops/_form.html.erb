@@ -38,6 +38,9 @@
       <li><%= f.label :phonetic %><%= f.text_field :phonetic %></li>
       <li><%= f.label :short_name %><%= f.text_field :short_name %></li>
       <li><%= f.label :routes %><%= f.collection_select :route_ids, Route.all, :id, :name, {:include_blank => true}, {:multiple => true} %> 
+      <li><%= f.label :address %><%= f.text_field :address %></li>
+      <li><%= f.label :time_served %><%= f.text_field :time_served %></li>
+      <li><%= f.label :description %><%= f.text_area :description, :cols => 10, :rows => 3 %></li>
       <li><%= f.label :latitude %> <%= f.text_field :latitude %></li>
       <li><%= f.label :longitude %> <%= f.text_field :longitude %></li>
     </ol>

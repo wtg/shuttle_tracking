@@ -11,23 +11,35 @@
 	<%= @stop.name %>
 </div>
 <div class="data_grid">
+<p><%= @stop.description %></p>
   <dl>
-    <dt>Next Shuttle Arriving:</dt>
-    <dd>5 min.<!-- Aren't I funny.... --></dd>
+<!--    <dt>Next Shuttle Arriving:</dt>
+    <dd>5 min.Aren't I funny....</dd> -->
     <dt>Routes Served:</dt>
     <dd>
       <%=raw @stop.routes.map{ |r| link_to(r.name, r)}.join(", ") %>
     </dd>
+    <% if !@stop.address.blank? %>
+    <dt>Address:</dt>
+    <dd><%= @stop.address %></dd>
+    <% end %>
+    <% if !@stop.time_served.blank? %>
+    <dt>Time Served:</dt>
+    <dd><%= @stop.time_served %></dd>
+    <% end %>
+<% if current_user && current_user.is_admin? %>
     <dt>Status:</dt>
     <dd><%= @stop.enabled? ? "Enabled" : "Disabled" %></dd>
     <dt>Phonetic:</dt>
     <dd><%= @stop.phonetic %></dd>
     <dt>Short Name:</dt>
     <dd><%= @stop.short_name.upcase %></dd>
+<% end %>
   </dl>
 </div>
 <%= map_canvas({:style => "height: 300px; width: 49%;"})%>
+<div style="clear:both;"></div>
 <div>
-  <%= link_to 'Edit', edit_stop_path(@stop) if can? :update, @stop %> |
+  <%= link_to 'Edit', edit_stop_path(@stop) if can? :update, @stop %>
   <%= link_to 'Back', stops_path %>
 </div>

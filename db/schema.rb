@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101204232129) do
+ActiveRecord::Schema.define(:version => 20110305030902) do
 
   create_table "coords", :force => true do |t|
     t.decimal  "latitude",   :precision => 15, :scale => 10, :default => 0.0
@@ -59,13 +59,16 @@ ActiveRecord::Schema.define(:version => 20101204232129) do
 
   create_table "stops", :force => true do |t|
     t.string   "name"
-    t.decimal  "latitude",   :precision => 15, :scale => 10, :default => 0.0
-    t.decimal  "longitude",  :precision => 15, :scale => 10, :default => 0.0
-    t.boolean  "enabled",                                    :default => true
+    t.decimal  "latitude",    :default => 0.0
+    t.decimal  "longitude",   :default => 0.0
+    t.boolean  "enabled",     :default => true
     t.string   "phonetic"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "short_name"
+    t.text     "description"
+    t.string   "address"
+    t.string   "time_served"
   end
 
   create_table "updates", :force => true do |t|
