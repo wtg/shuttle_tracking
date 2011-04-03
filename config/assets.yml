@@ -11,6 +11,7 @@ javascripts:
     - public/javascripts/application.js
   map:
     - public/javascripts/map.js
+    - public/javascripts/overlay.js
 
 stylesheets:
   map:

@@ -1,0 +1,19 @@
+<% content_for :title, @page.name %>
+<div class="main-title"><%= @page.name %></div>
+<div class="data_grid">
+  <dl>
+    <dt>Permalink:</dt>
+    <dd><%= @page.permalink %></dd>
+    <dt>Content:</dt>
+    <dd><%= @page.content %></dd>
+    <dt>Display on Frontpage?</dt>
+    <dd><%= @page.frontpage? ? "True" : "False" %></dd>
+  </dl>
+</div>
+<div><%=raw @page.content %></div>
+<div style="clear:both"></div>
+<div>
+  <%= link_to 'Edit', edit_page_path(@page) if can? :update, @page %> |
+  <%= link_to 'Back', pages_path %>
+</div>
+<div style="clear:both"></div>

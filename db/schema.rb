@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110305030902) do
+ActiveRecord::Schema.define(:version => 20110308060631) do
 
   create_table "coords", :force => true do |t|
     t.decimal  "latitude",   :precision => 15, :scale => 10, :default => 0.0
@@ -30,6 +30,15 @@ ActiveRecord::Schema.define(:version => 20110305030902) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "heading",                       :default => 0
+  end
+
+  create_table "pages", :force => true do |t|
+    t.string   "name"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "permalink"
+    t.boolean  "frontpage"
   end
 
   create_table "routes", :force => true do |t|

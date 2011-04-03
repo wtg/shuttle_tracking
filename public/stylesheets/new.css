@@ -62,7 +62,7 @@ body
   display:block;
   background-color:black;
   padding-top:1px;
-  height:90px;
+  /*height:90px;*/
 }
 #nav a
 {
@@ -151,4 +151,50 @@ body
   bottom:0px;
   position:absolute;
   height:30px;
+}
+
+/* the overlayed element */
+.simple_overlay {
+
+	/* must be initially hidden */
+	display:none;
+
+	/* place overlay on top of other elements */
+	z-index:10000;
+
+	/* styling */
+	background-color:#FFF;
+
+	width:400px;
+	min-height:400px;
+	border:1px solid #666;
+	padding: 25px;
+	
+	/* CSS3 styling for latest browsers */
+	-moz-box-shadow:0 0 90px 5px #000;
+	-webkit-box-shadow: 0 0 90px #000;	
+}
+
+/* close button positioned on upper right corner */
+.simple_overlay .close {
+	background-image:url(../images/close.png);
+	position:absolute;
+	right:-15px;
+	top:-15px;
+	cursor:pointer;
+	height:35px;
+	width:35px;
+}
+
+/* styling for elements inside overlay */
+.contentWrap {
+	font-size:12px;
+	font-family:Arial, Helvetica, sans-serif;
+	color:#000;
+}
+
+.contentWrap h3 {
+	color:#aba;
+	font-size:15px;
+	margin:0 0 -10px 0;
 }

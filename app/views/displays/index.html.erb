@@ -26,6 +26,26 @@
   var netlink_data_path = '<%= displays_netlink_path(:format => 'js') %>';
   var base_icon = '<%= rotate_icon_path(:id => ':id', :heading => ':heading', :format => 'png') %>';
   var stop_icon_path = '<%= image_path "blue_dot.png" %>';
+
+  $(function() {
+
+          // if the function argument is given to overlay,
+          // it is assumed to be the onBeforeLoad event listener
+          $("a[rel]").overlay({
+
+                  top: 150,
+
+                  onBeforeLoad: function() {
+
+                          // grab wrapper element inside content
+                          var wrap = this.getOverlay().find(".contentWrap");
+
+                          // load the page specified in the trigger
+                          wrap.load(this.getTrigger().attr("href"));
+                  }
+
+          });
+  });
 <% end %>
 <div id="shuttle_logo"></div>
 <div id="mapblock">
@@ -35,8 +55,9 @@
       <%= image_tag 'little_wtg_logo.png', :alt => "Web Tech Group" %>
     <% end %>
     <div id="nav">
-      <a id="about_button" href="#">About</a>
-      <a id="faq_button" href="#">FAQ</a>
+      <% @pages.each do |page| %>
+        <%= link_to page.name, page, :rel => "#overlay" %>
+      <% end %>
       <%= link_to "KML", displays_netlink_path(:format => 'kml') %>
       <a href="http://webtech.union.rpi.edu/ticket">Contact</a>
       <a href="http://github.com/wtg/shuttle_tracking">Source</a>
@@ -52,33 +73,11 @@
 <div id="top"></div>
 <div id="right"></div>
 <div id="bottom"></div>
-<div class="hoverdiv" id="about">
-  <p>Shuttle Tracking is designed and maintained by the Student Senate <a href="http://webtech.union.rpi.edu/">Web Technologies Group</a>.</p>
-  <p>This service is supported by the <a href="http://www.rpi.edu/dept/parking/">Parking and Transportation Office</a>, the <a href="http://www.rpi.edu/dept/administration/"> Administration Division</a> and <a href="http://dotcio.rpi.edu/setup.do">dotCIO</a>.</p>
-  <p>Much of the code behind Shuttle Tracking comes from <a href="http://projects.brispace.net/category/geo/">Flagship Geo</a>, an open source mapping project sponsored by <a href="http://rcos.cs.rpi.edu/"><abbr title="Rensselaer Center for Open Source Software">RCOS</abbr></a>.</p>
-  <p><a class="close" href="#" id="about_close">Close</a></p>
+
+<!-- first overlay. id attribute matches our selector -->
+<div class="simple_overlay" id="overlay">
+
+	<!-- the external content is loaded inside this tag -->
+	<div class="contentWrap"></div>
+
 </div>
-<div class="hoverdiv" id="faq">
-  <p>Coming soon...</p>
-  <p><a class="close" href="#" id="faq_close">Close</a></p>
-</div>
-<script>
-  $("#about_button").click(function () {
-      $("#about").toggle();
-      $("#faq").hide();
-      return false;
-    });
-  $("#about_close").click(function () {
-      $("#about").hide();
-      return false;
-    });
-  $("#faq_button").click(function () {
-      $("#faq").toggle();
-      $("#about").hide();
-      return false;
-    });
-  $("#faq_close").click(function () {
-      $("#faq").hide();
-      return false;
-    });
-</script>
