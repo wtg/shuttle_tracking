@@ -1,5 +1,11 @@
 <% content_for :title, "Stops" %>
 <div class="main-title"><%= @all_stops ? "All" : "Active" %> Stops</div>
+<% if can? :add, Stop %>
+  <div style="margin-bottom:15px;">
+    <%= link_to 'Active', stops_path, :class => "link-button" if @all_stops %>
+    <%= link_to 'All', stops_path(:all => "true"), :class => "link-button" if !@all_stops %>
+  </div>
+<% end %>
 <div class="hr_dl flush"><%= image_tag("bl.png", :alt => "") %></div>
 <br />
 <div class="mc-indent">
