@@ -20,10 +20,10 @@ class Stop < ActiveRecord::Base
     short_name
   end
 
-  # Convert the short-name to lowercase, which
-  # I am treating as the lowest common denominator.
+  # Convert the short-name to a parameter, which in
+  # this case tolerates [A-z0-9\-]
   def convert_short_name
-    short_name.downcase!
+    self.short_name = self.short_name.parameterize
     true # So the save doesn't give up?
   end
 
