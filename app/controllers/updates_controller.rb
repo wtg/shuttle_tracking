@@ -20,7 +20,7 @@ class UpdatesController < ApplicationController
   # GET /updates/new
   # GET /updates/new.xml
   def new
-    @update = Update.new({:vehicle => @vechicle})
+    @update = Update.new({:vehicle => @vehicle})
 
     respond_to do |format|
       format.html # new.html.erb
@@ -42,7 +42,7 @@ class UpdatesController < ApplicationController
     respond_to do |format|
       if @update.save
         format.html { redirect_to(vehicle_updates_url, :notice => 'Update was successfully created.') }
-        format.xml  { render :xml => @update, :status => :created, :location => @update }
+        format.xml  { render :xml => @update, :status => :created, :location => [@vehicle, @update] }
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @update.errors, :status => :unprocessable_entity }
