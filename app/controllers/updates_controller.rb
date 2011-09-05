@@ -1,7 +1,8 @@
 class UpdatesController < ApplicationController
   before_filter :get_vehicle
-  authorize_resource
-
+  before_filter :app_auth, :only => [:create]
+  authorize_resource :except => [:create]
+  
   def get_vehicle
     @vehicle = Vehicle.find(params[:vehicle_id])
   end
@@ -77,4 +78,12 @@ class UpdatesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  protected
+    def app_auth
+      authenticate_or_request_with_http_basic do |user_name, password|
+        defined?(REMOTE_ACCESS) && REMOTE_ACCESS[:enabled] &&
+        user_name == REMOTE_ACCESS[:username] && password == REMOTE_ACCESS[:password]
+      end
+    end
 end
