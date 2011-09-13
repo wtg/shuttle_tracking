@@ -5,7 +5,7 @@ God.pid_file_directory = File.join(RAILS_ROOT, "log")
 God.watch do |w|
   w.name = "auto_updater"
   w.interval = 30.seconds
-  w.start = "rake tracking:auto_update"
+  w.start = "bundle exec rake tracking:auto_update"
   w.dir = RAILS_ROOT
   w.log = File.join(RAILS_ROOT, "log/auto_update.log")
 
