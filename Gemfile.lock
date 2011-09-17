@@ -57,11 +57,13 @@ GEM
     i18n (0.5.0)
     jammit (0.6.3)
       yui-compressor (>= 0.9.3)
-    mail (2.2.19)
+    kaminari (0.12.4)
       activesupport (>= 2.3.6)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
+      rails (>= 3.0.0)
       treetop (~> 1.4.8)
+    mail (2.2.19)
     mime-types (1.16)
     mysql (2.8.1)
     numerizer (0.1.1)
@@ -116,6 +118,7 @@ DEPENDENCIES
   devise_cas_authenticatable!
   god
   jammit
+  kaminari
   mysql
   rails (= 3.0.10)
   rmagick (= 2.12.2)

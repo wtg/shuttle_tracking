@@ -10,7 +10,7 @@ class UpdatesController < ApplicationController
   # GET /updates
   # GET /updates.xml
   def index
-    @updates = @vehicle.updates
+    @updates = @vehicle.updates.page(params[:page]).per(30)
 
     respond_to do |format|
       format.html # index.html.erb

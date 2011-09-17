@@ -27,3 +27,6 @@ gem 'jammit'
 
 # Use RedCloth to format text
 gem 'RedCloth'
+
+# Use kaminari for pagination
+gem 'kaminari'
