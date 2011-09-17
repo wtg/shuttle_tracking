@@ -1,25 +1,27 @@
-<p id="notice"><%= notice %></p>
+<% content_for :js_ready do %>
+  var stop = <%=raw @stop.to_json() %>;
+  stop = stop.stop;
+  var map = setup_map(stop, 17);
+  add_point_to_map(stop, map);
+<% end %>
 
-<p>
-  <b>Identifier:</b>
-  <%= @vehicle.identifier %>
-</p>
+<% content_for :title, @vehicle.name %>
 
-<p>
-  <b>Name:</b>
-  <%= @vehicle.name %>
-</p>
-
-<p>
-  <b>Active:</b>
-  <%= @vehicle.active? %>
-</p>
-
-<p>
-  <b>Enabled:</b>
-  <%= @vehicle.enabled %>
-</p>
-
-
-<%= link_to 'Edit', edit_vehicle_path(@vehicle) if can? :update, @vehicle %> |
-<%= link_to 'Back', vehicles_path %>
+<div class="main-title">
+        <%= @vehicle.name %>
+</div>
+<div class="data_grid">
+  <dl>
+    <dt>Identifier:</dt>
+    <dd><%= @vehicle.identifier %></dd>
+    <dt>Active:</dt>
+    <dd><%= @vehicle.active? %></dd>
+    <dt>Enabled:</dt>
+    <dd><%= @vehicle.enabled %></dd>
+  </dl>
+</div>
+<%= map_canvas({:style => "height: 300px; width: 49%;"})%>
+<div>
+  <%= link_to 'Edit', edit_vehicle_path(@vehicle) if can? :update, @vehicle %> |
+  <%= link_to 'Back', vehicles_path %>
+</div>
